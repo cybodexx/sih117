@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 from backend.core.config import get_settings
 from backend.core.exceptions import ToolError
-from backend.services.llm.ollama_client import get_ollama_client
+from backend.services.llm.ollama_client import get_or_create_client
 
 logger = structlog.get_logger()
 settings = get_settings()
@@ -23,8 +23,47 @@ class _SQLResult(BaseModel):
     explanation: str
 
 
+async def _schema_snapshot() -> str:
+    """List available ds_* tables and columns from Postgres information_schema."""
+    from sqlalchemy import text
+    from sqlalchemy.ext.asyncio import create_async_engine
+
+    engine = create_async_engine(settings.database_url)
+    try:
+        async with engine.connect() as conn:
+            tables = await conn.execute(
+                text(
+                    "SELECT table_name FROM information_schema.tables "
+                    "WHERE table_schema = 'public' AND table_name LIKE 'ds_%' "
+                    "ORDER BY table_name"
+                )
+            )
+            names = [r[0] for r in tables.fetchall()]
+            if not names:
+                return ""
+            cols = await conn.execute(
+                text(
+                    "SELECT table_name, column_name, data_type FROM information_schema.columns "
+                    "WHERE table_schema = 'public' AND table_name LIKE 'ds_%' "
+                    "ORDER BY table_name, ordinal_position"
+                )
+            )
+            by_table: dict[str, list[str]] = {}
+            for tn, col, dt in cols.fetchall():
+                by_table.setdefault(tn, []).append(f"{col}: {dt}")
+            return "\n".join(f"- {tn}({', '.join(by_table.get(tn, []))})" for tn in names)
+    finally:
+        await engine.dispose()
+
+
 async def _nl_to_sql(question: str) -> str:
-    llm = get_ollama_client()
+    llm = get_or_create_client()
+    schema = await _schema_snapshot()
+    schema_block = (
+        "Available tables:\n" + schema + "\n"
+        if schema
+        else "No tables currently ingested."
+    )
     result = await llm.structured(
         messages=[
             {
@@ -36,7 +75,10 @@ async def _nl_to_sql(question: str) -> str:
                     "- All tables start with ds_ prefix.\n"
                     "- Always include a LIMIT clause (max 500).\n"
                     "- Use standard SQL syntax.\n"
-                    "Available tables and columns are provided by the user."
+                    "- Timestamps are stored in ISO 8601 UTC; use DATE_TRUNC / EXTRACT for aggregates.\n"
+                    "- Respond ONLY with a single JSON object of the form "
+                    '{"sql": "SELECT ...", "explanation": "..."} and nothing else.\n'
+                    + schema_block
                 ),
             },
             {"role": "user", "content": f"Question: {question}"},

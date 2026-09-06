@@ -60,14 +60,33 @@ def _error_frame(message: str) -> str:
 
 def _classify_intent(question: str) -> tuple[str, float]:
     q = question.lower()
-    if any(k in q for k in ("fail", "cause", "why", "root", "incident", "trip", "leak")):
-        return "INCIDENT", 0.87
-    if any(k in q for k in ("standard", "compli", "regulator", "clause", "iso ", "osha", "pssr")):
+    # DATA_ANALYSIS: statistical/computational intent outranks incidental "failure" talk.
+    if any(k in q for k in (
+        "how many", "average", "trend", "count", "correlat", "calculate", "statistic",
+        "mtbf", "median", "percentile", "distribution", "frequency", "by machine type",
+        "summary", "list", "total", "highest", "lowest", "fleet average", "compare",
+    )):
+        return "DATA_ANALYSIS", 0.85
+    # COMPLIANCE: standard/regulation/audit vocabulary — inspect-first outranks
+    # incidental image mention when the question is about a standard.
+    if any(k in q for k in ("standard", "compli", "regulator", "clause", "iso ", "osha", "pssr", "dpdp", "statutory", "certif")):
         return "COMPLIANCE", 0.84
-    if any(k in q for k in ("how many", "average", "trend", "count", "compare", "statistic", "mtbf", "summary", "list")):
-        return "DATA_ANALYSIS", 0.82
-    if any(k in q for k in ("image", "photo", "picture", "diagram", "drawing")):
+    # VISION: explicit image terms outrank generic damage words.
+    if any(k in q for k in ("image", "photo", "picture", "diagram", "drawing", "radiograph", "thermographic", "attached")):
         return "VISION", 0.80
+    # DOC_QA: explicit document-lookup language.
+    if any(k in q for k in ("manual", "sop", "procedure", "criteria", "torque", "calibrat", "specif", "recommend", "quote", "what does", "what is the")):
+        return "DOC_QA", 0.80
+    # INCIDENT: root-cause / investigation language.
+    if any(k in q for k in ("fail", "cause", "why", "root", "incident", "trip", "leak", "investigat", "degradation", "shutdown")):
+        return "INCIDENT", 0.87
+    # CHITCHAT: social / system-metadata language.
+    if any(k in q for k in (
+        "hello", "hi ", "hey", "thanks", "thank you", "joke", "weather", "who built",
+        "how are you", "what can you help", "explain what", "how does this system work",
+        "translate", "what ai model", "who are you", "whats your name", "what do you do",
+    )):
+        return "CHITCHAT", 0.80
     return "DOC_QA", 0.72
 
 
@@ -295,6 +314,29 @@ async def _run_turn(
         if vision_description:
             search_query = f"{question} — photo analysis: {vision_description[:250]}"
 
+        sql_note = ""
+        if intent == "DATA_ANALYSIS":
+            step(next_act, "act", "Querying ingested data tables",
+                 tool="sql_query", tool_args={"question": question[:120]})
+            yield _sse("step", reasoning[-1])
+            try:
+                from backend.agents.tools.sql_query import sql_query as run_sql
+
+                sql_note = await run_sql(question, session_id)
+            except Exception as exc:
+                logger.error("sql_query_failed", error=str(exc), session_id=session_id)
+                sql_note = ""
+            if sql_note:
+                if not sql_note.startswith("|"):
+                    sql_note = ""
+                else:
+                    step(next_act, "act", f"Data tables queried — {max(sql_note.count(chr(10)) - 1, 0)} data rows")
+                    tool_calls.append({"name": "sql_query", "args": {"question": question[:120]}})
+            if not sql_note:
+                step(next_act, "act", "Data query returned no usable results — falling back to documents")
+            yield _sse("step", reasoning[-1])
+            next_act += 1
+
         step(next_act, "act", "Retrieving authorised sources",
              tool="vector_search", tool_args={"query": search_query[:120]})
         yield _sse("step", reasoning[-1])
@@ -310,7 +352,7 @@ async def _run_turn(
         sources = _source_payload(chunks[: _MAX_SOURCES], titles)
         yield _sse("sources", {"sources": sources})
 
-        if not chunks:
+        if not chunks and not sql_note:
             answer = (
                 "I could not find any authorised sources matching your question in the local corpus. "
                 "Upload a relevant document in the Documents tab so it can be indexed, then ask again."
@@ -337,12 +379,28 @@ async def _run_turn(
         step(next_act + 1, "synthesize", f"Grounding answer in {len(chunks)} authorised sources")
         yield _sse("step", reasoning[-1])
 
-        context = "\n\n".join(
-            f"[{i}] {' — '.join(c.heading_path) if c.heading_path else ''}\n{c.text}"
-            for i, c in enumerate(chunks, start=1)
-        )
+        context_blocks: list[str] = []
         if vision_description:
-            context = f"[USER-PROVIDED PHOTO ANALYSIS]\n{vision_description}\n\n{context}"
+            context_blocks.append(f"[USER-PROVIDED PHOTO ANALYSIS]\n{vision_description}")
+        context_auth_parts: list[str] = []
+        for i, chunk in enumerate(chunks, start=1):
+            if sql_note:
+                i += 1
+            context_auth_parts.append(
+                f"[{i}] {' — '.join(chunk.heading_path) if chunk.heading_path else ''}\n{chunk.text}"
+            )
+        if sql_note:
+            context_blocks.append(
+                "[1] [VERIFIED DATA — result of an executed SQL query against the "
+                "ingested data tables. This is the ONLY source of truth for this "
+                "data question. Transcribe these figures directly into your answer "
+                "with their units citing [1]. Do not describe a method, do not "
+                "refuse, do not ask for more data.]\n"
+                + sql_note
+            )
+        elif context_auth_parts:
+            context_blocks.append("\n\n".join(context_auth_parts))
+        context = "\n\n".join(context_blocks)
         user_prompt = SYNTH_PROMPT.format(context=context, question=question)
         prompt_hash = hashlib.sha256(user_prompt.encode()).hexdigest()[:16]
 
@@ -353,7 +411,8 @@ async def _run_turn(
         ]
 
         output: list[str] = []
-        async for delta in ollama.stream(messages, temperature=0.2, max_tokens=_MAX_STREAM_TOKENS):
+        synth_temperature = 0.1 if intent == "DATA_ANALYSIS" else 0.2
+        async for delta in ollama.stream(messages, temperature=synth_temperature, max_tokens=_MAX_STREAM_TOKENS):
             output.append(delta)
             yield _sse("token", {"delta": delta})
         answer = "".join(output)

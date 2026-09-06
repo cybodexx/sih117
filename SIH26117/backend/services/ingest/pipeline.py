@@ -5,6 +5,7 @@ M4 owns this file. Called from the ARQ worker only.
 from __future__ import annotations
 
 import hashlib
+import json
 import uuid
 from datetime import datetime, timezone
 
@@ -16,6 +17,7 @@ from backend.db.base import async_session
 from backend.db.models.document import DocumentModel
 from backend.services.audit.writer import emit as audit_emit
 from backend.services.ingest.chunker import split
+from backend.services.ingest.csv_sql import materialize_csv
 from backend.services.ingest.embedder import embed_batched
 from backend.services.ingest.indexer import upsert
 from backend.services.ingest.pdf_parser import Element, parse as parse_pdf
@@ -108,6 +110,26 @@ async def ingest_document(document_id: str, correlation_id: str = "") -> dict[st
 
         indexed = await upsert(chunks, vectors, document_id)
         elapsed_s = round(__import__("time").monotonic() - start, 1)
+
+        data_table: str | None = None
+        if doc.mime in _CSV_MIME or filename.lower().endswith((".csv", ".log", ".json")):
+            table_info = await materialize_csv(filename, raw, document_id)
+            data_table = str(table_info["table"])
+            await audit_emit(
+                "CSV_TABLE_LOADED",
+                correlation_id=correlation_id,
+                resource_type="document",
+                resource_id=document_id,
+                document_ids=[document_id],
+                decision=json.dumps(
+                    {
+                        "table": table_info["table"],
+                        "rows": table_info["rows"],
+                        "columns": table_info["columns"],
+                    }
+                ),
+                severity="info",
+            )
 
         await _finalize(document_id, page_hint, indexed, elapsed_s)
         await audit_emit(
