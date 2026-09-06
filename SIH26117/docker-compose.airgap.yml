@@ -1,0 +1,64 @@
+# AEGIS-WB Air-gapped Production Overlay
+# Usage: docker compose -f docker-compose.yml -f docker-compose.airgap.yml up -d
+
+services:
+  web:
+    networks:
+      - edge
+      - appnet
+
+  api:
+    environment:
+      - AIRGAP_MODE=true
+      - HF_HUB_OFFLINE=1
+      - TRANSFORMERS_OFFLINE=1
+      - ANONYMIZED_TELEMETRY=false
+      - DO_NOT_TRACK=1
+      - LANGCHAIN_TRACING_V2=false
+    networks:
+      - appnet
+      - datanet
+      - modelnet
+
+  worker:
+    environment:
+      - HF_HUB_OFFLINE=1
+      - TRANSFORMERS_OFFLINE=1
+    networks:
+      - appnet
+      - datanet
+      - modelnet
+
+  ollama:
+    environment:
+      - OLLAMA_KEEP_ALIVE=-1
+      - OLLAMA_HOST=0.0.0.0
+    networks:
+      - modelnet
+
+  qdrant:
+    environment:
+      - QDRANT__TELEMETRY_DISABLED=true
+    networks:
+      - datanet
+
+  sentinel:
+    environment:
+      - AIRGAP_MODE=true
+    networks:
+      - appnet
+      - datanet
+      - modelnet
+
+networks:
+  edge:
+    driver: bridge
+  appnet:
+    driver: bridge
+    internal: true
+  datanet:
+    driver: bridge
+    internal: true
+  modelnet:
+    driver: bridge
+    internal: true

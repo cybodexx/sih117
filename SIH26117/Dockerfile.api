@@ -1,0 +1,28 @@
+FROM python:3.11-slim AS base
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libmagic1 && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY requirements-dev.txt .
+RUN pip install --no-cache-dir -r requirements-dev.txt
+
+FROM base AS runtime
+
+COPY backend/ backend/
+COPY pyproject.toml .
+COPY alembic.ini .
+
+RUN useradd --create-home --shell /bin/bash aegis \
+    && mkdir -p /data/keys /data/vault \
+    && chown -R aegis:aegis /data
+USER aegis
+
+EXPOSE 8000
+
+CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

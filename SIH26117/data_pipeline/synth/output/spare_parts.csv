@@ -1,0 +1,13 @@
+part_number,description,machine_types,stock_qty,lead_time_days,unit_cost
+SKF-6206-2RS,deep groove ball bearing 30x62x16,"turbine,compressor,pump",51,14,89.5
+SKF-6308-2Z,deep groove ball bearing 40x90x23,"turbine,compressor",27,14,156.0
+FLOWSEAL-200,mechanical seal 25mm carbon/sic,pump,33,21,210.75
+IC-CLEAN-KIT,intercooler cleaning kit,compressor,22,7,45.0
+OIL-HYD-68,hydraulic oil ISO VG 68 20L,"turbine,compressor,pump",63,3,78.25
+TC-KTYPE-100,k-type thermocouple 1m sheath,"turbine,compressor,pump",49,5,32.0
+GLAND-SET-P25,gland packing set size 25mm,pump,48,10,18.5
+COUPL-1220,coupling element size 12/20,"turbine,pump",26,21,245.0
+FILTER-OIL-10,oil filter element 10 micron,"turbine,compressor,pump",110,2,22.75
+VALVE-ACT-50,pneumatic valve actuator 50mm,"compressor,pump",10,30,890.0
+O-RING-75A,viton o-ring 75mm AS568,"turbine,compressor,pump",75,3,8.5
+VIB-SENSOR-M,vibration sensor mounting kit,"turbine,compressor,pump",29,10,145.0

@@ -1,0 +1,3 @@
+# Clearance mapping — maps document paths to clearance levels.
+# Authoritative when directory-based inference conflicts.
+mappings: {}

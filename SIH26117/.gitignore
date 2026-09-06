@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (local data)
+pg_data/
+qdrant_data/
+ollama_models/
+redis_data/
+data_vault/
+vault/
+
+# Keys (NEVER commit)
+keys/
+
+# Build artifacts
+*.tar
+*.tar.gz
+
+# Test/coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Data (too large for git, managed by make seed)
+data_pipeline/seed/**/*.pdf
+data_pipeline/seed/**/*.csv
+data_pipeline/seed/**/*.xlsx
+!data_pipeline/seed/**/*.yaml
+!data_pipeline/seed/**/*.md
+!data_pipeline/seed/**/*.jsonl

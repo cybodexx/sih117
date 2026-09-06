@@ -1,0 +1,35 @@
+[project]
+name = "aegis-wb"
+version = "1.0.0"
+description = "AEGIS-WB: Air-gapped Enterprise Grounded Inference System"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "SIM", "PLR", "PLW"]
+ignore = ["PLR0913"]  # allow >4 params in FastAPI Depends chains
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = ["arq.*", "pdfplumber.*", "fitz.*", "magic.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["backend/tests"]

@@ -1,0 +1,566 @@
+timestamp,machine_id,machine_type,error_code,severity,downtime_minutes,operator_notes,root_cause,resolution,technician_id,parts_replaced,operator_id
+04-05-2026 06:44,TURBINE-03,steam_turbine,E-4471,low,85,"spare part out of stok, ordered via maint req",replaced oil filter and topped up,tightened coupling bolts,TC-012,replaced thermocouple,OP-03
+09-08-2026 08:47,TURBINE-01,steam_turbine,E-7733,medium,35,"alignment check done last wk, looks ok for now",reset trip and inspected seals,replaced thermocouple,TC-005,replaced bearing assembly; flushed cooling water lines,OP-05
+29-05-2026 04:39,PUMP-04,centrifugal_pump,E-1101,critical,128,"vibraion trending up past 5 mm/s, need inspction",cleaned intercooler fins,tightened coupling bolts,TC-007,replaced oil filter and topped up,OP-02
+06-06-2026 13:33,COMPRESSOR-05,centrifugal_compressor,E-4471,critical,386,"spare part out of stok, ordered via maint req",replaced bearing assembly,overhauled valve actuator,TC-001,realigned pump impeller,OP-03
+03-06-2026 05:52,PUMP-08,centrifugal_pump,E-4471,critical,204,"alignment check done last wk, looks ok for now",tightened coupling bolts,tightened coupling bolts,TC-012,realigned pump impeller,OP-08
+07-07-2026 19:09,TURBINE-03,steam_turbine,E-4471,critical,307,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,replaced gasket set,TC-001,,OP-07
+09-06-2026 11:21,TURBINE-05,steam_turbine,E-9921,medium,228,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,overhauled valve actuator,TC-015,,OP-08
+22-05-2026 18:22,TURBINE-02,steam_turbine,E-2218,high,379,,reset trip and inspected seals,,TC-005,realigned pump impeller; overhauled valve actuator,OP-08
+10-07-2026 06:28,COMPRESSOR-01,centrifugal_compressor,E-1155,low,410,cooling water temp 2 deg above nominal,overhauled valve actuator,reset trip and inspected seals,TC-008,cleaned intercooler fins; reset trip and inspected seals,OP-07
+05-08-2026 06:05,PUMP-06,centrifugal_pump,E-1155,low,382,,replaced gasket set,,TC-004,reset trip and inspected seals,OP-04
+12-08-2026 07:12,PUMP-06,centrifugal_pump,E-8804,high,290,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,flushed cooling water lines,TC-014,,OP-06
+22-05-2026 01:52,TURBINE-08,steam_turbine,E-4471,low,267,"noticed rust on coupling guard, reported to maint",realigned pump impeller,flushed cooling water lines,TC-012,realigned pump impeller; replaced oil filter and topped up,OP-03
+13-08-2026 01:43,TURBINE-07,steam_turbine,E-1101,low,398,"alignment check done last wk, looks ok for now",cleaned intercooler fins,replaced bearing assembly,TC-015,overhauled valve actuator,OP-07
+01-08-2026 17:17,PUMP-05,centrifugal_pump,E-3340,critical,184,"slight oil leak at seal, will monitor tmrw",replaced oil filter and topped up,cleaned intercooler fins,TC-011,,OP-08
+14-05-2026 17:54,PUMP-02,centrifugal_pump,E-9921,medium,402,cooling water temp 2 deg above nominal,cleaned intercooler fins,tightened coupling bolts,TC-005,replaced bearing assembly; overhauled valve actuator,OP-02
+14-07-2026 04:50,PUMP-02,centrifugal_pump,E-4471,medium,222,"alignment check done last wk, looks ok for now",replaced thermocouple,tightened coupling bolts,TC-004,overhauled valve actuator; cleaned intercooler fins,OP-04
+11-06-2026 06:47,TURBINE-02,steam_turbine,E-1155,low,141,"no abnormal readings this shift, all within limits",,replaced gasket set,TC-001,,OP-07
+10-06-2026 02:49,COMPRESSOR-01,centrifugal_compressor,E-8804,critical,296,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,overhauled valve actuator,TC-002,tightened coupling bolts,OP-01
+24-06-2026 18:07,TURBINE-03,steam_turbine,E-1101,low,225,"brng temp high, tripped @0412, called AE",cleaned intercooler fins,replaced bearing assembly,TC-012,realigned pump impeller; overhauled valve actuator,OP-04
+14-07-2026 03:30,TURBINE-08,steam_turbine,E-3340,critical,203,"motor amp draw 2% above rated, monitoring",replaced oil filter and topped up,reset trip and inspected seals,TC-002,,OP-07
+19-08-2026 16:42,TURBINE-06,steam_turbine,E-1101,critical,134,"brng temp high, tripped @0412, called AE",replaced gasket set,replaced oil filter and topped up,TC-003,cleaned intercooler fins; cleaned intercooler fins,OP-01
+08-05-2026 10:58,PUMP-04,centrifugal_pump,E-7733,high,347,"no abnormal readings this shift, all within limits",replaced oil filter and topped up,realigned pump impeller,TC-009,,OP-04
+07-06-2026 08:06,TURBINE-05,steam_turbine,E-2218,high,347,"noticed rust on coupling guard, reported to maint",replaced gasket set,overhauled valve actuator,TC-015,flushed cooling water lines,OP-03
+02-08-2026 21:21,PUMP-09,centrifugal_pump,E-4471,high,410,,replaced oil filter and topped up,reset trip and inspected seals,TC-012,,OP-02
+08-05-2026 21:32,PUMP-08,centrifugal_pump,E-2218,critical,189,"slight oil leak at seal, will monitor tmrw",realigned pump impeller,replaced oil filter and topped up,TC-002,replaced oil filter and topped up,OP-01
+13-06-2026 00:38,COMPRESSOR-02,centrifugal_compressor,E-6610,low,148,"vibration spikes during startup, settles after 10min",realigned pump impeller,replaced thermocouple,TC-004,,OP-06
+04-06-2026 23:58,TURBINE-02,steam_turbine,E-1101,medium,418,"slight oil leak at seal, will monitor tmrw",flushed cooling water lines,replaced oil filter and topped up,TC-015,overhauled valve actuator; realigned pump impeller,OP-07
+29-05-2026 02:31,PUMP-09,centrifugal_pump,E-7733,medium,27,"alignment check done last wk, looks ok for now",replaced thermocouple,overhauled valve actuator,TC-012,replaced gasket set,OP-01
+12-06-2026 05:21,TURBINE-07,steam_turbine,E-6610,critical,275,"heard unusual vib near bearing, noted on shift log",,reset trip and inspected seals,TC-011,realigned pump impeller; replaced gasket set,OP-08
+08-06-2026 08:24,PUMP-09,centrifugal_pump,E-1101,high,414,"no abnormal readings this shift, all within limits",overhauled valve actuator,tightened coupling bolts,TC-006,reset trip and inspected seals; realigned pump impeller,OP-02
+16-06-2026 16:09,PUMP-10,centrifugal_pump,E-3340,low,156,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,replaced gasket set,TC-007,realigned pump impeller; cleaned intercooler fins,OP-01
+16-06-2026 12:16,TURBINE-07,steam_turbine,E-4471,high,368,"slight oil leak at seal, will monitor tmrw",overhauled valve actuator,reset trip and inspected seals,TC-006,replaced gasket set; replaced oil filter and topped up,OP-04
+08-06-2026 23:18,PUMP-05,centrifugal_pump,E-7733,low,353,"vibration spikes during startup, settles after 10min",replaced thermocouple,overhauled valve actuator,TC-003,,OP-03
+15-05-2026 15:30,COMPRESSOR-02,centrifugal_compressor,E-6610,medium,382,,reset trip and inspected seals,replaced gasket set,TC-011,,OP-08
+11-06-2026 12:54,COMPRESSOR-06,centrifugal_compressor,E-3340,medium,58,"motor amp draw 2% above rated, monitoring",replaced gasket set,cleaned intercooler fins,TC-010,overhauled valve actuator; replaced bearing assembly,OP-08
+27-08-2026 21:23,COMPRESSOR-06,centrifugal_compressor,E-6610,low,176,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,tightened coupling bolts,TC-007,reset trip and inspected seals,OP-04
+10-06-2026 16:53,TURBINE-05,steam_turbine,E-8804,medium,289,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,replaced thermocouple,TC-004,replaced thermocouple,OP-06
+13-06-2026 13:25,TURBINE-07,steam_turbine,E-5502,high,333,"dischrg press flctuating ±0.3 bar, snr tech aware",,overhauled valve actuator,TC-010,replaced bearing assembly,OP-04
+08-07-2026 05:42,TURBINE-02,steam_turbine,E-3340,medium,229,"no abnormal readings this shift, all within limits",realigned pump impeller,reset trip and inspected seals,TC-007,tightened coupling bolts,OP-08
+07-06-2026 20:44,TURBINE-01,steam_turbine,E-3340,critical,179,,flushed cooling water lines,flushed cooling water lines,TC-014,replaced thermocouple; tightened coupling bolts,OP-05
+08-06-2026 12:54,COMPRESSOR-05,centrifugal_compressor,E-9921,high,188,"vibraion trending up past 5 mm/s, need inspction",cleaned intercooler fins,cleaned intercooler fins,TC-010,tightened coupling bolts,OP-03
+26-08-2026 22:56,PUMP-10,centrifugal_pump,E-4471,medium,237,"slight oil leak at seal, will monitor tmrw",flushed cooling water lines,replaced thermocouple,TC-010,replaced thermocouple; cleaned intercooler fins,OP-02
+29-06-2026 11:11,COMPRESSOR-02,centrifugal_compressor,E-2218,low,328,"spare part out of stok, ordered via maint req",reset trip and inspected seals,replaced oil filter and topped up,TC-008,replaced bearing assembly; overhauled valve actuator,OP-07
+07-05-2026 04:46,TURBINE-03,steam_turbine,E-5502,high,246,"noticed rust on coupling guard, reported to maint",replaced oil filter and topped up,cleaned intercooler fins,TC-012,,OP-07
+10-08-2026 12:38,PUMP-03,centrifugal_pump,E-3340,high,415,"heard unusual vib near bearing, noted on shift log",realigned pump impeller,,TC-003,,OP-08
+05-06-2026 20:41,TURBINE-07,steam_turbine,E-3340,high,96,"bearng grease fitting was clogged, cleared it",replaced thermocouple,replaced gasket set,TC-015,,OP-05
+02-05-2026 06:28,TURBINE-05,steam_turbine,E-8804,critical,98,"brng temp high, tripped @0412, called AE",replaced gasket set,tightened coupling bolts,TC-004,flushed cooling water lines,OP-02
+24-06-2026 13:31,TURBINE-01,steam_turbine,E-9921,high,298,"vibration spikes during startup, settles after 10min",replaced oil filter and topped up,replaced gasket set,TC-009,replaced thermocouple; tightened coupling bolts,OP-06
+02-05-2026 04:31,COMPRESSOR-06,centrifugal_compressor,E-3340,low,229,"no abnormal readings this shift, all within limits",replaced oil filter and topped up,reset trip and inspected seals,TC-014,replaced oil filter and topped up,OP-07
+02-05-2026 04:38,TURBINE-08,steam_turbine,E-9921,medium,193,"motor amp draw 2% above rated, monitoring",reset trip and inspected seals,replaced gasket set,TC-002,flushed cooling water lines; overhauled valve actuator,OP-07
+01-06-2026 15:09,PUMP-09,centrifugal_pump,E-1155,low,70,"bearng grease fitting was clogged, cleared it",replaced bearing assembly,flushed cooling water lines,TC-006,cleaned intercooler fins; cleaned intercooler fins,OP-05
+03-05-2026 11:03,COMPRESSOR-03,centrifugal_compressor,E-4471,medium,374,"no abnormal readings this shift, all within limits",,replaced oil filter and topped up,TC-001,replaced bearing assembly; reset trip and inspected seals,OP-03
+24-05-2026 00:38,PUMP-02,centrifugal_pump,E-6610,critical,134,"bearng grease fitting was clogged, cleared it",reset trip and inspected seals,reset trip and inspected seals,TC-003,replaced oil filter and topped up; reset trip and inspected seals,OP-06
+15-06-2026 15:49,TURBINE-04,steam_turbine,E-8804,critical,330,,replaced gasket set,replaced thermocouple,TC-002,reset trip and inspected seals,OP-06
+21-06-2026 22:43,TURBINE-08,steam_turbine,E-3340,critical,232,cooling water temp 2 deg above nominal,replaced thermocouple,flushed cooling water lines,TC-013,realigned pump impeller; replaced bearing assembly,OP-02
+01-07-2026 14:32,COMPRESSOR-03,centrifugal_compressor,E-1101,high,26,"vibration spikes during startup, settles after 10min",replaced bearing assembly,reset trip and inspected seals,TC-015,cleaned intercooler fins; replaced thermocouple,OP-03
+19-07-2026 01:00,PUMP-02,centrifugal_pump,E-3340,medium,241,"slight oil leak at seal, will monitor tmrw",tightened coupling bolts,cleaned intercooler fins,TC-011,overhauled valve actuator; replaced bearing assembly,OP-04
+27-08-2026 07:31,COMPRESSOR-04,centrifugal_compressor,E-1155,critical,110,"motor amp draw 2% above rated, monitoring",realigned pump impeller,tightened coupling bolts,TC-014,flushed cooling water lines; replaced oil filter and topped up,OP-02
+27-08-2026 16:37,TURBINE-04,steam_turbine,E-6610,high,237,"heard unusual vib near bearing, noted on shift log",cleaned intercooler fins,tightened coupling bolts,TC-012,replaced thermocouple,OP-08
+08-06-2026 02:23,COMPRESSOR-02,centrifugal_compressor,E-7733,low,413,"heard unusual vib near bearing, noted on shift log",replaced thermocouple,flushed cooling water lines,TC-008,overhauled valve actuator; realigned pump impeller,OP-03
+18-05-2026 04:03,TURBINE-06,steam_turbine,E-6610,medium,394,"heard unusual vib near bearing, noted on shift log",overhauled valve actuator,overhauled valve actuator,TC-010,replaced oil filter and topped up; reset trip and inspected seals,OP-07
+20-07-2026 14:33,PUMP-09,centrifugal_pump,E-1155,critical,181,"vibraion trending up past 5 mm/s, need inspction",tightened coupling bolts,replaced oil filter and topped up,TC-011,,OP-03
+28-08-2026 01:21,COMPRESSOR-03,centrifugal_compressor,E-7733,critical,395,"slight oil leak at seal, will monitor tmrw",replaced gasket set,flushed cooling water lines,TC-005,,OP-06
+15-06-2026 02:49,COMPRESSOR-03,centrifugal_compressor,E-9921,high,419,"noticed rust on coupling guard, reported to maint",tightened coupling bolts,realigned pump impeller,TC-011,,OP-06
+19-08-2026 05:25,TURBINE-04,steam_turbine,E-8804,low,265,"spare part out of stok, ordered via maint req",realigned pump impeller,reset trip and inspected seals,TC-009,flushed cooling water lines; replaced gasket set,OP-02
+01-07-2026 09:17,PUMP-03,centrifugal_pump,E-1101,medium,274,cooling water temp 2 deg above nominal,flushed cooling water lines,flushed cooling water lines,TC-003,replaced oil filter and topped up; cleaned intercooler fins,OP-06
+01-08-2026 20:50,PUMP-09,centrifugal_pump,E-3340,high,320,"no abnormal readings this shift, all within limits",replaced thermocouple,overhauled valve actuator,TC-006,,OP-04
+05-06-2026 15:25,PUMP-07,centrifugal_pump,E-3340,medium,359,"vibraion trending up past 5 mm/s, need inspction",cleaned intercooler fins,overhauled valve actuator,TC-010,,OP-06
+09-07-2026 12:12,PUMP-03,centrifugal_pump,E-4471,low,271,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced oil filter and topped up,TC-002,overhauled valve actuator,OP-08
+09-08-2026 12:08,TURBINE-08,steam_turbine,E-3340,high,177,"slight oil leak at seal, will monitor tmrw",replaced gasket set,replaced thermocouple,TC-003,flushed cooling water lines,OP-06
+06-06-2026 23:00,TURBINE-03,steam_turbine,E-1101,low,182,"spare part out of stok, ordered via maint req",replaced oil filter and topped up,replaced oil filter and topped up,TC-012,cleaned intercooler fins; tightened coupling bolts,OP-04
+02-05-2026 18:32,TURBINE-08,steam_turbine,E-8804,low,251,"alignment check done last wk, looks ok for now",tightened coupling bolts,overhauled valve actuator,TC-009,,OP-06
+01-07-2026 03:16,COMPRESSOR-05,centrifugal_compressor,E-1155,medium,292,"alignment check done last wk, looks ok for now",realigned pump impeller,flushed cooling water lines,TC-002,,OP-01
+25-05-2026 02:15,TURBINE-03,steam_turbine,E-5502,low,203,"alignment check done last wk, looks ok for now",tightened coupling bolts,replaced oil filter and topped up,TC-008,reset trip and inspected seals,OP-06
+02-06-2026 16:00,TURBINE-07,steam_turbine,E-1101,high,268,"slight oil leak at seal, will monitor tmrw",overhauled valve actuator,tightened coupling bolts,TC-010,reset trip and inspected seals; overhauled valve actuator,OP-08
+08-07-2026 14:22,TURBINE-02,steam_turbine,E-4471,high,264,"slight oil leak at seal, will monitor tmrw",replaced gasket set,cleaned intercooler fins,TC-005,,OP-02
+12-06-2026 10:27,COMPRESSOR-04,centrifugal_compressor,E-3340,high,278,cooling water temp 2 deg above nominal,replaced oil filter and topped up,flushed cooling water lines,TC-007,,OP-02
+23-07-2026 21:43,TURBINE-04,steam_turbine,E-4471,high,35,"brng temp high, tripped @0412, called AE",realigned pump impeller,realigned pump impeller,TC-011,realigned pump impeller,OP-04
+12-08-2026 04:54,PUMP-08,centrifugal_pump,E-6610,critical,203,"slight oil leak at seal, will monitor tmrw",replaced bearing assembly,reset trip and inspected seals,TC-009,,OP-07
+06-06-2026 00:45,TURBINE-01,steam_turbine,E-5502,low,70,"heard unusual vib near bearing, noted on shift log",,replaced oil filter and topped up,TC-004,realigned pump impeller,OP-01
+02-06-2026 04:57,TURBINE-05,steam_turbine,E-8804,high,192,"slight oil leak at seal, will monitor tmrw",replaced thermocouple,flushed cooling water lines,TC-007,realigned pump impeller; overhauled valve actuator,OP-07
+17-08-2026 10:10,TURBINE-01,steam_turbine,E-1155,low,358,"vibration spikes during startup, settles after 10min",replaced oil filter and topped up,realigned pump impeller,TC-014,realigned pump impeller,OP-06
+20-06-2026 21:36,COMPRESSOR-05,centrifugal_compressor,E-5502,critical,242,"vibraion trending up past 5 mm/s, need inspction",flushed cooling water lines,flushed cooling water lines,TC-014,flushed cooling water lines,OP-06
+11-06-2026 11:24,PUMP-10,centrifugal_pump,E-3340,low,260,"alignment check done last wk, looks ok for now",overhauled valve actuator,realigned pump impeller,TC-012,overhauled valve actuator,OP-07
+23-08-2026 15:05,TURBINE-05,steam_turbine,E-2218,high,215,"vibration spikes during startup, settles after 10min",replaced gasket set,realigned pump impeller,TC-002,,OP-02
+26-08-2026 17:45,PUMP-07,centrifugal_pump,E-1155,high,16,"PMP07 seal press flctuating bad, oil looks dark",seal pressure fluctuation and oil degradation,,TC-006,,OP-05
+22-06-2026 07:00,COMPRESSOR-06,centrifugal_compressor,E-6610,high,235,"brng temp high, tripped @0412, called AE",replaced gasket set,replaced oil filter and topped up,TC-015,replaced oil filter and topped up,OP-01
+27-05-2026 04:59,PUMP-03,centrifugal_pump,E-5502,critical,309,"bearng grease fitting was clogged, cleared it",flushed cooling water lines,tightened coupling bolts,TC-007,reset trip and inspected seals,OP-06
+01-06-2026 04:44,COMPRESSOR-05,centrifugal_compressor,E-2218,medium,387,"alignment check done last wk, looks ok for now",reset trip and inspected seals,replaced thermocouple,TC-001,,OP-05
+14-05-2026 13:22,TURBINE-05,steam_turbine,E-3340,medium,350,"bearng grease fitting was clogged, cleared it",,replaced bearing assembly,TC-008,,OP-06
+18-06-2026 14:38,COMPRESSOR-04,centrifugal_compressor,E-1101,critical,124,"oil press dropped briefly, came back on its own",overhauled valve actuator,flushed cooling water lines,TC-014,,OP-05
+07-06-2026 06:30,PUMP-06,centrifugal_pump,E-9921,critical,20,"noticed rust on coupling guard, reported to maint",reset trip and inspected seals,replaced gasket set,TC-005,replaced gasket set,OP-01
+15-08-2026 07:01,PUMP-09,centrifugal_pump,E-6610,medium,15,"alignment check done last wk, looks ok for now",flushed cooling water lines,replaced gasket set,TC-009,overhauled valve actuator; replaced gasket set,OP-08
+28-07-2026 15:37,TURBINE-08,steam_turbine,E-2218,critical,229,"vibration spikes during startup, settles after 10min",tightened coupling bolts,tightened coupling bolts,TC-005,replaced gasket set; reset trip and inspected seals,OP-07
+19-07-2026 23:20,PUMP-10,centrifugal_pump,E-1101,high,165,"oil press dropped briefly, came back on its own",realigned pump impeller,replaced gasket set,TC-001,tightened coupling bolts; replaced gasket set,OP-05
+16-05-2026 03:40,TURBINE-05,steam_turbine,E-2218,critical,83,cooling water temp 2 deg above nominal,overhauled valve actuator,cleaned intercooler fins,TC-005,realigned pump impeller,OP-04
+02-07-2026 10:42,TURBINE-04,steam_turbine,E-5502,critical,35,"slight oil leak at seal, will monitor tmrw",replaced thermocouple,cleaned intercooler fins,TC-008,reset trip and inspected seals; replaced thermocouple,OP-08
+08-05-2026 12:38,PUMP-01,centrifugal_pump,E-1101,low,291,"vibraion trending up past 5 mm/s, need inspction",realigned pump impeller,replaced bearing assembly,TC-003,,OP-04
+12-06-2026 05:16,PUMP-02,centrifugal_pump,E-4471,critical,370,"vibration spikes during startup, settles after 10min",replaced gasket set,overhauled valve actuator,TC-001,,OP-07
+16-05-2026 18:12,PUMP-10,centrifugal_pump,E-6610,critical,167,cooling water temp 2 deg above nominal,tightened coupling bolts,flushed cooling water lines,TC-007,realigned pump impeller; replaced oil filter and topped up,OP-05
+08-08-2026 13:04,COMPRESSOR-06,centrifugal_compressor,E-1101,critical,391,"bearng grease fitting was clogged, cleared it",cleaned intercooler fins,flushed cooling water lines,TC-010,flushed cooling water lines; replaced gasket set,OP-07
+21-05-2026 17:19,TURBINE-04,steam_turbine,E-1155,high,275,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,tightened coupling bolts,TC-015,flushed cooling water lines; tightened coupling bolts,OP-01
+15-06-2026 02:09,TURBINE-05,steam_turbine,E-3340,low,67,"alignment check done last wk, looks ok for now",cleaned intercooler fins,reset trip and inspected seals,TC-008,replaced bearing assembly; replaced gasket set,OP-07
+05-08-2026 14:55,PUMP-06,centrifugal_pump,E-3340,medium,388,"alignment check done last wk, looks ok for now",replaced gasket set,replaced oil filter and topped up,TC-002,cleaned intercooler fins; replaced thermocouple,OP-06
+26-07-2026 23:35,PUMP-01,centrifugal_pump,E-2218,critical,79,"spare part out of stok, ordered via maint req",reset trip and inspected seals,realigned pump impeller,TC-008,replaced oil filter and topped up; replaced gasket set,OP-04
+27-05-2026 10:24,TURBINE-08,steam_turbine,E-7733,low,246,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced gasket set,realigned pump impeller,TC-011,reset trip and inspected seals; replaced oil filter and topped up,OP-05
+19-06-2026 18:21,COMPRESSOR-01,centrifugal_compressor,E-2218,critical,257,"spare part out of stok, ordered via maint req",overhauled valve actuator,replaced bearing assembly,TC-014,,OP-08
+28-07-2026 07:34,COMPRESSOR-02,centrifugal_compressor,E-7733,critical,354,"oil press dropped briefly, came back on its own",realigned pump impeller,cleaned intercooler fins,TC-009,,OP-01
+13-06-2026 11:20,PUMP-03,centrifugal_pump,E-7733,low,286,"dischrg press flctuating ±0.3 bar, snr tech aware",overhauled valve actuator,overhauled valve actuator,TC-001,replaced oil filter and topped up; replaced bearing assembly,OP-05
+27-08-2026 08:39,PUMP-08,centrifugal_pump,E-7733,low,85,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,overhauled valve actuator,TC-003,replaced thermocouple,OP-07
+07-08-2026 05:52,COMPRESSOR-04,centrifugal_compressor,E-2218,low,419,"slight oil leak at seal, will monitor tmrw",replaced oil filter and topped up,replaced bearing assembly,TC-007,replaced oil filter and topped up,OP-08
+08-07-2026 06:11,COMPRESSOR-03,centrifugal_compressor,E-7733,critical,76,"noticed rust on coupling guard, reported to maint",replaced bearing assembly,reset trip and inspected seals,TC-002,,OP-02
+09-06-2026 11:47,TURBINE-03,steam_turbine,E-9921,critical,354,"heard unusual vib near bearing, noted on shift log",replaced gasket set,realigned pump impeller,TC-005,,OP-04
+24-07-2026 06:09,PUMP-03,centrifugal_pump,E-1155,critical,63,"slight oil leak at seal, will monitor tmrw",reset trip and inspected seals,replaced gasket set,TC-011,replaced thermocouple,OP-02
+28-06-2026 16:47,PUMP-07,centrifugal_pump,E-6610,high,76,cooling water temp 2 deg above nominal,replaced thermocouple,flushed cooling water lines,TC-015,realigned pump impeller,OP-05
+13-05-2026 22:15,PUMP-03,centrifugal_pump,E-1101,low,316,"spare part out of stok, ordered via maint req",overhauled valve actuator,realigned pump impeller,TC-007,,OP-07
+09-07-2026 16:37,COMPRESSOR-05,centrifugal_compressor,E-2218,low,77,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,cleaned intercooler fins,TC-008,,OP-01
+04-07-2026 10:43,PUMP-10,centrifugal_pump,E-1155,low,306,"oil press dropped briefly, came back on its own",cleaned intercooler fins,replaced thermocouple,TC-005,overhauled valve actuator; reset trip and inspected seals,OP-04
+26-06-2026 21:44,COMPRESSOR-03,centrifugal_compressor,E-5502,low,292,cooling water temp 2 deg above nominal,replaced gasket set,replaced bearing assembly,TC-013,,OP-08
+09-07-2026 16:04,PUMP-08,centrifugal_pump,E-6610,critical,38,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,,TC-009,cleaned intercooler fins; replaced thermocouple,OP-08
+27-08-2026 02:50,TURBINE-01,steam_turbine,E-9921,low,360,cooling water temp 2 deg above nominal,realigned pump impeller,replaced oil filter and topped up,TC-015,replaced gasket set; cleaned intercooler fins,OP-07
+10-06-2026 19:02,PUMP-08,centrifugal_pump,E-2218,medium,96,"bearng grease fitting was clogged, cleared it",replaced gasket set,cleaned intercooler fins,TC-015,cleaned intercooler fins; tightened coupling bolts,OP-08
+03-05-2026 07:10,PUMP-08,centrifugal_pump,E-4471,high,353,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,overhauled valve actuator,TC-015,,OP-02
+14-06-2026 14:34,PUMP-04,centrifugal_pump,E-2218,medium,356,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced oil filter and topped up,TC-011,flushed cooling water lines,OP-04
+16-08-2026 09:33,TURBINE-01,steam_turbine,E-3340,critical,367,"oil press dropped briefly, came back on its own",overhauled valve actuator,flushed cooling water lines,TC-003,cleaned intercooler fins,OP-02
+24-06-2026 06:07,TURBINE-07,steam_turbine,E-1155,low,218,"vibration spikes during startup, settles after 10min",reset trip and inspected seals,overhauled valve actuator,TC-002,tightened coupling bolts,OP-05
+20-05-2026 04:40,PUMP-03,centrifugal_pump,E-2218,high,400,"brng temp high, tripped @0412, called AE",replaced thermocouple,replaced bearing assembly,TC-001,replaced gasket set; replaced gasket set,OP-08
+04-08-2026 18:03,PUMP-07,centrifugal_pump,E-9921,high,211,,cleaned intercooler fins,realigned pump impeller,TC-006,,OP-08
+23-07-2026 07:46,COMPRESSOR-01,centrifugal_compressor,E-7733,low,46,"no abnormal readings this shift, all within limits",replaced thermocouple,reset trip and inspected seals,TC-002,,OP-02
+23-05-2026 02:54,PUMP-09,centrifugal_pump,E-7733,low,395,,replaced thermocouple,replaced oil filter and topped up,TC-007,,OP-06
+10-06-2026 23:09,TURBINE-08,steam_turbine,E-8804,low,333,"no abnormal readings this shift, all within limits",flushed cooling water lines,replaced gasket set,TC-014,cleaned intercooler fins; replaced thermocouple,OP-05
+14-07-2026 14:47,COMPRESSOR-02,centrifugal_compressor,E-3340,medium,201,"dischrg press flctuating ±0.3 bar, snr tech aware",reset trip and inspected seals,overhauled valve actuator,TC-010,,OP-02
+05-08-2026 19:53,COMPRESSOR-03,centrifugal_compressor,E-5502,high,110,"alignment check done last wk, looks ok for now",replaced oil filter and topped up,replaced thermocouple,TC-006,replaced bearing assembly,OP-01
+09-06-2026 12:05,COMPRESSOR-03,centrifugal_compressor,E-9921,medium,316,"bearng grease fitting was clogged, cleared it",,replaced oil filter and topped up,TC-009,,OP-02
+19-07-2026 10:06,COMPRESSOR-02,centrifugal_compressor,E-1101,critical,164,"vibration spikes during startup, settles after 10min",realigned pump impeller,flushed cooling water lines,TC-004,replaced oil filter and topped up; replaced oil filter and topped up,OP-04
+08-05-2026 11:26,TURBINE-08,steam_turbine,E-4471,low,138,"noticed rust on coupling guard, reported to maint",replaced gasket set,reset trip and inspected seals,TC-007,cleaned intercooler fins,OP-01
+21-08-2026 21:04,PUMP-07,centrifugal_pump,E-7733,high,131,"heard unusual vib near bearing, noted on shift log",replaced bearing assembly,cleaned intercooler fins,TC-012,cleaned intercooler fins,OP-04
+03-06-2026 19:52,COMPRESSOR-06,centrifugal_compressor,E-6610,critical,219,cooling water temp 2 deg above nominal,replaced bearing assembly,flushed cooling water lines,TC-003,reset trip and inspected seals; realigned pump impeller,OP-02
+21-07-2026 04:11,PUMP-08,centrifugal_pump,E-9921,low,404,"slight oil leak at seal, will monitor tmrw",cleaned intercooler fins,cleaned intercooler fins,TC-005,tightened coupling bolts; cleaned intercooler fins,OP-06
+18-05-2026 07:28,PUMP-01,centrifugal_pump,E-2218,low,255,"brng temp high, tripped @0412, called AE",,flushed cooling water lines,TC-015,cleaned intercooler fins; tightened coupling bolts,OP-01
+24-06-2026 06:07,PUMP-08,centrifugal_pump,E-1155,critical,40,"alignment check done last wk, looks ok for now",flushed cooling water lines,tightened coupling bolts,TC-007,replaced gasket set,OP-07
+27-06-2026 05:20,PUMP-02,centrifugal_pump,E-4471,critical,173,"brng temp high, tripped @0412, called AE",flushed cooling water lines,replaced gasket set,TC-009,replaced oil filter and topped up; replaced bearing assembly,OP-04
+16-06-2026 09:05,COMPRESSOR-01,centrifugal_compressor,E-7733,low,39,"noticed rust on coupling guard, reported to maint",replaced thermocouple,,TC-005,replaced bearing assembly; tightened coupling bolts,OP-05
+11-05-2026 18:54,TURBINE-01,steam_turbine,E-1155,high,240,"dischrg press flctuating ±0.3 bar, snr tech aware",,reset trip and inspected seals,TC-014,tightened coupling bolts; replaced gasket set,OP-04
+07-06-2026 14:45,TURBINE-01,steam_turbine,E-2218,high,125,"motor amp draw 2% above rated, monitoring",replaced bearing assembly,reset trip and inspected seals,TC-002,flushed cooling water lines; reset trip and inspected seals,OP-03
+20-06-2026 10:47,COMPRESSOR-03,centrifugal_compressor,E-4471,low,236,"vibraion trending up past 5 mm/s, need inspction",replaced gasket set,realigned pump impeller,TC-012,,OP-04
+03-07-2026 10:50,TURBINE-08,steam_turbine,E-8804,critical,107,"bearng grease fitting was clogged, cleared it",overhauled valve actuator,replaced gasket set,TC-015,cleaned intercooler fins; overhauled valve actuator,OP-03
+19-08-2026 00:35,TURBINE-03,steam_turbine,E-2218,medium,66,,replaced bearing assembly,replaced oil filter and topped up,TC-010,realigned pump impeller; replaced gasket set,OP-05
+22-05-2026 18:52,COMPRESSOR-04,centrifugal_compressor,E-8804,critical,365,"alignment check done last wk, looks ok for now",realigned pump impeller,cleaned intercooler fins,TC-012,overhauled valve actuator,OP-05
+25-07-2026 08:38,PUMP-04,centrifugal_pump,E-6610,low,209,"motor amp draw 2% above rated, monitoring",replaced bearing assembly,cleaned intercooler fins,TC-011,,OP-07
+25-08-2026 06:03,TURBINE-03,steam_turbine,E-4471,high,56,"noticed rust on coupling guard, reported to maint",tightened coupling bolts,realigned pump impeller,TC-011,,OP-03
+08-08-2026 23:12,TURBINE-04,steam_turbine,E-3340,medium,4,"brng temp high, tripped @0412, called AE for TB04",bearing lubrication failure,,TC-006,,OP-07
+04-08-2026 23:56,PUMP-04,centrifugal_pump,E-4471,high,398,"oil press dropped briefly, came back on its own",replaced oil filter and topped up,reset trip and inspected seals,TC-006,reset trip and inspected seals,OP-06
+30-07-2026 23:02,TURBINE-05,steam_turbine,E-9921,low,36,"brng temp high, tripped @0412, called AE",replaced thermocouple,cleaned intercooler fins,TC-006,replaced thermocouple; replaced thermocouple,OP-08
+23-06-2026 05:30,COMPRESSOR-03,centrifugal_compressor,E-1155,medium,89,"noticed rust on coupling guard, reported to maint",overhauled valve actuator,cleaned intercooler fins,TC-004,replaced gasket set; cleaned intercooler fins,OP-01
+17-08-2026 02:29,COMPRESSOR-02,centrifugal_compressor,E-1155,high,227,"no abnormal readings this shift, all within limits",flushed cooling water lines,cleaned intercooler fins,TC-007,,OP-07
+26-08-2026 11:16,TURBINE-04,steam_turbine,E-9921,critical,173,cooling water temp 2 deg above nominal,replaced oil filter and topped up,replaced gasket set,TC-001,,OP-07
+24-06-2026 18:47,PUMP-01,centrifugal_pump,E-4471,high,198,"spare part out of stok, ordered via maint req",overhauled valve actuator,tightened coupling bolts,TC-009,replaced oil filter and topped up,OP-06
+31-05-2026 20:05,PUMP-02,centrifugal_pump,E-1155,low,59,"vibration spikes during startup, settles after 10min",replaced bearing assembly,overhauled valve actuator,TC-004,cleaned intercooler fins; cleaned intercooler fins,OP-06
+10-07-2026 21:54,PUMP-09,centrifugal_pump,E-7733,high,178,cooling water temp 2 deg above nominal,replaced oil filter and topped up,replaced bearing assembly,TC-015,replaced gasket set,OP-08
+26-08-2026 11:38,TURBINE-01,steam_turbine,E-6610,critical,91,"heard unusual vib near bearing, noted on shift log",replaced oil filter and topped up,replaced bearing assembly,TC-014,replaced gasket set; replaced thermocouple,OP-06
+09-08-2026 02:41,PUMP-10,centrifugal_pump,E-7733,medium,19,cooling water temp 2 deg above nominal,reset trip and inspected seals,replaced gasket set,TC-013,replaced bearing assembly; replaced bearing assembly,OP-07
+08-07-2026 16:10,PUMP-02,centrifugal_pump,E-6610,high,142,"brng temp high, tripped @0412, called AE",replaced gasket set,overhauled valve actuator,TC-011,tightened coupling bolts; tightened coupling bolts,OP-04
+04-05-2026 02:21,TURBINE-06,steam_turbine,E-9921,high,408,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,replaced thermocouple,TC-013,,OP-01
+17-08-2026 00:34,PUMP-03,centrifugal_pump,E-3340,low,148,"alignment check done last wk, looks ok for now",overhauled valve actuator,replaced thermocouple,TC-011,,OP-06
+12-08-2026 16:05,TURBINE-05,steam_turbine,E-1155,high,316,"vibration spikes during startup, settles after 10min",flushed cooling water lines,reset trip and inspected seals,TC-002,tightened coupling bolts,OP-02
+07-07-2026 10:27,TURBINE-06,steam_turbine,E-9921,low,282,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,,TC-013,reset trip and inspected seals; tightened coupling bolts,OP-04
+27-08-2026 23:01,PUMP-04,centrifugal_pump,E-1155,critical,357,"dischrg press flctuating ±0.3 bar, snr tech aware",overhauled valve actuator,flushed cooling water lines,TC-014,,OP-05
+18-06-2026 07:27,PUMP-09,centrifugal_pump,E-2218,medium,42,"spare part out of stok, ordered via maint req",tightened coupling bolts,realigned pump impeller,TC-007,,OP-07
+14-08-2026 03:28,PUMP-02,centrifugal_pump,E-1101,low,308,"brng temp high, tripped @0412, called AE",flushed cooling water lines,flushed cooling water lines,TC-003,,OP-04
+26-08-2026 20:24,COMPRESSOR-04,centrifugal_compressor,E-2218,low,324,"motor amp draw 2% above rated, monitoring",replaced thermocouple,reset trip and inspected seals,TC-012,replaced oil filter and topped up; replaced thermocouple,OP-07
+15-05-2026 04:27,PUMP-07,centrifugal_pump,E-1155,medium,17,"brng temp high, tripped @0412, called AE",replaced thermocouple,tightened coupling bolts,TC-002,reset trip and inspected seals; replaced thermocouple,OP-03
+30-07-2026 11:10,PUMP-01,centrifugal_pump,E-8804,medium,277,"motor amp draw 2% above rated, monitoring",replaced bearing assembly,replaced gasket set,TC-007,cleaned intercooler fins; replaced oil filter and topped up,OP-02
+02-05-2026 15:44,PUMP-10,centrifugal_pump,E-8804,critical,143,cooling water temp 2 deg above nominal,replaced bearing assembly,replaced oil filter and topped up,TC-009,realigned pump impeller,OP-03
+05-05-2026 21:13,TURBINE-03,steam_turbine,E-1101,high,254,"no abnormal readings this shift, all within limits",overhauled valve actuator,replaced gasket set,TC-014,reset trip and inspected seals,OP-06
+22-05-2026 21:02,TURBINE-01,steam_turbine,E-8804,medium,23,"vibraion trending up past 5 mm/s, need inspction",overhauled valve actuator,reset trip and inspected seals,TC-009,replaced oil filter and topped up; replaced oil filter and topped up,OP-01
+07-08-2026 13:56,PUMP-01,centrifugal_pump,E-5502,high,17,"motor amp draw 2% above rated, monitoring",replaced thermocouple,replaced thermocouple,TC-010,flushed cooling water lines,OP-08
+09-07-2026 08:08,TURBINE-03,steam_turbine,E-6610,high,119,"no abnormal readings this shift, all within limits",tightened coupling bolts,reset trip and inspected seals,TC-012,reset trip and inspected seals,OP-05
+12-08-2026 04:28,PUMP-04,centrifugal_pump,E-1155,medium,200,"dischrg press flctuating ±0.3 bar, snr tech aware",overhauled valve actuator,replaced bearing assembly,TC-010,overhauled valve actuator,OP-03
+08-08-2026 02:07,COMPRESSOR-04,centrifugal_compressor,E-9921,critical,305,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced oil filter and topped up,flushed cooling water lines,TC-014,replaced oil filter and topped up,OP-01
+13-06-2026 23:19,PUMP-08,centrifugal_pump,E-6610,high,137,"vibraion trending up past 5 mm/s, need inspction",replaced gasket set,cleaned intercooler fins,TC-004,replaced gasket set,OP-03
+31-05-2026 20:33,PUMP-01,centrifugal_pump,E-6610,medium,116,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,flushed cooling water lines,TC-004,realigned pump impeller,OP-07
+07-08-2026 02:12,TURBINE-04,steam_turbine,E-3340,critical,26,"TB04 brng temp 89C, vib 6.9, alarm at 7.0 threshld",bearing lubrication failure,,TC-015,,OP-03
+09-05-2026 11:00,COMPRESSOR-01,centrifugal_compressor,E-5502,low,278,"no abnormal readings this shift, all within limits",replaced thermocouple,realigned pump impeller,TC-014,replaced gasket set,OP-08
+04-06-2026 14:11,TURBINE-04,steam_turbine,E-7733,high,95,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,tightened coupling bolts,TC-004,replaced bearing assembly; replaced gasket set,OP-07
+16-05-2026 06:52,COMPRESSOR-05,centrifugal_compressor,E-1101,low,316,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,replaced bearing assembly,TC-012,replaced thermocouple; realigned pump impeller,OP-01
+19-08-2026 19:16,COMPRESSOR-01,centrifugal_compressor,E-8804,critical,197,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,cleaned intercooler fins,TC-008,overhauled valve actuator; replaced oil filter and topped up,OP-03
+26-08-2026 22:21,PUMP-06,centrifugal_pump,E-9921,high,236,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,reset trip and inspected seals,TC-005,,OP-05
+09-07-2026 08:30,COMPRESSOR-04,centrifugal_compressor,E-1155,medium,67,"spare part out of stok, ordered via maint req",tightened coupling bolts,replaced gasket set,TC-013,,OP-08
+29-06-2026 10:56,TURBINE-02,steam_turbine,E-8804,medium,260,"motor amp draw 2% above rated, monitoring",realigned pump impeller,reset trip and inspected seals,TC-011,,OP-08
+12-07-2026 13:53,COMPRESSOR-06,centrifugal_compressor,E-5502,medium,101,,replaced thermocouple,tightened coupling bolts,TC-008,cleaned intercooler fins; overhauled valve actuator,OP-02
+23-05-2026 21:16,PUMP-03,centrifugal_pump,E-8804,low,83,cooling water temp 2 deg above nominal,replaced oil filter and topped up,reset trip and inspected seals,TC-007,,OP-03
+17-06-2026 02:48,PUMP-03,centrifugal_pump,E-5502,high,222,"dischrg press flctuating ±0.3 bar, snr tech aware",,tightened coupling bolts,TC-015,realigned pump impeller; cleaned intercooler fins,OP-07
+14-07-2026 18:02,PUMP-08,centrifugal_pump,E-8804,critical,255,"motor amp draw 2% above rated, monitoring",replaced bearing assembly,flushed cooling water lines,TC-013,flushed cooling water lines,OP-03
+29-05-2026 02:31,PUMP-02,centrifugal_pump,E-1155,medium,83,"noticed rust on coupling guard, reported to maint",realigned pump impeller,reset trip and inspected seals,TC-007,replaced oil filter and topped up,OP-04
+11-08-2026 17:44,PUMP-10,centrifugal_pump,E-7733,high,213,,,reset trip and inspected seals,TC-008,replaced oil filter and topped up; replaced thermocouple,OP-07
+18-07-2026 06:11,PUMP-03,centrifugal_pump,E-6610,low,18,"alignment check done last wk, looks ok for now",overhauled valve actuator,reset trip and inspected seals,TC-011,,OP-05
+26-06-2026 00:13,TURBINE-02,steam_turbine,E-9921,low,398,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,replaced bearing assembly,TC-012,,OP-03
+28-08-2026 04:33,COMPRESSOR-05,centrifugal_compressor,E-4471,high,350,"oil press dropped briefly, came back on its own",replaced oil filter and topped up,replaced oil filter and topped up,TC-011,reset trip and inspected seals,OP-05
+27-05-2026 23:42,PUMP-05,centrifugal_pump,E-4471,high,368,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,overhauled valve actuator,TC-009,reset trip and inspected seals,OP-03
+17-05-2026 23:20,COMPRESSOR-06,centrifugal_compressor,E-6610,medium,272,"bearng grease fitting was clogged, cleared it",replaced gasket set,overhauled valve actuator,TC-005,replaced bearing assembly; overhauled valve actuator,OP-02
+03-08-2026 14:11,PUMP-06,centrifugal_pump,E-1155,high,375,"brng temp high, tripped @0412, called AE",tightened coupling bolts,replaced gasket set,TC-013,,OP-02
+19-08-2026 04:59,PUMP-01,centrifugal_pump,E-5502,medium,130,"noticed rust on coupling guard, reported to maint",replaced bearing assembly,cleaned intercooler fins,TC-012,tightened coupling bolts; reset trip and inspected seals,OP-01
+08-08-2026 06:56,PUMP-09,centrifugal_pump,E-8804,critical,259,"motor amp draw 2% above rated, monitoring",overhauled valve actuator,cleaned intercooler fins,TC-015,cleaned intercooler fins,OP-01
+19-07-2026 07:30,COMPRESSOR-02,centrifugal_compressor,E-2218,medium,11,"E-2218 trip on CP02, intercooler failure confirmed",intercooler fouling and degradation,,TC-006,,OP-02
+14-08-2026 07:04,TURBINE-06,steam_turbine,E-9921,high,109,"slight oil leak at seal, will monitor tmrw",realigned pump impeller,realigned pump impeller,TC-002,overhauled valve actuator,OP-06
+12-08-2026 12:32,PUMP-03,centrifugal_pump,E-4471,high,227,"alignment check done last wk, looks ok for now",replaced thermocouple,overhauled valve actuator,TC-015,realigned pump impeller,OP-01
+15-06-2026 04:48,TURBINE-05,steam_turbine,E-3340,medium,94,"heard unusual vib near bearing, noted on shift log",cleaned intercooler fins,reset trip and inspected seals,TC-010,,OP-06
+21-05-2026 20:07,COMPRESSOR-04,centrifugal_compressor,E-3340,medium,417,"alignment check done last wk, looks ok for now",replaced bearing assembly,replaced thermocouple,TC-007,,OP-02
+04-05-2026 22:10,COMPRESSOR-06,centrifugal_compressor,E-8804,low,381,"spare part out of stok, ordered via maint req",tightened coupling bolts,flushed cooling water lines,TC-004,flushed cooling water lines; replaced thermocouple,OP-06
+16-08-2026 00:14,PUMP-04,centrifugal_pump,E-8804,medium,225,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,reset trip and inspected seals,TC-001,tightened coupling bolts,OP-05
+15-08-2026 20:43,PUMP-02,centrifugal_pump,E-6610,medium,68,"spare part out of stok, ordered via maint req",overhauled valve actuator,reset trip and inspected seals,TC-004,,OP-01
+17-07-2026 06:49,COMPRESSOR-03,centrifugal_compressor,E-5502,low,106,"brng temp high, tripped @0412, called AE",replaced bearing assembly,replaced oil filter and topped up,TC-003,replaced oil filter and topped up; replaced thermocouple,OP-05
+21-06-2026 23:30,PUMP-10,centrifugal_pump,E-2218,high,362,"noticed rust on coupling guard, reported to maint",reset trip and inspected seals,cleaned intercooler fins,TC-007,,OP-01
+25-05-2026 23:10,TURBINE-04,steam_turbine,E-3340,critical,335,"heard unusual vib near bearing, noted on shift log",cleaned intercooler fins,replaced bearing assembly,TC-012,,OP-07
+20-05-2026 07:18,PUMP-07,centrifugal_pump,E-1155,critical,49,,replaced thermocouple,replaced oil filter and topped up,TC-015,,OP-08
+09-07-2026 21:02,COMPRESSOR-05,centrifugal_compressor,E-4471,critical,186,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,overhauled valve actuator,TC-003,flushed cooling water lines,OP-05
+20-08-2026 05:43,TURBINE-06,steam_turbine,E-9921,medium,36,"heard unusual vib near bearing, noted on shift log",replaced bearing assembly,reset trip and inspected seals,TC-004,,OP-02
+25-06-2026 03:12,TURBINE-06,steam_turbine,E-8804,medium,360,"vibration spikes during startup, settles after 10min",replaced oil filter and topped up,replaced bearing assembly,TC-012,cleaned intercooler fins,OP-07
+18-07-2026 04:30,COMPRESSOR-02,centrifugal_compressor,E-2218,high,16,,intercooler fouling and degradation,,TC-005,,OP-02
+02-06-2026 19:46,TURBINE-08,steam_turbine,E-1101,high,159,cooling water temp 2 deg above nominal,cleaned intercooler fins,tightened coupling bolts,TC-008,,OP-05
+24-05-2026 02:24,PUMP-07,centrifugal_pump,E-3340,high,128,cooling water temp 2 deg above nominal,cleaned intercooler fins,replaced thermocouple,TC-009,,OP-07
+13-07-2026 14:12,COMPRESSOR-04,centrifugal_compressor,E-2218,low,317,"spare part out of stok, ordered via maint req",replaced bearing assembly,flushed cooling water lines,TC-002,replaced gasket set; replaced thermocouple,OP-01
+07-08-2026 21:53,TURBINE-07,steam_turbine,E-6610,medium,128,"no abnormal readings this shift, all within limits",overhauled valve actuator,replaced oil filter and topped up,TC-010,flushed cooling water lines; replaced bearing assembly,OP-01
+23-07-2026 15:41,PUMP-10,centrifugal_pump,E-5502,low,284,"vibration spikes during startup, settles after 10min",tightened coupling bolts,tightened coupling bolts,TC-002,realigned pump impeller,OP-01
+04-07-2026 18:42,COMPRESSOR-02,centrifugal_compressor,E-1155,high,313,"motor amp draw 2% above rated, monitoring",replaced oil filter and topped up,cleaned intercooler fins,TC-002,,OP-05
+13-06-2026 06:37,PUMP-06,centrifugal_pump,E-5502,critical,397,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,replaced oil filter and topped up,TC-007,realigned pump impeller,OP-08
+17-07-2026 07:28,PUMP-04,centrifugal_pump,E-7733,medium,48,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,reset trip and inspected seals,TC-014,replaced thermocouple,OP-06
+25-06-2026 19:25,PUMP-02,centrifugal_pump,E-9921,critical,37,"brng temp high, tripped @0412, called AE",replaced thermocouple,overhauled valve actuator,TC-002,,OP-04
+07-06-2026 02:43,TURBINE-04,steam_turbine,E-5502,medium,248,"spare part out of stok, ordered via maint req",tightened coupling bolts,reset trip and inspected seals,TC-008,replaced thermocouple,OP-04
+20-08-2026 03:30,COMPRESSOR-01,centrifugal_compressor,E-5502,high,415,"alignment check done last wk, looks ok for now",replaced thermocouple,replaced oil filter and topped up,TC-001,flushed cooling water lines; replaced gasket set,OP-03
+17-08-2026 06:22,COMPRESSOR-06,centrifugal_compressor,E-5502,medium,138,"spare part out of stok, ordered via maint req",replaced oil filter and topped up,replaced thermocouple,TC-013,flushed cooling water lines; reset trip and inspected seals,OP-04
+13-06-2026 08:35,PUMP-07,centrifugal_pump,E-7733,medium,25,"noticed rust on coupling guard, reported to maint",flushed cooling water lines,,TC-009,realigned pump impeller; replaced thermocouple,OP-01
+17-06-2026 19:18,TURBINE-05,steam_turbine,E-5502,medium,265,"heard unusual vib near bearing, noted on shift log",realigned pump impeller,cleaned intercooler fins,TC-008,replaced bearing assembly; tightened coupling bolts,OP-01
+28-05-2026 21:29,PUMP-07,centrifugal_pump,E-6610,medium,243,"oil press dropped briefly, came back on its own",tightened coupling bolts,realigned pump impeller,TC-010,flushed cooling water lines; overhauled valve actuator,OP-07
+26-08-2026 21:47,TURBINE-02,steam_turbine,E-3340,critical,120,"oil press dropped briefly, came back on its own",realigned pump impeller,realigned pump impeller,TC-007,replaced bearing assembly; cleaned intercooler fins,OP-03
+10-07-2026 12:12,COMPRESSOR-04,centrifugal_compressor,E-3340,critical,32,"heard unusual vib near bearing, noted on shift log",replaced oil filter and topped up,replaced bearing assembly,TC-014,,OP-03
+15-07-2026 17:56,PUMP-08,centrifugal_pump,E-2218,medium,346,"heard unusual vib near bearing, noted on shift log",realigned pump impeller,replaced thermocouple,TC-004,overhauled valve actuator; flushed cooling water lines,OP-01
+19-07-2026 04:05,TURBINE-03,steam_turbine,E-1155,high,145,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced oil filter and topped up,flushed cooling water lines,TC-001,overhauled valve actuator,OP-05
+12-05-2026 00:37,COMPRESSOR-06,centrifugal_compressor,E-5502,medium,86,"heard unusual vib near bearing, noted on shift log",replaced gasket set,flushed cooling water lines,TC-008,overhauled valve actuator; flushed cooling water lines,OP-01
+02-05-2026 20:44,COMPRESSOR-05,centrifugal_compressor,E-2218,high,37,"vibraion trending up past 5 mm/s, need inspction",replaced thermocouple,overhauled valve actuator,TC-014,replaced bearing assembly; replaced thermocouple,OP-03
+19-07-2026 22:20,COMPRESSOR-04,centrifugal_compressor,E-3340,low,272,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,cleaned intercooler fins,TC-005,tightened coupling bolts,OP-01
+31-07-2026 11:48,COMPRESSOR-03,centrifugal_compressor,E-9921,critical,168,"slight oil leak at seal, will monitor tmrw",overhauled valve actuator,tightened coupling bolts,TC-002,overhauled valve actuator,OP-06
+22-07-2026 01:02,PUMP-08,centrifugal_pump,E-8804,high,117,"heard unusual vib near bearing, noted on shift log",reset trip and inspected seals,realigned pump impeller,TC-006,replaced gasket set; replaced oil filter and topped up,OP-04
+03-05-2026 02:54,TURBINE-05,steam_turbine,E-6610,medium,111,cooling water temp 2 deg above nominal,cleaned intercooler fins,replaced thermocouple,TC-002,tightened coupling bolts,OP-08
+17-06-2026 13:05,COMPRESSOR-03,centrifugal_compressor,E-1155,low,111,cooling water temp 2 deg above nominal,flushed cooling water lines,replaced gasket set,TC-009,replaced thermocouple,OP-05
+22-06-2026 00:30,PUMP-07,centrifugal_pump,E-2218,low,308,"brng temp high, tripped @0412, called AE",tightened coupling bolts,flushed cooling water lines,TC-002,,OP-01
+27-08-2026 19:27,PUMP-03,centrifugal_pump,E-9921,medium,44,cooling water temp 2 deg above nominal,replaced gasket set,tightened coupling bolts,TC-004,cleaned intercooler fins,OP-07
+24-06-2026 19:04,PUMP-06,centrifugal_pump,E-8804,low,332,"dischrg press flctuating ±0.3 bar, snr tech aware",,replaced gasket set,TC-003,,OP-01
+13-06-2026 11:03,TURBINE-06,steam_turbine,E-1155,medium,170,"vibraion trending up past 5 mm/s, need inspction",replaced thermocouple,reset trip and inspected seals,TC-012,realigned pump impeller; replaced oil filter and topped up,OP-06
+20-06-2026 21:14,COMPRESSOR-01,centrifugal_compressor,E-3340,low,297,"alignment check done last wk, looks ok for now",overhauled valve actuator,tightened coupling bolts,TC-007,tightened coupling bolts; flushed cooling water lines,OP-06
+24-07-2026 23:38,PUMP-04,centrifugal_pump,E-7733,low,403,"slight oil leak at seal, will monitor tmrw",replaced bearing assembly,tightened coupling bolts,TC-009,,OP-01
+23-07-2026 08:55,COMPRESSOR-01,centrifugal_compressor,E-1101,critical,128,"brng temp high, tripped @0412, called AE",replaced oil filter and topped up,replaced gasket set,TC-011,flushed cooling water lines,OP-01
+19-06-2026 11:08,PUMP-04,centrifugal_pump,E-8804,high,221,cooling water temp 2 deg above nominal,reset trip and inspected seals,reset trip and inspected seals,TC-009,,OP-03
+07-06-2026 21:56,PUMP-05,centrifugal_pump,E-6610,critical,182,"slight oil leak at seal, will monitor tmrw",replaced bearing assembly,flushed cooling water lines,TC-005,replaced oil filter and topped up; replaced gasket set,OP-07
+12-07-2026 08:17,COMPRESSOR-05,centrifugal_compressor,E-8804,low,332,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,tightened coupling bolts,TC-011,tightened coupling bolts; replaced thermocouple,OP-01
+09-06-2026 18:28,TURBINE-06,steam_turbine,E-3340,critical,342,"slight oil leak at seal, will monitor tmrw",replaced bearing assembly,realigned pump impeller,TC-015,,OP-08
+09-05-2026 09:56,PUMP-03,centrifugal_pump,E-8804,high,97,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,replaced bearing assembly,TC-008,overhauled valve actuator,OP-05
+18-05-2026 18:48,PUMP-08,centrifugal_pump,E-5502,high,192,"alignment check done last wk, looks ok for now",replaced thermocouple,tightened coupling bolts,TC-003,,OP-06
+25-07-2026 07:30,PUMP-06,centrifugal_pump,E-1155,low,74,"oil press dropped briefly, came back on its own",reset trip and inspected seals,replaced bearing assembly,TC-013,reset trip and inspected seals,OP-01
+07-06-2026 13:32,COMPRESSOR-02,centrifugal_compressor,E-6610,low,400,,replaced oil filter and topped up,overhauled valve actuator,TC-015,replaced gasket set,OP-08
+16-08-2026 09:00,TURBINE-07,steam_turbine,E-3340,low,327,"oil press dropped briefly, came back on its own",replaced thermocouple,replaced bearing assembly,TC-008,replaced bearing assembly,OP-04
+10-05-2026 15:45,TURBINE-04,steam_turbine,E-3340,low,101,,replaced gasket set,replaced thermocouple,TC-011,tightened coupling bolts; tightened coupling bolts,OP-07
+10-07-2026 20:11,COMPRESSOR-04,centrifugal_compressor,E-3340,critical,151,"vibraion trending up past 5 mm/s, need inspction",cleaned intercooler fins,replaced gasket set,TC-009,replaced oil filter and topped up,OP-05
+22-08-2026 11:01,TURBINE-07,steam_turbine,E-7733,medium,41,"vibration spikes during startup, settles after 10min",cleaned intercooler fins,replaced thermocouple,TC-013,,OP-07
+14-06-2026 21:15,PUMP-05,centrifugal_pump,E-9921,high,392,cooling water temp 2 deg above nominal,flushed cooling water lines,overhauled valve actuator,TC-007,cleaned intercooler fins,OP-07
+17-07-2026 21:29,PUMP-06,centrifugal_pump,E-1155,high,180,"spare part out of stok, ordered via maint req",replaced oil filter and topped up,cleaned intercooler fins,TC-003,flushed cooling water lines,OP-02
+11-06-2026 13:20,PUMP-03,centrifugal_pump,E-4471,critical,345,cooling water temp 2 deg above nominal,replaced bearing assembly,tightened coupling bolts,TC-002,tightened coupling bolts,OP-02
+06-05-2026 20:08,PUMP-10,centrifugal_pump,E-2218,medium,315,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,replaced thermocouple,TC-012,realigned pump impeller,OP-04
+03-08-2026 21:02,PUMP-01,centrifugal_pump,E-1155,high,415,"noticed rust on coupling guard, reported to maint",replaced oil filter and topped up,replaced gasket set,TC-014,replaced bearing assembly; replaced bearing assembly,OP-07
+30-07-2026 20:33,PUMP-07,centrifugal_pump,E-9921,high,288,"motor amp draw 2% above rated, monitoring",,cleaned intercooler fins,TC-013,,OP-03
+10-08-2026 02:56,TURBINE-05,steam_turbine,E-6610,high,86,"bearng grease fitting was clogged, cleared it",overhauled valve actuator,replaced oil filter and topped up,TC-008,,OP-03
+25-08-2026 18:08,TURBINE-07,steam_turbine,E-1101,low,305,"noticed rust on coupling guard, reported to maint",overhauled valve actuator,replaced bearing assembly,TC-002,replaced bearing assembly,OP-05
+29-07-2026 04:35,TURBINE-03,steam_turbine,E-8804,high,330,"dischrg press flctuating ±0.3 bar, snr tech aware",tightened coupling bolts,realigned pump impeller,TC-003,tightened coupling bolts,OP-04
+29-06-2026 10:49,TURBINE-04,steam_turbine,E-6610,high,217,"alignment check done last wk, looks ok for now",overhauled valve actuator,overhauled valve actuator,TC-004,,OP-04
+21-07-2026 11:27,PUMP-05,centrifugal_pump,E-1155,critical,412,"oil press dropped briefly, came back on its own",,cleaned intercooler fins,TC-001,,OP-04
+22-06-2026 21:48,TURBINE-04,steam_turbine,E-5502,low,311,"noticed rust on coupling guard, reported to maint",realigned pump impeller,flushed cooling water lines,TC-015,replaced thermocouple; reset trip and inspected seals,OP-07
+28-07-2026 08:03,PUMP-04,centrifugal_pump,E-8804,critical,237,"oil press dropped briefly, came back on its own",replaced gasket set,replaced bearing assembly,TC-015,replaced bearing assembly,OP-06
+08-08-2026 06:09,TURBINE-02,steam_turbine,E-6610,high,179,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced oil filter and topped up,TC-002,replaced oil filter and topped up,OP-05
+02-06-2026 20:22,PUMP-03,centrifugal_pump,E-4471,low,191,"no abnormal readings this shift, all within limits",replaced oil filter and topped up,overhauled valve actuator,TC-010,,OP-01
+16-07-2026 05:05,TURBINE-08,steam_turbine,E-5502,high,406,"no abnormal readings this shift, all within limits",tightened coupling bolts,cleaned intercooler fins,TC-014,,OP-01
+03-07-2026 21:10,PUMP-04,centrifugal_pump,E-7733,low,394,"oil press dropped briefly, came back on its own",tightened coupling bolts,replaced thermocouple,TC-004,,OP-02
+30-07-2026 23:48,TURBINE-02,steam_turbine,E-8804,low,111,"brng temp high, tripped @0412, called AE",replaced oil filter and topped up,realigned pump impeller,TC-013,reset trip and inspected seals,OP-03
+28-06-2026 08:28,COMPRESSOR-04,centrifugal_compressor,E-9921,low,252,"vibration spikes during startup, settles after 10min",flushed cooling water lines,tightened coupling bolts,TC-013,replaced thermocouple,OP-03
+25-07-2026 06:01,PUMP-09,centrifugal_pump,E-2218,low,314,cooling water temp 2 deg above nominal,overhauled valve actuator,tightened coupling bolts,TC-002,tightened coupling bolts; replaced thermocouple,OP-04
+09-08-2026 18:56,PUMP-10,centrifugal_pump,E-3340,high,359,"bearng grease fitting was clogged, cleared it",overhauled valve actuator,tightened coupling bolts,TC-005,,OP-08
+03-05-2026 16:05,COMPRESSOR-06,centrifugal_compressor,E-6610,medium,361,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,flushed cooling water lines,TC-006,flushed cooling water lines; replaced gasket set,OP-06
+30-07-2026 17:13,PUMP-10,centrifugal_pump,E-2218,high,399,"oil press dropped briefly, came back on its own",realigned pump impeller,cleaned intercooler fins,TC-006,overhauled valve actuator; realigned pump impeller,OP-01
+04-08-2026 16:12,COMPRESSOR-05,centrifugal_compressor,E-3340,high,323,"no abnormal readings this shift, all within limits",cleaned intercooler fins,replaced thermocouple,TC-004,flushed cooling water lines; replaced thermocouple,OP-08
+31-05-2026 16:15,TURBINE-07,steam_turbine,E-1101,critical,336,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,replaced thermocouple,TC-012,,OP-07
+15-05-2026 06:24,TURBINE-05,steam_turbine,E-1155,high,361,"bearng grease fitting was clogged, cleared it",cleaned intercooler fins,replaced thermocouple,TC-013,cleaned intercooler fins; replaced thermocouple,OP-03
+19-08-2026 15:15,COMPRESSOR-02,centrifugal_compressor,E-9921,medium,75,cooling water temp 2 deg above nominal,reset trip and inspected seals,replaced thermocouple,TC-004,cleaned intercooler fins; replaced bearing assembly,OP-05
+16-05-2026 00:12,PUMP-02,centrifugal_pump,E-6610,low,237,"heard unusual vib near bearing, noted on shift log",replaced thermocouple,replaced bearing assembly,TC-004,replaced oil filter and topped up; replaced bearing assembly,OP-06
+10-08-2026 05:59,PUMP-02,centrifugal_pump,E-7733,critical,146,"noticed rust on coupling guard, reported to maint",replaced gasket set,reset trip and inspected seals,TC-006,realigned pump impeller; flushed cooling water lines,OP-03
+28-08-2026 23:45,PUMP-07,centrifugal_pump,E-1101,medium,20,"PMP07 bearing noise increased, vib at 3.8 mm/s",seal pressure fluctuation and oil degradation,,TC-003,,OP-01
+01-08-2026 03:33,TURBINE-08,steam_turbine,E-6610,low,210,"motor amp draw 2% above rated, monitoring",tightened coupling bolts,cleaned intercooler fins,TC-003,realigned pump impeller,OP-04
+09-05-2026 00:31,PUMP-07,centrifugal_pump,E-8804,low,395,"vibraion trending up past 5 mm/s, need inspction",tightened coupling bolts,overhauled valve actuator,TC-012,reset trip and inspected seals,OP-05
+27-08-2026 21:45,PUMP-07,centrifugal_pump,E-1155,medium,8,"PMP07 oil sample came back degraded, change needed",seal pressure fluctuation and oil degradation,,TC-002,,OP-02
+21-08-2026 16:55,TURBINE-03,steam_turbine,E-7733,critical,285,"spare part out of stok, ordered via maint req",overhauled valve actuator,realigned pump impeller,TC-015,,OP-06
+13-08-2026 08:36,COMPRESSOR-01,centrifugal_compressor,E-1155,low,184,"motor amp draw 2% above rated, monitoring",flushed cooling water lines,replaced bearing assembly,TC-013,replaced gasket set,OP-06
+15-06-2026 18:19,TURBINE-07,steam_turbine,E-7733,high,49,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,replaced bearing assembly,TC-012,flushed cooling water lines; replaced gasket set,OP-04
+25-06-2026 04:11,PUMP-01,centrifugal_pump,E-2218,high,190,"spare part out of stok, ordered via maint req",replaced gasket set,flushed cooling water lines,TC-006,,OP-04
+09-06-2026 13:54,PUMP-02,centrifugal_pump,E-3340,high,196,,reset trip and inspected seals,replaced thermocouple,TC-001,replaced thermocouple,OP-02
+11-06-2026 20:06,PUMP-04,centrifugal_pump,E-7733,high,162,cooling water temp 2 deg above nominal,replaced gasket set,cleaned intercooler fins,TC-008,replaced bearing assembly; reset trip and inspected seals,OP-07
+20-06-2026 15:21,TURBINE-02,steam_turbine,E-4471,low,295,"bearng grease fitting was clogged, cleared it",replaced oil filter and topped up,flushed cooling water lines,TC-011,,OP-06
+01-07-2026 14:38,TURBINE-05,steam_turbine,E-8804,critical,35,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,overhauled valve actuator,TC-001,cleaned intercooler fins; replaced bearing assembly,OP-08
+11-07-2026 00:54,PUMP-02,centrifugal_pump,E-5502,high,40,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,cleaned intercooler fins,TC-015,replaced bearing assembly; reset trip and inspected seals,OP-02
+19-05-2026 18:51,PUMP-04,centrifugal_pump,E-6610,low,281,"motor amp draw 2% above rated, monitoring",cleaned intercooler fins,tightened coupling bolts,TC-007,replaced bearing assembly; flushed cooling water lines,OP-08
+13-07-2026 04:22,PUMP-04,centrifugal_pump,E-6610,medium,211,cooling water temp 2 deg above nominal,replaced oil filter and topped up,tightened coupling bolts,TC-013,cleaned intercooler fins; replaced oil filter and topped up,OP-01
+29-06-2026 08:02,TURBINE-08,steam_turbine,E-1101,medium,348,"vibration spikes during startup, settles after 10min",replaced bearing assembly,realigned pump impeller,TC-008,,OP-05
+07-05-2026 16:59,COMPRESSOR-02,centrifugal_compressor,E-1101,low,96,"heard unusual vib near bearing, noted on shift log",replaced bearing assembly,replaced thermocouple,TC-006,,OP-08
+31-07-2026 08:01,TURBINE-01,steam_turbine,E-1155,low,392,"no abnormal readings this shift, all within limits",realigned pump impeller,tightened coupling bolts,TC-010,realigned pump impeller; flushed cooling water lines,OP-02
+21-06-2026 06:49,PUMP-10,centrifugal_pump,E-3340,low,181,"spare part out of stok, ordered via maint req",realigned pump impeller,reset trip and inspected seals,TC-005,realigned pump impeller,OP-04
+13-05-2026 09:20,TURBINE-07,steam_turbine,E-5502,high,91,"slight oil leak at seal, will monitor tmrw",replaced thermocouple,,TC-001,,OP-08
+30-07-2026 05:52,PUMP-05,centrifugal_pump,E-4471,medium,158,"alignment check done last wk, looks ok for now",tightened coupling bolts,flushed cooling water lines,TC-002,tightened coupling bolts; reset trip and inspected seals,OP-06
+16-08-2026 22:27,COMPRESSOR-02,centrifugal_compressor,E-2218,high,316,"no abnormal readings this shift, all within limits",replaced oil filter and topped up,replaced thermocouple,TC-001,,OP-02
+01-08-2026 04:50,PUMP-03,centrifugal_pump,E-9921,low,291,,reset trip and inspected seals,cleaned intercooler fins,TC-004,flushed cooling water lines,OP-05
+16-05-2026 10:20,COMPRESSOR-01,centrifugal_compressor,E-2218,low,50,"spare part out of stok, ordered via maint req",,replaced gasket set,TC-003,replaced thermocouple; cleaned intercooler fins,OP-06
+28-06-2026 21:24,TURBINE-04,steam_turbine,E-2218,critical,27,cooling water temp 2 deg above nominal,replaced thermocouple,replaced bearing assembly,TC-011,overhauled valve actuator,OP-07
+24-07-2026 14:53,TURBINE-04,steam_turbine,E-3340,medium,101,"no abnormal readings this shift, all within limits",replaced bearing assembly,overhauled valve actuator,TC-013,,OP-06
+26-05-2026 07:43,COMPRESSOR-03,centrifugal_compressor,E-9921,low,60,"no abnormal readings this shift, all within limits",replaced bearing assembly,reset trip and inspected seals,TC-002,,OP-02
+19-07-2026 22:05,TURBINE-06,steam_turbine,E-7733,low,327,"vibraion trending up past 5 mm/s, need inspction",realigned pump impeller,overhauled valve actuator,TC-012,realigned pump impeller; tightened coupling bolts,OP-06
+04-07-2026 11:09,COMPRESSOR-05,centrifugal_compressor,E-7733,critical,196,"brng temp high, tripped @0412, called AE",overhauled valve actuator,tightened coupling bolts,TC-015,,OP-02
+29-07-2026 11:55,TURBINE-01,steam_turbine,E-3340,critical,398,"oil press dropped briefly, came back on its own",realigned pump impeller,overhauled valve actuator,TC-006,replaced gasket set,OP-03
+17-05-2026 07:31,TURBINE-06,steam_turbine,E-1101,medium,215,"alignment check done last wk, looks ok for now",cleaned intercooler fins,replaced gasket set,TC-001,cleaned intercooler fins; replaced bearing assembly,OP-02
+03-07-2026 03:04,TURBINE-05,steam_turbine,E-2218,critical,390,"brng temp high, tripped @0412, called AE",replaced gasket set,replaced gasket set,TC-011,overhauled valve actuator; replaced bearing assembly,OP-06
+19-05-2026 14:39,PUMP-09,centrifugal_pump,E-6610,medium,25,"bearng grease fitting was clogged, cleared it",,overhauled valve actuator,TC-001,tightened coupling bolts,OP-06
+25-06-2026 15:29,COMPRESSOR-06,centrifugal_compressor,E-5502,medium,419,"oil press dropped briefly, came back on its own",tightened coupling bolts,replaced oil filter and topped up,TC-002,,OP-08
+08-08-2026 23:10,PUMP-10,centrifugal_pump,E-1155,medium,271,"no abnormal readings this shift, all within limits",replaced bearing assembly,replaced bearing assembly,TC-012,tightened coupling bolts,OP-02
+23-08-2026 01:58,TURBINE-03,steam_turbine,E-3340,critical,370,cooling water temp 2 deg above nominal,flushed cooling water lines,reset trip and inspected seals,TC-005,realigned pump impeller; reset trip and inspected seals,OP-02
+04-06-2026 16:47,COMPRESSOR-04,centrifugal_compressor,E-1101,medium,278,"no abnormal readings this shift, all within limits",overhauled valve actuator,replaced bearing assembly,TC-010,cleaned intercooler fins; cleaned intercooler fins,OP-05
+27-06-2026 17:39,TURBINE-08,steam_turbine,E-6610,high,71,"alignment check done last wk, looks ok for now",reset trip and inspected seals,overhauled valve actuator,TC-009,,OP-07
+16-08-2026 23:57,TURBINE-03,steam_turbine,E-1155,high,25,"motor amp draw 2% above rated, monitoring",overhauled valve actuator,replaced bearing assembly,TC-007,,OP-02
+08-06-2026 21:30,TURBINE-06,steam_turbine,E-2218,high,355,"spare part out of stok, ordered via maint req",realigned pump impeller,replaced oil filter and topped up,TC-006,cleaned intercooler fins; replaced oil filter and topped up,OP-06
+27-06-2026 11:07,TURBINE-04,steam_turbine,E-5502,medium,400,"oil press dropped briefly, came back on its own",flushed cooling water lines,reset trip and inspected seals,TC-012,overhauled valve actuator; reset trip and inspected seals,OP-08
+29-06-2026 11:14,TURBINE-06,steam_turbine,E-2218,medium,100,"brng temp high, tripped @0412, called AE",realigned pump impeller,realigned pump impeller,TC-002,flushed cooling water lines; replaced bearing assembly,OP-07
+22-05-2026 03:37,COMPRESSOR-05,centrifugal_compressor,E-4471,high,398,cooling water temp 2 deg above nominal,replaced gasket set,replaced gasket set,TC-010,replaced bearing assembly,OP-03
+06-05-2026 01:19,COMPRESSOR-06,centrifugal_compressor,E-9921,critical,284,"alignment check done last wk, looks ok for now",reset trip and inspected seals,cleaned intercooler fins,TC-007,replaced thermocouple; overhauled valve actuator,OP-03
+09-07-2026 03:04,PUMP-09,centrifugal_pump,E-9921,medium,343,"vibration spikes during startup, settles after 10min",overhauled valve actuator,reset trip and inspected seals,TC-006,replaced thermocouple; tightened coupling bolts,OP-08
+02-05-2026 06:22,PUMP-02,centrifugal_pump,E-7733,low,335,"noticed rust on coupling guard, reported to maint",flushed cooling water lines,replaced thermocouple,TC-001,,OP-07
+29-06-2026 20:18,TURBINE-04,steam_turbine,E-1101,critical,275,"vibraion trending up past 5 mm/s, need inspction",flushed cooling water lines,replaced gasket set,TC-002,,OP-07
+22-08-2026 08:57,PUMP-09,centrifugal_pump,E-8804,low,197,"oil press dropped briefly, came back on its own",tightened coupling bolts,tightened coupling bolts,TC-006,flushed cooling water lines,OP-02
+06-06-2026 13:43,TURBINE-04,steam_turbine,E-2218,critical,78,"brng temp high, tripped @0412, called AE",flushed cooling water lines,flushed cooling water lines,TC-001,flushed cooling water lines,OP-04
+12-06-2026 21:36,PUMP-05,centrifugal_pump,E-2218,medium,51,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,cleaned intercooler fins,TC-014,reset trip and inspected seals,OP-04
+16-08-2026 06:09,TURBINE-01,steam_turbine,E-9921,low,20,"noticed rust on coupling guard, reported to maint",replaced thermocouple,cleaned intercooler fins,TC-008,overhauled valve actuator,OP-04
+06-08-2026 15:15,COMPRESSOR-03,centrifugal_compressor,E-6610,critical,82,,realigned pump impeller,replaced bearing assembly,TC-001,replaced thermocouple; replaced thermocouple,OP-06
+23-06-2026 11:20,PUMP-02,centrifugal_pump,E-2218,high,232,"oil press dropped briefly, came back on its own",overhauled valve actuator,realigned pump impeller,TC-006,replaced thermocouple,OP-03
+22-08-2026 00:18,TURBINE-06,steam_turbine,E-4471,high,398,"oil press dropped briefly, came back on its own",replaced thermocouple,replaced bearing assembly,TC-005,,OP-07
+26-08-2026 11:38,TURBINE-05,steam_turbine,E-6610,medium,232,cooling water temp 2 deg above nominal,overhauled valve actuator,replaced thermocouple,TC-014,cleaned intercooler fins,OP-07
+03-07-2026 21:52,PUMP-03,centrifugal_pump,E-8804,medium,21,"dischrg press flctuating ±0.3 bar, snr tech aware",reset trip and inspected seals,replaced oil filter and topped up,TC-002,flushed cooling water lines; replaced thermocouple,OP-08
+14-07-2026 17:03,COMPRESSOR-06,centrifugal_compressor,E-1101,low,369,"heard unusual vib near bearing, noted on shift log",realigned pump impeller,replaced gasket set,TC-003,,OP-04
+10-07-2026 11:42,COMPRESSOR-06,centrifugal_compressor,E-7733,high,317,"slight oil leak at seal, will monitor tmrw",reset trip and inspected seals,realigned pump impeller,TC-001,,OP-06
+30-06-2026 07:49,TURBINE-02,steam_turbine,E-4471,high,44,cooling water temp 2 deg above nominal,cleaned intercooler fins,flushed cooling water lines,TC-007,replaced thermocouple; replaced gasket set,OP-06
+03-07-2026 10:35,COMPRESSOR-01,centrifugal_compressor,E-9921,low,300,"brng temp high, tripped @0412, called AE",reset trip and inspected seals,flushed cooling water lines,TC-006,realigned pump impeller; reset trip and inspected seals,OP-02
+28-06-2026 20:16,PUMP-02,centrifugal_pump,E-5502,low,196,cooling water temp 2 deg above nominal,flushed cooling water lines,overhauled valve actuator,TC-015,reset trip and inspected seals,OP-07
+10-06-2026 14:55,PUMP-05,centrifugal_pump,E-3340,critical,75,"bearng grease fitting was clogged, cleared it",replaced gasket set,cleaned intercooler fins,TC-009,,OP-01
+13-05-2026 10:11,TURBINE-06,steam_turbine,E-1101,medium,354,"oil press dropped briefly, came back on its own",tightened coupling bolts,reset trip and inspected seals,TC-007,,OP-01
+10-08-2026 03:12,TURBINE-04,steam_turbine,E-4471,high,340,"E-4471 trip on TB04, brng lube 22 days overdue!!!",bearing lubrication failure,replaced bearing assembly,TC-001,SKF-6206-2RS; OIL-HYD-68,OP-03
+14-05-2026 06:11,COMPRESSOR-01,centrifugal_compressor,E-3340,medium,325,"vibraion trending up past 5 mm/s, need inspction",cleaned intercooler fins,overhauled valve actuator,TC-014,flushed cooling water lines,OP-07
+04-07-2026 05:56,COMPRESSOR-05,centrifugal_compressor,E-9921,critical,304,"slight oil leak at seal, will monitor tmrw",overhauled valve actuator,flushed cooling water lines,TC-007,replaced oil filter and topped up; cleaned intercooler fins,OP-06
+08-08-2026 12:53,COMPRESSOR-04,centrifugal_compressor,E-5502,critical,332,"no abnormal readings this shift, all within limits",realigned pump impeller,replaced thermocouple,TC-004,,OP-07
+19-05-2026 12:23,TURBINE-04,steam_turbine,E-9921,medium,307,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced bearing assembly,realigned pump impeller,TC-010,flushed cooling water lines,OP-06
+13-07-2026 02:39,COMPRESSOR-04,centrifugal_compressor,E-5502,medium,170,"slight oil leak at seal, will monitor tmrw",cleaned intercooler fins,overhauled valve actuator,TC-005,,OP-05
+23-05-2026 14:24,TURBINE-02,steam_turbine,E-1101,high,283,"noticed rust on coupling guard, reported to maint",overhauled valve actuator,replaced oil filter and topped up,TC-013,,OP-02
+08-08-2026 09:29,PUMP-05,centrifugal_pump,E-1101,critical,410,"heard unusual vib near bearing, noted on shift log",replaced thermocouple,replaced gasket set,TC-015,overhauled valve actuator,OP-02
+08-06-2026 17:35,COMPRESSOR-06,centrifugal_compressor,E-7733,low,312,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,tightened coupling bolts,TC-003,,OP-07
+18-08-2026 22:43,TURBINE-03,steam_turbine,E-1101,critical,224,"oil press dropped briefly, came back on its own",tightened coupling bolts,replaced bearing assembly,TC-005,replaced bearing assembly,OP-03
+17-07-2026 19:25,PUMP-01,centrifugal_pump,E-9921,critical,206,cooling water temp 2 deg above nominal,flushed cooling water lines,,TC-004,tightened coupling bolts; realigned pump impeller,OP-03
+28-06-2026 11:44,PUMP-02,centrifugal_pump,E-4471,low,334,"no abnormal readings this shift, all within limits",reset trip and inspected seals,realigned pump impeller,TC-015,reset trip and inspected seals,OP-05
+31-05-2026 00:32,PUMP-05,centrifugal_pump,E-8804,critical,147,"heard unusual vib near bearing, noted on shift log",replaced bearing assembly,flushed cooling water lines,TC-012,tightened coupling bolts; replaced bearing assembly,OP-02
+08-06-2026 04:04,PUMP-03,centrifugal_pump,E-2218,medium,113,,tightened coupling bolts,reset trip and inspected seals,TC-002,replaced bearing assembly,OP-06
+01-08-2026 03:30,TURBINE-07,steam_turbine,E-1101,high,300,"dischrg press flctuating ±0.3 bar, snr tech aware",reset trip and inspected seals,overhauled valve actuator,TC-001,reset trip and inspected seals,OP-01
+06-06-2026 19:25,PUMP-04,centrifugal_pump,E-3340,high,46,"noticed rust on coupling guard, reported to maint",tightened coupling bolts,flushed cooling water lines,TC-003,replaced gasket set; tightened coupling bolts,OP-08
+25-08-2026 12:52,PUMP-06,centrifugal_pump,E-4471,critical,217,"noticed rust on coupling guard, reported to maint",replaced gasket set,flushed cooling water lines,TC-010,tightened coupling bolts; tightened coupling bolts,OP-06
+24-06-2026 19:40,TURBINE-01,steam_turbine,E-6610,high,274,"motor amp draw 2% above rated, monitoring",reset trip and inspected seals,reset trip and inspected seals,TC-002,,OP-08
+08-06-2026 23:34,TURBINE-03,steam_turbine,E-2218,critical,69,,tightened coupling bolts,replaced oil filter and topped up,TC-010,,OP-01
+30-05-2026 22:30,TURBINE-05,steam_turbine,E-2218,medium,305,"vibraion trending up past 5 mm/s, need inspction",realigned pump impeller,replaced thermocouple,TC-012,tightened coupling bolts; overhauled valve actuator,OP-03
+30-06-2026 02:14,PUMP-09,centrifugal_pump,E-6610,high,239,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,reset trip and inspected seals,TC-005,overhauled valve actuator; cleaned intercooler fins,OP-08
+02-05-2026 23:00,PUMP-05,centrifugal_pump,E-8804,high,368,"vibration spikes during startup, settles after 10min",flushed cooling water lines,replaced bearing assembly,TC-014,,OP-04
+25-05-2026 01:20,PUMP-01,centrifugal_pump,E-4471,critical,244,"vibration spikes during startup, settles after 10min",overhauled valve actuator,overhauled valve actuator,TC-009,,OP-03
+28-08-2026 05:43,PUMP-07,centrifugal_pump,E-4471,critical,91,"bearng grease fitting was clogged, cleared it",replaced gasket set,replaced thermocouple,TC-002,replaced bearing assembly,OP-05
+18-05-2026 02:45,PUMP-09,centrifugal_pump,E-7733,critical,228,"brng temp high, tripped @0412, called AE",replaced gasket set,cleaned intercooler fins,TC-003,,OP-08
+28-08-2026 02:46,COMPRESSOR-05,centrifugal_compressor,E-5502,medium,330,"noticed rust on coupling guard, reported to maint",cleaned intercooler fins,reset trip and inspected seals,TC-009,,OP-05
+07-05-2026 21:25,TURBINE-06,steam_turbine,E-9921,medium,310,"heard unusual vib near bearing, noted on shift log",,flushed cooling water lines,TC-003,replaced gasket set; cleaned intercooler fins,OP-07
+03-07-2026 02:32,PUMP-08,centrifugal_pump,E-2218,medium,409,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,flushed cooling water lines,TC-012,tightened coupling bolts,OP-07
+06-07-2026 10:47,TURBINE-03,steam_turbine,E-5502,high,213,"vibration spikes during startup, settles after 10min",,replaced oil filter and topped up,TC-008,,OP-02
+06-07-2026 00:21,PUMP-10,centrifugal_pump,E-5502,critical,69,"brng temp high, tripped @0412, called AE",replaced oil filter and topped up,overhauled valve actuator,TC-008,tightened coupling bolts,OP-08
+14-05-2026 09:20,PUMP-02,centrifugal_pump,E-6610,low,267,"brng temp high, tripped @0412, called AE",replaced thermocouple,overhauled valve actuator,TC-002,,OP-01
+03-06-2026 08:48,TURBINE-07,steam_turbine,E-5502,critical,263,"noticed rust on coupling guard, reported to maint",tightened coupling bolts,reset trip and inspected seals,TC-012,,OP-02
+09-05-2026 19:41,PUMP-02,centrifugal_pump,E-9921,critical,321,"spare part out of stok, ordered via maint req",cleaned intercooler fins,flushed cooling water lines,TC-003,overhauled valve actuator,OP-06
+06-07-2026 23:21,PUMP-07,centrifugal_pump,E-1101,medium,100,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced oil filter and topped up,replaced gasket set,TC-008,replaced thermocouple; cleaned intercooler fins,OP-07
+05-07-2026 10:33,PUMP-10,centrifugal_pump,E-6610,high,176,"motor amp draw 2% above rated, monitoring",realigned pump impeller,tightened coupling bolts,TC-002,,OP-01
+17-08-2026 04:00,TURBINE-07,steam_turbine,E-7733,critical,418,"bearng grease fitting was clogged, cleared it",replaced gasket set,realigned pump impeller,TC-010,replaced gasket set; cleaned intercooler fins,OP-06
+16-05-2026 06:09,PUMP-04,centrifugal_pump,E-3340,low,154,"motor amp draw 2% above rated, monitoring",reset trip and inspected seals,replaced gasket set,TC-013,tightened coupling bolts; replaced thermocouple,OP-06
+06-08-2026 02:30,TURBINE-05,steam_turbine,E-7733,medium,401,"slight oil leak at seal, will monitor tmrw",tightened coupling bolts,reset trip and inspected seals,TC-015,tightened coupling bolts,OP-03
+17-08-2026 01:27,PUMP-08,centrifugal_pump,E-4471,critical,182,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,tightened coupling bolts,TC-009,,OP-02
+17-06-2026 18:53,PUMP-02,centrifugal_pump,E-5502,high,373,"bearng grease fitting was clogged, cleared it",cleaned intercooler fins,replaced thermocouple,TC-009,replaced oil filter and topped up; tightened coupling bolts,OP-01
+11-07-2026 12:57,PUMP-05,centrifugal_pump,E-6610,medium,244,"alignment check done last wk, looks ok for now",flushed cooling water lines,overhauled valve actuator,TC-013,cleaned intercooler fins,OP-03
+20-05-2026 01:12,COMPRESSOR-03,centrifugal_compressor,E-1155,medium,287,"spare part out of stok, ordered via maint req",realigned pump impeller,replaced bearing assembly,TC-013,,OP-03
+19-05-2026 07:49,PUMP-04,centrifugal_pump,E-7733,high,256,"spare part out of stok, ordered via maint req",replaced oil filter and topped up,replaced gasket set,TC-002,tightened coupling bolts,OP-02
+24-05-2026 12:46,PUMP-04,centrifugal_pump,E-3340,high,252,cooling water temp 2 deg above nominal,tightened coupling bolts,replaced gasket set,TC-014,,OP-04
+17-07-2026 11:06,PUMP-03,centrifugal_pump,E-6610,high,243,"no abnormal readings this shift, all within limits",flushed cooling water lines,replaced thermocouple,TC-001,reset trip and inspected seals,OP-05
+24-07-2026 23:58,TURBINE-06,steam_turbine,E-1155,critical,236,"bearng grease fitting was clogged, cleared it",overhauled valve actuator,realigned pump impeller,TC-001,,OP-02
+04-06-2026 19:06,COMPRESSOR-03,centrifugal_compressor,E-5502,medium,137,"no abnormal readings this shift, all within limits",replaced gasket set,reset trip and inspected seals,TC-011,,OP-07
+06-05-2026 14:30,TURBINE-04,steam_turbine,E-1101,low,344,"alignment check done last wk, looks ok for now",replaced thermocouple,replaced thermocouple,TC-005,,OP-03
+03-05-2026 08:09,TURBINE-03,steam_turbine,E-1101,high,63,"vibraion trending up past 5 mm/s, need inspction",replaced thermocouple,tightened coupling bolts,TC-002,replaced gasket set,OP-08
+10-06-2026 19:07,PUMP-10,centrifugal_pump,E-2218,high,187,"oil press dropped briefly, came back on its own",overhauled valve actuator,replaced oil filter and topped up,TC-001,replaced thermocouple; replaced thermocouple,OP-06
+15-08-2026 09:00,TURBINE-04,steam_turbine,E-6610,medium,86,"brng temp high, tripped @0412, called AE",overhauled valve actuator,replaced thermocouple,TC-009,cleaned intercooler fins; overhauled valve actuator,OP-04
+08-05-2026 19:14,TURBINE-07,steam_turbine,E-3340,medium,28,cooling water temp 2 deg above nominal,overhauled valve actuator,cleaned intercooler fins,TC-014,,OP-07
+01-07-2026 02:45,PUMP-10,centrifugal_pump,E-9921,low,144,"slight oil leak at seal, will monitor tmrw",overhauled valve actuator,replaced gasket set,TC-002,,OP-06
+04-08-2026 11:45,TURBINE-01,steam_turbine,E-1101,critical,136,"alignment check done last wk, looks ok for now",replaced oil filter and topped up,cleaned intercooler fins,TC-002,,OP-01
+21-08-2026 16:53,PUMP-04,centrifugal_pump,E-9921,medium,34,"no abnormal readings this shift, all within limits",overhauled valve actuator,replaced bearing assembly,TC-009,replaced bearing assembly; replaced thermocouple,OP-08
+31-05-2026 06:52,COMPRESSOR-02,centrifugal_compressor,E-8804,low,284,"noticed rust on coupling guard, reported to maint",replaced thermocouple,cleaned intercooler fins,TC-010,cleaned intercooler fins; realigned pump impeller,OP-05
+11-08-2026 16:17,TURBINE-07,steam_turbine,E-1155,medium,217,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,replaced gasket set,TC-001,replaced gasket set,OP-01
+18-05-2026 09:23,COMPRESSOR-06,centrifugal_compressor,E-5502,low,417,"no abnormal readings this shift, all within limits",cleaned intercooler fins,overhauled valve actuator,TC-009,reset trip and inspected seals,OP-07
+19-08-2026 15:47,COMPRESSOR-04,centrifugal_compressor,E-7733,low,327,"slight oil leak at seal, will monitor tmrw",realigned pump impeller,reset trip and inspected seals,TC-006,replaced oil filter and topped up; cleaned intercooler fins,OP-08
+11-06-2026 06:48,COMPRESSOR-03,centrifugal_compressor,E-3340,medium,276,"brng temp high, tripped @0412, called AE",,reset trip and inspected seals,TC-002,,OP-04
+28-05-2026 11:19,COMPRESSOR-02,centrifugal_compressor,E-3340,critical,252,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,overhauled valve actuator,TC-002,replaced gasket set; cleaned intercooler fins,OP-03
+27-06-2026 03:16,TURBINE-05,steam_turbine,E-5502,critical,44,"no abnormal readings this shift, all within limits",replaced gasket set,realigned pump impeller,TC-001,cleaned intercooler fins,OP-07
+19-08-2026 17:44,PUMP-10,centrifugal_pump,E-2218,medium,326,"bearng grease fitting was clogged, cleared it",reset trip and inspected seals,realigned pump impeller,TC-001,,OP-01
+28-06-2026 02:05,COMPRESSOR-04,centrifugal_compressor,E-7733,medium,196,"noticed rust on coupling guard, reported to maint",replaced oil filter and topped up,flushed cooling water lines,TC-007,flushed cooling water lines,OP-08
+14-07-2026 18:47,PUMP-04,centrifugal_pump,E-7733,critical,212,"heard unusual vib near bearing, noted on shift log",overhauled valve actuator,cleaned intercooler fins,TC-014,realigned pump impeller; cleaned intercooler fins,OP-08
+11-05-2026 12:24,TURBINE-03,steam_turbine,E-8804,high,381,"no abnormal readings this shift, all within limits",,tightened coupling bolts,TC-007,replaced bearing assembly,OP-03
+26-08-2026 04:39,PUMP-06,centrifugal_pump,E-6610,medium,15,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,replaced bearing assembly,TC-006,tightened coupling bolts,OP-08
+10-07-2026 03:09,PUMP-09,centrifugal_pump,E-3340,high,310,"spare part out of stok, ordered via maint req",flushed cooling water lines,,TC-004,realigned pump impeller,OP-03
+08-08-2026 20:50,COMPRESSOR-04,centrifugal_compressor,E-8804,low,303,cooling water temp 2 deg above nominal,replaced bearing assembly,,TC-005,flushed cooling water lines; flushed cooling water lines,OP-08
+03-06-2026 20:17,PUMP-05,centrifugal_pump,E-8804,critical,280,"spare part out of stok, ordered via maint req",tightened coupling bolts,tightened coupling bolts,TC-001,,OP-01
+09-07-2026 20:58,COMPRESSOR-06,centrifugal_compressor,E-1155,low,283,"noticed rust on coupling guard, reported to maint",replaced bearing assembly,overhauled valve actuator,TC-011,replaced bearing assembly,OP-03
+27-08-2026 09:34,PUMP-05,centrifugal_pump,E-1101,high,149,"no abnormal readings this shift, all within limits",replaced bearing assembly,realigned pump impeller,TC-007,,OP-04
+20-08-2026 08:58,PUMP-08,centrifugal_pump,E-7733,critical,274,"dischrg press flctuating ±0.3 bar, snr tech aware",,replaced gasket set,TC-013,,OP-08
+15-07-2026 02:47,COMPRESSOR-06,centrifugal_compressor,E-2218,critical,71,"slight oil leak at seal, will monitor tmrw",replaced gasket set,overhauled valve actuator,TC-008,,OP-04
+21-06-2026 06:24,TURBINE-06,steam_turbine,E-5502,critical,149,"vibration spikes during startup, settles after 10min",reset trip and inspected seals,cleaned intercooler fins,TC-006,replaced gasket set; replaced bearing assembly,OP-01
+09-07-2026 12:24,PUMP-03,centrifugal_pump,E-5502,high,150,"slight oil leak at seal, will monitor tmrw",replaced oil filter and topped up,tightened coupling bolts,TC-004,replaced oil filter and topped up,OP-04
+17-07-2026 09:30,COMPRESSOR-02,centrifugal_compressor,E-5502,high,26,"intercooler on CP02 looking fouled, fins clogged",intercooler fouling and degradation,,TC-008,,OP-05
+22-08-2026 13:50,COMPRESSOR-05,centrifugal_compressor,E-1101,critical,68,"no abnormal readings this shift, all within limits",,reset trip and inspected seals,TC-006,cleaned intercooler fins; replaced thermocouple,OP-03
+03-07-2026 20:43,PUMP-07,centrifugal_pump,E-7733,low,222,"brng temp high, tripped @0412, called AE",overhauled valve actuator,replaced thermocouple,TC-013,flushed cooling water lines; replaced thermocouple,OP-02
+05-06-2026 17:20,COMPRESSOR-06,centrifugal_compressor,E-7733,low,389,"brng temp high, tripped @0412, called AE",flushed cooling water lines,overhauled valve actuator,TC-012,overhauled valve actuator,OP-07
+09-06-2026 02:03,COMPRESSOR-06,centrifugal_compressor,E-4471,low,88,"oil press dropped briefly, came back on its own",realigned pump impeller,cleaned intercooler fins,TC-011,replaced thermocouple; replaced oil filter and topped up,OP-01
+12-05-2026 15:00,TURBINE-02,steam_turbine,E-4471,critical,321,"heard unusual vib near bearing, noted on shift log",replaced thermocouple,realigned pump impeller,TC-011,replaced oil filter and topped up,OP-06
+04-06-2026 10:50,COMPRESSOR-02,centrifugal_compressor,E-2218,high,339,"spare part out of stok, ordered via maint req",replaced thermocouple,cleaned intercooler fins,TC-005,,OP-06
+04-08-2026 23:12,TURBINE-04,steam_turbine,E-4471,medium,18,"vib on TB04 climbing since mon, brng area suspect",bearing lubrication failure,,TC-002,,OP-01
+21-08-2026 15:35,PUMP-05,centrifugal_pump,E-3340,high,133,"slight oil leak at seal, will monitor tmrw",realigned pump impeller,overhauled valve actuator,TC-003,replaced bearing assembly,OP-01
+23-08-2026 01:35,COMPRESSOR-04,centrifugal_compressor,E-5502,medium,155,"no abnormal readings this shift, all within limits",,replaced bearing assembly,TC-004,,OP-06
+19-08-2026 01:35,TURBINE-06,steam_turbine,E-6610,high,92,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,replaced oil filter and topped up,TC-004,overhauled valve actuator,OP-07
+02-05-2026 04:05,PUMP-02,centrifugal_pump,E-8804,high,398,"noticed rust on coupling guard, reported to maint",replaced thermocouple,,TC-013,tightened coupling bolts,OP-02
+06-08-2026 16:19,PUMP-08,centrifugal_pump,E-9921,critical,282,"oil press dropped briefly, came back on its own",reset trip and inspected seals,cleaned intercooler fins,TC-012,realigned pump impeller,OP-04
+30-07-2026 03:32,TURBINE-04,steam_turbine,E-6610,low,361,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,flushed cooling water lines,TC-013,tightened coupling bolts; replaced oil filter and topped up,OP-03
+28-05-2026 21:08,TURBINE-04,steam_turbine,E-9921,low,352,"vibraion trending up past 5 mm/s, need inspction",replaced oil filter and topped up,replaced oil filter and topped up,TC-014,realigned pump impeller; overhauled valve actuator,OP-02
+15-07-2026 17:38,PUMP-07,centrifugal_pump,E-5502,critical,244,"motor amp draw 2% above rated, monitoring",reset trip and inspected seals,replaced oil filter and topped up,TC-014,,OP-08
+31-05-2026 15:20,TURBINE-03,steam_turbine,E-8804,medium,145,"heard unusual vib near bearing, noted on shift log",replaced oil filter and topped up,tightened coupling bolts,TC-011,replaced oil filter and topped up,OP-07
+03-06-2026 06:27,PUMP-04,centrifugal_pump,E-4471,high,62,"brng temp high, tripped @0412, called AE",reset trip and inspected seals,tightened coupling bolts,TC-002,,OP-03
+09-05-2026 12:10,PUMP-09,centrifugal_pump,E-8804,medium,291,"spare part out of stok, ordered via maint req",tightened coupling bolts,replaced gasket set,TC-008,replaced thermocouple,OP-02
+10-08-2026 07:12,PUMP-06,centrifugal_pump,E-7733,low,212,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced bearing assembly,TC-007,,OP-02
+10-05-2026 18:59,TURBINE-07,steam_turbine,E-2218,low,354,"alignment check done last wk, looks ok for now",replaced bearing assembly,realigned pump impeller,TC-009,flushed cooling water lines,OP-07
+28-05-2026 17:35,PUMP-06,centrifugal_pump,E-5502,high,247,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,replaced oil filter and topped up,TC-011,realigned pump impeller,OP-01
+04-07-2026 02:41,PUMP-05,centrifugal_pump,E-6610,critical,329,"vibration spikes during startup, settles after 10min",replaced gasket set,replaced oil filter and topped up,TC-014,tightened coupling bolts,OP-06
+30-05-2026 01:18,TURBINE-02,steam_turbine,E-2218,critical,95,"alignment check done last wk, looks ok for now",realigned pump impeller,replaced bearing assembly,TC-008,cleaned intercooler fins; replaced bearing assembly,OP-08
+16-07-2026 12:35,TURBINE-05,steam_turbine,E-1101,high,18,"alignment check done last wk, looks ok for now",replaced oil filter and topped up,replaced oil filter and topped up,TC-012,,OP-05
+29-05-2026 07:16,TURBINE-05,steam_turbine,E-9921,critical,346,"vibration spikes during startup, settles after 10min",cleaned intercooler fins,replaced bearing assembly,TC-014,,OP-08
+12-06-2026 19:23,PUMP-09,centrifugal_pump,E-9921,critical,263,"spare part out of stok, ordered via maint req",cleaned intercooler fins,,TC-008,flushed cooling water lines,OP-04
+19-05-2026 04:41,PUMP-09,centrifugal_pump,E-3340,low,196,cooling water temp 2 deg above nominal,replaced gasket set,flushed cooling water lines,TC-001,,OP-04
+14-06-2026 13:55,PUMP-07,centrifugal_pump,E-3340,critical,161,"motor amp draw 2% above rated, monitoring",replaced gasket set,cleaned intercooler fins,TC-015,,OP-03
+17-07-2026 00:19,PUMP-08,centrifugal_pump,E-3340,critical,57,"vibration spikes during startup, settles after 10min",flushed cooling water lines,flushed cooling water lines,TC-011,tightened coupling bolts,OP-08
+20-05-2026 22:43,TURBINE-02,steam_turbine,E-9921,low,195,,tightened coupling bolts,replaced thermocouple,TC-009,,OP-03
+23-06-2026 01:26,PUMP-10,centrifugal_pump,E-5502,medium,353,"heard unusual vib near bearing, noted on shift log",flushed cooling water lines,replaced oil filter and topped up,TC-006,,OP-06
+11-08-2026 23:07,PUMP-05,centrifugal_pump,E-6610,medium,256,"alignment check done last wk, looks ok for now",cleaned intercooler fins,replaced oil filter and topped up,TC-012,reset trip and inspected seals,OP-07
+13-06-2026 10:25,PUMP-05,centrifugal_pump,E-7733,high,31,"brng temp high, tripped @0412, called AE",replaced thermocouple,tightened coupling bolts,TC-015,,OP-02
+14-07-2026 00:08,PUMP-08,centrifugal_pump,E-8804,medium,306,"noticed rust on coupling guard, reported to maint",replaced bearing assembly,flushed cooling water lines,TC-010,,OP-07
+08-07-2026 21:38,PUMP-02,centrifugal_pump,E-8804,critical,81,"spare part out of stok, ordered via maint req",overhauled valve actuator,replaced thermocouple,TC-005,reset trip and inspected seals; replaced oil filter and topped up,OP-07
+23-08-2026 10:54,PUMP-08,centrifugal_pump,E-9921,high,104,,,overhauled valve actuator,TC-006,tightened coupling bolts,OP-07
+25-06-2026 16:27,COMPRESSOR-06,centrifugal_compressor,E-7733,medium,305,"alignment check done last wk, looks ok for now",,replaced bearing assembly,TC-011,replaced oil filter and topped up,OP-05
+03-07-2026 08:32,COMPRESSOR-01,centrifugal_compressor,E-1101,critical,292,,reset trip and inspected seals,replaced oil filter and topped up,TC-002,overhauled valve actuator; tightened coupling bolts,OP-04
+07-05-2026 03:15,PUMP-08,centrifugal_pump,E-1155,low,134,"vibraion trending up past 5 mm/s, need inspction",flushed cooling water lines,replaced gasket set,TC-010,flushed cooling water lines,OP-05
+05-08-2026 20:39,PUMP-01,centrifugal_pump,E-6610,medium,231,"heard unusual vib near bearing, noted on shift log",cleaned intercooler fins,reset trip and inspected seals,TC-006,overhauled valve actuator; realigned pump impeller,OP-07
+17-06-2026 19:21,PUMP-01,centrifugal_pump,E-1155,high,160,cooling water temp 2 deg above nominal,cleaned intercooler fins,reset trip and inspected seals,TC-011,,OP-01
+15-06-2026 11:47,PUMP-10,centrifugal_pump,E-1155,medium,82,cooling water temp 2 deg above nominal,realigned pump impeller,replaced bearing assembly,TC-015,replaced thermocouple; replaced thermocouple,OP-04
+20-06-2026 08:54,TURBINE-01,steam_turbine,E-7733,critical,58,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced gasket set,realigned pump impeller,TC-003,,OP-08
+02-08-2026 23:12,PUMP-01,centrifugal_pump,E-7733,critical,182,"no abnormal readings this shift, all within limits",replaced bearing assembly,realigned pump impeller,TC-011,,OP-06
+01-07-2026 14:22,TURBINE-06,steam_turbine,E-2218,critical,418,"no abnormal readings this shift, all within limits",flushed cooling water lines,flushed cooling water lines,TC-001,tightened coupling bolts,OP-07
+19-05-2026 21:04,TURBINE-05,steam_turbine,E-9921,high,73,"spare part out of stok, ordered via maint req",replaced gasket set,reset trip and inspected seals,TC-004,realigned pump impeller,OP-05
+07-07-2026 13:40,COMPRESSOR-01,centrifugal_compressor,E-4471,medium,168,"spare part out of stok, ordered via maint req",tightened coupling bolts,tightened coupling bolts,TC-007,tightened coupling bolts; tightened coupling bolts,OP-04
+25-06-2026 23:54,COMPRESSOR-01,centrifugal_compressor,E-6610,medium,242,"brng temp high, tripped @0412, called AE",replaced bearing assembly,overhauled valve actuator,TC-010,,OP-04
+16-08-2026 11:22,COMPRESSOR-05,centrifugal_compressor,E-5502,critical,219,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced bearing assembly,TC-015,,OP-03
+03-06-2026 04:56,PUMP-06,centrifugal_pump,E-8804,low,64,"vibration spikes during startup, settles after 10min",replaced gasket set,replaced oil filter and topped up,TC-010,realigned pump impeller,OP-08
+08-06-2026 08:38,COMPRESSOR-01,centrifugal_compressor,E-8804,critical,278,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,replaced thermocouple,TC-007,reset trip and inspected seals; replaced thermocouple,OP-06
+13-08-2026 00:38,COMPRESSOR-04,centrifugal_compressor,E-9921,medium,332,cooling water temp 2 deg above nominal,replaced oil filter and topped up,replaced gasket set,TC-008,realigned pump impeller,OP-07
+23-07-2026 22:32,COMPRESSOR-05,centrifugal_compressor,E-1155,high,32,"oil press dropped briefly, came back on its own",overhauled valve actuator,flushed cooling water lines,TC-003,reset trip and inspected seals; reset trip and inspected seals,OP-08
+04-07-2026 12:05,PUMP-08,centrifugal_pump,E-4471,critical,111,"alignment check done last wk, looks ok for now",tightened coupling bolts,realigned pump impeller,TC-008,,OP-05
+15-06-2026 13:22,PUMP-07,centrifugal_pump,E-1155,low,311,"vibration spikes during startup, settles after 10min",replaced thermocouple,cleaned intercooler fins,TC-004,tightened coupling bolts,OP-04
+07-08-2026 23:12,TURBINE-04,steam_turbine,E-3340,critical,18,"TB04 vib hit 7.4 last night, maint called for emerg",bearing lubrication failure,,TC-008,,OP-04
+18-07-2026 14:50,PUMP-03,centrifugal_pump,E-5502,high,249,"no abnormal readings this shift, all within limits",replaced thermocouple,tightened coupling bolts,TC-002,realigned pump impeller; replaced thermocouple,OP-01
+09-05-2026 16:20,TURBINE-01,steam_turbine,E-6610,low,156,"oil press dropped briefly, came back on its own",replaced bearing assembly,flushed cooling water lines,TC-009,cleaned intercooler fins,OP-01
+06-05-2026 14:57,TURBINE-06,steam_turbine,E-6610,high,100,"vibration spikes during startup, settles after 10min",flushed cooling water lines,overhauled valve actuator,TC-005,overhauled valve actuator,OP-02
+23-07-2026 05:52,PUMP-08,centrifugal_pump,E-8804,high,244,"vibration spikes during startup, settles after 10min",overhauled valve actuator,replaced gasket set,TC-012,replaced gasket set; replaced oil filter and topped up,OP-07
+11-05-2026 07:14,PUMP-01,centrifugal_pump,E-1101,critical,409,"vibration spikes during startup, settles after 10min",replaced thermocouple,replaced bearing assembly,TC-002,replaced thermocouple; overhauled valve actuator,OP-06
+20-08-2026 01:19,PUMP-03,centrifugal_pump,E-6610,critical,359,"oil press dropped briefly, came back on its own",replaced oil filter and topped up,cleaned intercooler fins,TC-012,,OP-07
+14-07-2026 22:20,PUMP-10,centrifugal_pump,E-9921,high,400,"vibration spikes during startup, settles after 10min",reset trip and inspected seals,replaced thermocouple,TC-010,,OP-07
+14-06-2026 14:50,TURBINE-07,steam_turbine,E-9921,critical,258,"bearng grease fitting was clogged, cleared it",tightened coupling bolts,replaced thermocouple,TC-003,flushed cooling water lines,OP-07
+30-08-2026 01:45,PUMP-07,centrifugal_pump,E-1155,medium,180,"E-1155 trip on PMP07, seal and brng failure",seal pressure fluctuation and oil degradation,replaced bearing assembly,TC-004,FLOWSEAL-200; SKF-6206-2RS,OP-06
+20-06-2026 00:45,TURBINE-02,steam_turbine,E-7733,high,43,"dischrg press flctuating ±0.3 bar, snr tech aware",tightened coupling bolts,overhauled valve actuator,TC-015,reset trip and inspected seals; reset trip and inspected seals,OP-06
+31-05-2026 12:00,PUMP-03,centrifugal_pump,E-2218,high,305,"no abnormal readings this shift, all within limits",cleaned intercooler fins,cleaned intercooler fins,TC-011,,OP-08
+18-08-2026 18:30,TURBINE-04,steam_turbine,E-4471,high,263,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,tightened coupling bolts,TC-011,,OP-03
+05-06-2026 09:56,TURBINE-04,steam_turbine,E-4471,medium,387,"no abnormal readings this shift, all within limits",replaced gasket set,replaced oil filter and topped up,TC-010,,OP-02
+05-06-2026 03:23,COMPRESSOR-01,centrifugal_compressor,E-2218,critical,259,cooling water temp 2 deg above nominal,replaced gasket set,reset trip and inspected seals,TC-011,overhauled valve actuator,OP-08
+23-08-2026 22:25,COMPRESSOR-06,centrifugal_compressor,E-9921,high,230,"no abnormal readings this shift, all within limits",tightened coupling bolts,tightened coupling bolts,TC-013,replaced gasket set; flushed cooling water lines,OP-04
+01-05-2026 04:03,PUMP-02,centrifugal_pump,E-2218,critical,396,"motor amp draw 2% above rated, monitoring",replaced thermocouple,overhauled valve actuator,TC-015,replaced oil filter and topped up; replaced bearing assembly,OP-08
+06-08-2026 01:12,TURBINE-04,steam_turbine,E-3340,high,2,"TB04 vib at 5.8 mm/s, bearing greas overdue 18 dys",bearing lubrication failure,,TC-002,,OP-01
+06-06-2026 20:08,PUMP-09,centrifugal_pump,E-2218,medium,304,"motor amp draw 2% above rated, monitoring",tightened coupling bolts,tightened coupling bolts,TC-008,tightened coupling bolts; cleaned intercooler fins,OP-02
+29-06-2026 02:40,PUMP-07,centrifugal_pump,E-1155,high,159,"spare part out of stok, ordered via maint req",realigned pump impeller,overhauled valve actuator,TC-005,,OP-02
+17-08-2026 23:36,TURBINE-07,steam_turbine,E-4471,high,171,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,,TC-008,replaced thermocouple,OP-05
+06-08-2026 06:30,TURBINE-08,steam_turbine,E-9921,high,374,"no abnormal readings this shift, all within limits",replaced bearing assembly,replaced thermocouple,TC-015,,OP-04
+03-08-2026 22:36,TURBINE-01,steam_turbine,E-5502,medium,186,"oil press dropped briefly, came back on its own",realigned pump impeller,replaced oil filter and topped up,TC-005,replaced thermocouple; cleaned intercooler fins,OP-05
+07-05-2026 16:48,TURBINE-08,steam_turbine,E-4471,low,48,"no abnormal readings this shift, all within limits",replaced oil filter and topped up,replaced bearing assembly,TC-002,,OP-08
+04-05-2026 01:44,PUMP-01,centrifugal_pump,E-9921,critical,83,,tightened coupling bolts,realigned pump impeller,TC-007,replaced bearing assembly; replaced bearing assembly,OP-07
+04-08-2026 21:31,PUMP-01,centrifugal_pump,E-1101,high,220,"dischrg press flctuating ±0.3 bar, snr tech aware",cleaned intercooler fins,overhauled valve actuator,TC-007,,OP-08
+08-06-2026 06:10,COMPRESSOR-01,centrifugal_compressor,E-5502,high,101,"spare part out of stok, ordered via maint req",replaced bearing assembly,replaced oil filter and topped up,TC-004,,OP-06
+26-05-2026 00:46,TURBINE-03,steam_turbine,E-2218,high,147,"alignment check done last wk, looks ok for now",realigned pump impeller,tightened coupling bolts,TC-002,overhauled valve actuator; replaced thermocouple,OP-04
+26-06-2026 20:53,COMPRESSOR-03,centrifugal_compressor,E-5502,low,329,"oil press dropped briefly, came back on its own",tightened coupling bolts,tightened coupling bolts,TC-008,cleaned intercooler fins; realigned pump impeller,OP-02
+28-08-2026 13:00,PUMP-09,centrifugal_pump,E-2218,low,399,"brng temp high, tripped @0412, called AE",reset trip and inspected seals,,TC-013,replaced gasket set,OP-05
+13-07-2026 23:26,COMPRESSOR-02,centrifugal_compressor,E-5502,low,286,"vibraion trending up past 5 mm/s, need inspction",realigned pump impeller,replaced bearing assembly,TC-014,reset trip and inspected seals,OP-05
+08-07-2026 02:12,PUMP-09,centrifugal_pump,E-1101,critical,349,"oil press dropped briefly, came back on its own",cleaned intercooler fins,replaced bearing assembly,TC-011,,OP-04
+18-08-2026 10:25,TURBINE-03,steam_turbine,E-8804,high,105,"brng temp high, tripped @0412, called AE",reset trip and inspected seals,replaced oil filter and topped up,TC-001,realigned pump impeller,OP-04
+04-07-2026 04:26,TURBINE-08,steam_turbine,E-4471,critical,369,"no abnormal readings this shift, all within limits",flushed cooling water lines,cleaned intercooler fins,TC-010,cleaned intercooler fins; replaced oil filter and topped up,OP-08
+14-08-2026 16:16,PUMP-01,centrifugal_pump,E-6610,low,196,"noticed rust on coupling guard, reported to maint",cleaned intercooler fins,replaced gasket set,TC-002,replaced thermocouple; tightened coupling bolts,OP-07
+20-07-2026 10:30,COMPRESSOR-02,centrifugal_compressor,E-5502,medium,210,"CP02 dischrg hit 97C before trip, abouve limit",intercooler fouling and degradation,cleaned intercooler fins,TC-005,IC-CLEAN-KIT,OP-07
+14-07-2026 18:55,PUMP-10,centrifugal_pump,E-1101,critical,287,"vibraion trending up past 5 mm/s, need inspction",overhauled valve actuator,reset trip and inspected seals,TC-013,replaced bearing assembly,OP-07
+12-08-2026 11:35,TURBINE-02,steam_turbine,E-4471,high,246,"oil press dropped briefly, came back on its own",replaced oil filter and topped up,tightened coupling bolts,TC-007,replaced bearing assembly; replaced oil filter and topped up,OP-05
+28-07-2026 07:50,TURBINE-07,steam_turbine,E-1155,high,72,"brng temp high, tripped @0412, called AE",flushed cooling water lines,replaced bearing assembly,TC-007,replaced gasket set,OP-01
+29-05-2026 20:39,TURBINE-02,steam_turbine,E-5502,high,290,"dischrg press flctuating ±0.3 bar, snr tech aware",realigned pump impeller,replaced bearing assembly,TC-007,replaced bearing assembly; flushed cooling water lines,OP-06
+20-06-2026 13:49,TURBINE-08,steam_turbine,E-8804,medium,128,"heard unusual vib near bearing, noted on shift log",tightened coupling bolts,tightened coupling bolts,TC-007,realigned pump impeller,OP-01
+15-06-2026 04:14,PUMP-02,centrifugal_pump,E-6610,high,64,"noticed rust on coupling guard, reported to maint",tightened coupling bolts,overhauled valve actuator,TC-007,,OP-03
+30-06-2026 00:51,PUMP-03,centrifugal_pump,E-1101,critical,415,"vibration spikes during startup, settles after 10min",replaced thermocouple,flushed cooling water lines,TC-010,replaced gasket set,OP-07
+21-05-2026 23:55,PUMP-10,centrifugal_pump,E-8804,medium,158,"bearng grease fitting was clogged, cleared it",flushed cooling water lines,overhauled valve actuator,TC-003,,OP-06
+26-06-2026 04:18,COMPRESSOR-02,centrifugal_compressor,E-6610,high,140,"bearng grease fitting was clogged, cleared it",replaced gasket set,overhauled valve actuator,TC-003,reset trip and inspected seals,OP-01
+17-05-2026 20:18,PUMP-02,centrifugal_pump,E-6610,low,142,"slight oil leak at seal, will monitor tmrw",reset trip and inspected seals,replaced oil filter and topped up,TC-003,reset trip and inspected seals; flushed cooling water lines,OP-01
+30-07-2026 01:57,PUMP-01,centrifugal_pump,E-6610,high,74,"vibration spikes during startup, settles after 10min",flushed cooling water lines,overhauled valve actuator,TC-012,,OP-03
+18-06-2026 21:18,TURBINE-07,steam_turbine,E-4471,critical,227,"vibraion trending up past 5 mm/s, need inspction",replaced thermocouple,reset trip and inspected seals,TC-001,,OP-01
+22-05-2026 14:19,PUMP-01,centrifugal_pump,E-5502,critical,59,,flushed cooling water lines,replaced thermocouple,TC-015,cleaned intercooler fins; tightened coupling bolts,OP-03
+02-07-2026 22:08,PUMP-03,centrifugal_pump,E-1101,low,408,"motor amp draw 2% above rated, monitoring",replaced gasket set,replaced thermocouple,TC-003,flushed cooling water lines; replaced oil filter and topped up,OP-02
+26-07-2026 12:43,TURBINE-07,steam_turbine,E-8804,high,414,"motor amp draw 2% above rated, monitoring",replaced thermocouple,reset trip and inspected seals,TC-015,reset trip and inspected seals,OP-07
+16-07-2026 10:30,COMPRESSOR-02,centrifugal_compressor,E-5502,high,2,CP02 dischrg temp drifting up past 90C since last wk,intercooler fouling and degradation,,TC-011,,OP-05
+22-07-2026 14:23,PUMP-03,centrifugal_pump,E-8804,medium,134,"brng temp high, tripped @0412, called AE",,flushed cooling water lines,TC-001,,OP-01
+12-06-2026 15:46,COMPRESSOR-02,centrifugal_compressor,E-9921,low,99,"heard unusual vib near bearing, noted on shift log",overhauled valve actuator,replaced oil filter and topped up,TC-014,,OP-03
+10-07-2026 07:17,TURBINE-08,steam_turbine,E-1155,low,324,"vibration spikes during startup, settles after 10min",reset trip and inspected seals,replaced thermocouple,TC-004,replaced oil filter and topped up; replaced thermocouple,OP-04
+01-05-2026 19:32,TURBINE-07,steam_turbine,E-3340,medium,168,"oil press dropped briefly, came back on its own",replaced thermocouple,realigned pump impeller,TC-002,,OP-06
+26-05-2026 06:45,PUMP-08,centrifugal_pump,E-2218,high,41,"heard unusual vib near bearing, noted on shift log",replaced gasket set,realigned pump impeller,TC-010,realigned pump impeller; tightened coupling bolts,OP-03
+14-08-2026 00:45,TURBINE-06,steam_turbine,E-8804,medium,18,"motor amp draw 2% above rated, monitoring",replaced thermocouple,replaced gasket set,TC-007,replaced bearing assembly,OP-06
+06-06-2026 03:53,COMPRESSOR-05,centrifugal_compressor,E-7733,high,302,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced gasket set,realigned pump impeller,TC-009,,OP-06
+18-07-2026 11:48,TURBINE-06,steam_turbine,E-5502,critical,146,"motor amp draw 2% above rated, monitoring",,,TC-002,replaced bearing assembly; replaced oil filter and topped up,OP-01
+18-06-2026 03:29,TURBINE-03,steam_turbine,E-1155,low,282,"alignment check done last wk, looks ok for now",replaced oil filter and topped up,replaced gasket set,TC-015,replaced gasket set,OP-06
+17-07-2026 19:24,TURBINE-05,steam_turbine,E-4471,low,62,"vibraion trending up past 5 mm/s, need inspction",tightened coupling bolts,overhauled valve actuator,TC-004,,OP-04
+21-07-2026 21:42,COMPRESSOR-01,centrifugal_compressor,E-9921,medium,46,"vibraion trending up past 5 mm/s, need inspction",reset trip and inspected seals,replaced bearing assembly,TC-012,,OP-07
+24-06-2026 11:37,COMPRESSOR-01,centrifugal_compressor,E-6610,low,382,"oil press dropped briefly, came back on its own",cleaned intercooler fins,overhauled valve actuator,TC-010,,OP-05
+17-07-2026 16:16,COMPRESSOR-05,centrifugal_compressor,E-4471,low,329,"motor amp draw 2% above rated, monitoring",flushed cooling water lines,cleaned intercooler fins,TC-001,realigned pump impeller; overhauled valve actuator,OP-03
+16-08-2026 15:34,TURBINE-02,steam_turbine,E-8804,critical,285,cooling water temp 2 deg above nominal,replaced gasket set,tightened coupling bolts,TC-009,,OP-07
+06-06-2026 00:39,PUMP-09,centrifugal_pump,E-1155,critical,273,"oil press dropped briefly, came back on its own",overhauled valve actuator,replaced bearing assembly,TC-015,,OP-01
+07-08-2026 15:44,TURBINE-01,steam_turbine,E-2218,medium,252,"alignment check done last wk, looks ok for now",realigned pump impeller,overhauled valve actuator,TC-006,flushed cooling water lines,OP-07
+17-07-2026 18:48,TURBINE-02,steam_turbine,E-1155,low,263,"no abnormal readings this shift, all within limits",overhauled valve actuator,tightened coupling bolts,TC-006,,OP-07
+25-06-2026 07:26,TURBINE-06,steam_turbine,E-1155,low,243,"dischrg press flctuating ±0.3 bar, snr tech aware",reset trip and inspected seals,realigned pump impeller,TC-012,,OP-07
+09-06-2026 10:16,PUMP-05,centrifugal_pump,E-4471,critical,188,"dischrg press flctuating ±0.3 bar, snr tech aware",replaced thermocouple,,TC-009,flushed cooling water lines,OP-01
+21-05-2026 04:19,COMPRESSOR-03,centrifugal_compressor,E-1155,high,193,"heard unusual vib near bearing, noted on shift log",replaced bearing assembly,replaced gasket set,TC-001,,OP-06
+12-07-2026 22:59,PUMP-02,centrifugal_pump,E-1101,critical,420,cooling water temp 2 deg above nominal,replaced gasket set,replaced gasket set,TC-007,replaced thermocouple; tightened coupling bolts,OP-02
+29-07-2026 23:20,COMPRESSOR-06,centrifugal_compressor,E-9921,high,236,"oil press dropped briefly, came back on its own",reset trip and inspected seals,replaced oil filter and topped up,TC-011,replaced gasket set; realigned pump impeller,OP-08
+26-06-2026 09:25,COMPRESSOR-04,centrifugal_compressor,E-9921,critical,249,"alignment check done last wk, looks ok for now",,overhauled valve actuator,TC-012,realigned pump impeller,OP-01
+16-05-2026 22:03,PUMP-04,centrifugal_pump,E-7733,critical,30,"noticed rust on coupling guard, reported to maint",replaced oil filter and topped up,replaced thermocouple,TC-005,reset trip and inspected seals; replaced thermocouple,OP-01

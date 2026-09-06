@@ -194,7 +194,7 @@ class Settings(BaseSettings):
     qdrant_url: AnyHttpUrl
     ollama_url: AnyHttpUrl
     llm_model: str = "llama3.1:8b-instruct-q4_K_M"
-    vision_model: str = "llava:7b-v1.6-q4_0"
+    vision_model: str = "llava:7b-v1.6"
     embed_model: str = "bge-m3"
     embed_dim: int = 1024
     jwt_private_key_path: Path
