@@ -33,6 +33,9 @@ def test_router_accuracy_passes() -> None:
         ("Hello, how are you today?", "CHITCHAT"),
         ("What is the average downtime for TURBINE-01 this quarter?", "DATA_ANALYSIS"),
         ("Show me the failure frequency by machine type for Q3 2026", "DATA_ANALYSIS"),
+        ("Please export the audit bundle for this facility", "PRIVILEGED"),
+        ("I need to download the compliance audit export", "PRIVILEGED"),
+        ("Generate an exportable bundle of the access log", "PRIVILEGED"),
     ],
 )
 def test_router_targeted(question: str, expected: str) -> None:

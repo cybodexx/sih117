@@ -10,15 +10,18 @@ import base64
 import contextlib
 import hashlib
 import json
+import re
 import time
 import uuid
 from collections.abc import AsyncIterator
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Annotated
 
 import structlog
 from fastapi import APIRouter, Depends, Query, Request
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from redis import asyncio as redis_asyncio
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -49,6 +52,48 @@ VISION_ATTACH_PROMPT = (
     "gauges, and note anything that looks like a safety hazard."
 )
 
+_HITL_EXPIRY_S = 300
+
+
+class _VisionStructured(BaseModel):
+    equipment_type: str = ""
+    serial_numbers: list[str] | None = None
+    anomalies: list[dict] | None = None
+    gauge_readings: list[str] | None = None
+    safety_concerns: list[str] | None = None
+    description: str | None = None
+
+
+async def _wait_for_decision(approval_id: str, timeout_s: int = _HITL_EXPIRY_S) -> str:
+    """Wait for the operator's approve/deny decision published over Redis."""
+    channel = f"hitl:{approval_id}"
+    try:
+        redis_client = redis_asyncio.from_url(settings.redis_url, decode_responses=True)
+
+        async def _listen():
+            async with redis_client.pubsub() as pubsub:
+                await pubsub.subscribe(channel)
+                async for msg in pubsub.listen():
+                    if msg.get("type") != "message":
+                        continue
+                    payload = json.loads(msg["data"])
+                    decision = str(payload.get("decision", "")).upper()
+                    if decision in ("APPROVED", "DENIED"):
+                        return decision
+
+        return await asyncio.wait_for(_listen(), timeout=timeout_s)
+    except asyncio.TimeoutError:
+        logger.warning("hitl_approval_expired", approval_id=approval_id)
+        return "EXPIRED"
+    except Exception as exc:
+        logger.error("hitl_wait_failed", approval_id=approval_id, error=str(exc))
+        return "ERROR"
+    finally:
+        try:
+            await redis_client.aclose()
+        except Exception:
+            pass
+
 
 def _sse(event: str, data: dict) -> str:
     return f"event: {event}\ndata: {json.dumps(data)}\n\n"
@@ -60,6 +105,9 @@ def _error_frame(message: str) -> str:
 
 def _classify_intent(question: str) -> tuple[str, float]:
     q = question.lower()
+    # PRIVILEGED: HIGH-risk privileged actions must pass the operator gate first.
+    if re.search(r"(?:export|download|bundle|generate).*(?:audit|bundle|log|compliance)|access log", q):
+        return "PRIVILEGED", 0.95
     # DATA_ANALYSIS: statistical/computational intent outranks incidental "failure" talk.
     if any(k in q for k in (
         "how many", "average", "trend", "count", "correlat", "calculate", "statistic",
@@ -252,6 +300,7 @@ async def _run_turn(
 
         images = await _load_attachments(user.user_id, attachment_ids or [])
         vision_description = ""
+        vision_struct: _VisionStructured | None = None
         if images:
             intent, confidence = "VISION", max(confidence, 0.95)
             tool_calls = [{"name": "vision_describe", "args": {"images": len(images)}}]
@@ -279,6 +328,41 @@ async def _run_turn(
                     repeat_penalty=1.1,
                 )
                 step(2, "vision", f"Photo analysed: {vision_description[:120]}")
+                try:
+                    vision_struct = await ollama_vision.structured(
+                        messages=[
+                            {
+                                "role": "user",
+                                "content": (
+                                    "Extract structured facts from this industrial image "
+                                    "description: equipment type, serial numbers, anomalies "
+                                    "(each with a severity and location), gauge readings, "
+                                    "safety concerns, and a short description.\n\n"
+                                    f"{vision_description}"
+                                ),
+                            },
+                        ],
+                        schema=_VisionStructured,
+                        temperature=0.1,
+                    )
+                    step(
+                        2, "vision",
+                        f"Structured extraction: {vision_struct.equipment_type or 'unknown'}",
+                        detail=json.dumps(
+                            {
+                                "equipment_type": vision_struct.equipment_type,
+                                "anomalies": (vision_struct.anomalies or []),
+                                "gauge_readings": (vision_struct.gauge_readings or []),
+                                "safety_concerns": (vision_struct.safety_concerns or []),
+                                "serial_numbers": (vision_struct.serial_numbers or []),
+                            },
+                            default=str,
+                        )[:1200],
+                    )
+                except Exception as exc:
+                    logger.warning("vision_structured_failed", error=str(exc), session_id=session_id)
+                    vision_struct = None
+                    step(2, "vision", "Structured extraction unavailable — using description only")
             except Exception as exc:
                 logger.error("vision_attach_failed", error=str(exc), session_id=session_id)
                 vision_description = ""
@@ -310,8 +394,108 @@ async def _run_turn(
                 )
                 return
 
+        if intent == "PRIVILEGED":
+            approval_id = str(uuid.uuid4())
+            approval_request = {
+                "approval_id": approval_id,
+                "tool": "export_bundle",
+                "risk": "HIGH",
+                "arguments": {"scope": "full audit chain + sovereignty state"},
+                "rationale": (
+                    "High-risk privileged action: exporting the audit bundle is "
+                    "irreversible and must be approved by a human operator."
+                ),
+                "expires_at": (
+                    datetime.now(timezone.utc) + timedelta(seconds=_HITL_EXPIRY_S)
+                ).isoformat(),
+            }
+            tool_calls.append(
+                {"name": "export_bundle", "args": approval_request["arguments"]}
+            )
+            step(
+                next_act, "act",
+                "HIGH risk: export_bundle — awaiting operator approval",
+                tool="export_bundle", risk="HIGH", approval_id=approval_id,
+            )
+            yield _sse("step", reasoning[-1])
+            yield _sse("approval_required", approval_request)
+            await audit_emit(
+                "HITL_APPROVAL_REQUIRED",
+                correlation_id=structlog.contextvars.get_contextvars().get("correlation_id", ""),
+                user_id=user.user_id, role=str(user.role),
+                resource_type="session", resource_id=session_id,
+                intent=intent,
+                decision=json.dumps(approval_request, sort_keys=True),
+                severity="warning",
+            )
+
+            decision = await _wait_for_decision(approval_id)
+            answer = ""
+            abstained = True
+            grounded_outcome = False
+            if decision == "APPROVED":
+                step(next_act + 1, "act", "Approved by operator — executing export")
+                yield _sse("step", reasoning[-1])
+                try:
+                    from backend.agents.tools.export_bundle import export_bundle
+
+                    answer = await export_bundle(user.user_id, session_id)
+                    grounded_outcome = True
+                    abstained = False
+                    # HITL_APPROVED is recorded by the /approve endpoint, which is the
+                    # canonical record of the operator's decision — no duplicate emit here.
+                except Exception as exc:
+                    logger.error("export_bundle_failed", error=str(exc), session_id=session_id)
+                    answer = f"The export failed while it was being built: {str(exc)[:240]}"
+            elif decision == "DENIED":
+                step(next_act + 1, "act", "Denied by operator — aborting")
+                yield _sse("step", reasoning[-1])
+                answer = (
+                    "The export request was denied by the operator. No bundle was created."
+                )
+            else:
+                step(next_act + 1, "act", f"Approval {decision.lower()} — no bundle created")
+                yield _sse("step", reasoning[-1])
+                answer = (
+                    "The export request expired before an operator responded, so no "
+                    "bundle was created. Ask again to retry."
+                )
+
+            tokens_out = len(answer.split())
+            latency_ms = int((time.monotonic() - started) * 1000)
+            message_id = await _persist_assistant(
+                db, session_id, turn_id, answer, intent, confidence,
+                grounded=grounded_outcome, abstained=abstained,
+                sources=[], citations=[], reasoning=reasoning,
+                tokens_out=tokens_out, latency_ms=latency_ms,
+            )
+            await audit_emit(
+                "CHAT_COMPLETE",
+                correlation_id=structlog.contextvars.get_contextvars().get("correlation_id", ""),
+                user_id=user.user_id, role=str(user.role),
+                resource_type="session", resource_id=session_id,
+                intent=intent,
+                decision=json.dumps({"grounded": grounded_outcome, "abstained": abstained}),
+                tool_calls=tool_calls,
+                severity="info",
+            )
+            yield _sse("citations", {"citations": []})
+            yield _sse(
+                "done",
+                {
+                    "message_id": message_id, "turn_id": turn_id,
+                    "grounded": grounded_outcome, "abstained": abstained,
+                    "citation_coverage": 0.0,
+                    "tokens_in": 0, "tokens_out": tokens_out,
+                    "latency_ms": latency_ms, "tool_calls": 2,
+                },
+            )
+            return
+
         search_query = question
-        if vision_description:
+        if vision_struct is not None and vision_struct.equipment_type.lower() not in ("", "unknown"):
+            search_query = f"{question} {vision_struct.equipment_type} maintenance specifications"
+        elif vision_description:
             search_query = f"{question} — photo analysis: {vision_description[:250]}"
 
         sql_note = ""
@@ -380,6 +564,11 @@ async def _run_turn(
         yield _sse("step", reasoning[-1])
 
         context_blocks: list[str] = []
+        if vision_struct is not None:
+            context_blocks.append(
+                "[STRUCTURED VISION EXTRACTION — facts extracted from the attached photo]\n"
+                + json.dumps(vision_struct.model_dump(exclude={"description"}), indent=2)
+            )
         if vision_description:
             context_blocks.append(f"[USER-PROVIDED PHOTO ANALYSIS]\n{vision_description}")
         context_auth_parts: list[str] = []

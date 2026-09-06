@@ -79,12 +79,34 @@ export default function ChatPage() {
             risk={pendingApproval.risk}
             arguments_={pendingApproval.arguments}
             rationale={pendingApproval.rationale}
-            onApprove={() => {
+            onApprove={async () => {
               const { setPendingApproval } = useChatStore.getState();
+              const sid = activeSessionId || sessionId;
+              if (sid) {
+                try {
+                  await apiPost(`/api/v1/chat/sessions/${sid}/approve`, {
+                    approval_id: pendingApproval.approval_id,
+                    decision: "APPROVED",
+                  });
+                } catch (err) {
+                  console.error("approve failed", err);
+                }
+              }
               setPendingApproval(null);
             }}
-            onDeny={() => {
+            onDeny={async () => {
               const { setPendingApproval } = useChatStore.getState();
+              const sid = activeSessionId || sessionId;
+              if (sid) {
+                try {
+                  await apiPost(`/api/v1/chat/sessions/${sid}/approve`, {
+                    approval_id: pendingApproval.approval_id,
+                    decision: "DENIED",
+                  });
+                } catch (err) {
+                  console.error("deny failed", err);
+                }
+              }
               setPendingApproval(null);
             }}
           />

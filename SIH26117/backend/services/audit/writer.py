@@ -47,7 +47,7 @@ async def emit(
         async with async_session() as db:
             head_row = (
                 await db.execute(
-                    select(AuditChainHead).where(AuditChainHead.id == 1)
+                    select(AuditChainHead).where(AuditChainHead.id == 1).with_for_update()
                 )
             ).scalar_one_or_none()
 

@@ -52,7 +52,30 @@ Live SQL over materialised tables, real numbers:
 - spare parts cost > 100 = 5 (ds_spare_parts, 12 rows)
 - avg downtime TURBINE-01 this quarter = 235.909 … minutes (confirmed in chat answer)
 
+## HITL approval gate (live, SSE + Redis pubsub)
+Privileged intents (bundle/export/audit-log) require real operator approval:
+- `approval_required` SSE → `POST /chat/sessions/{id}/approve` (`APPROVED`/`DENIED`)
+- APPROVED → `export_bundle` writes tamper-evident audit bundle to
+  `/data/vault/exports/audit_bundle_<ts>_<digest8>.json`; chain `valid=True`,
+  sovereign + provenance chain embedded
+- DENIED → clean abstain (`grounded=true`, `abstained=true`)
+- chain stayed valid end-to-end (104 entries after repairs); append-only
+  ruled on `audit_log`. One-time reconciliation removed two duplicate emits
+  caused by the initial dual-emission bug (fix: endpoint is the canonical
+  record, head-row `SELECT … FOR UPDATE` serialises writers, stream no longer
+  emits).
+
+## Structured vision extraction (live, image → JSON struct)
+Real P&ID upload → `POST /chat/sessions` + message with `attachment_ids`:
+- vision description step + `[STRUCTURED VISION EXTRACTION]` JSON detail frame
+  (equipment_type, anomalies, gauge_readings, safety_concerns, serial_numbers)
+- structured fields feed the grounded answer (2 tool calls, citations,
+  `grounded=true`, `citation_coverage=0.4`)
+- resilient parse: raw → fenced → balanced `{…}` block, then forced-raw-JSON
+  retry prompt (local models emit prose)
+
 ## Tests
-`backend/tests/` full suite: 37 passed (incl. test_csv_sql.py: materializer +
+`backend/tests/` full suite: 43 passed (incl. test_csv_sql.py: materializer +
 day-first timestamp normalisation + SQL guards; test_router.py: 60-case router
-accuracy ≥ 0.95 + targeted routing).
+accuracy ≥ 0.95 + targeted routing + PRIVILEGED routing; test_hitl.py: HITL
+approve/deny/expiry, `export_bundle` + chain `valid=True`).

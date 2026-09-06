@@ -1,15 +1,18 @@
 """Chat routes — sessions, messages, approval, stop."""
 from __future__ import annotations
 
+import json
 import uuid
 from datetime import datetime, timezone
 from typing import Annotated
 
 import structlog
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
+from redis import asyncio as redis_asyncio
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from backend.core.config import get_settings
 from backend.core.deps import get_current_user
 from backend.core.exceptions import NotFound
 from backend.core.rbac import ServerUserContext
@@ -25,9 +28,11 @@ from backend.schemas.chat import (
     MessageRead,
     PageRead,
 )
+from backend.services.audit.writer import emit as audit_emit
 
 logger = structlog.get_logger()
 router = APIRouter(prefix="/chat", tags=["chat"])
+settings = get_settings()
 
 
 def _session_to_read(s: ChatSessionModel) -> ChatSessionRead:
@@ -192,17 +197,58 @@ async def approve_turn(
     user: Annotated[ServerUserContext, Depends(get_current_user)],
     db: Annotated[AsyncSession, Depends(get_db)],
 ):
-    """Resume or deny a graph paused at the HITL gate."""
+    """Resume or deny a turn paused at the HITL gate.
+
+    Publishes the operator's decision to the waiting stream over Redis and
+    records it in the audit chain.
+    """
     _ = await _get_owned_session(db, session_id, user)
+
+    decision = body.decision.upper()
+    if decision not in ("APPROVED", "DENIED"):
+        raise HTTPException(status_code=422, detail="decision must be APPROVED or DENIED")
+    if not body.approval_id:
+        raise HTTPException(status_code=422, detail="approval_id is required")
+
+    now = datetime.now(timezone.utc)
+    payload = {
+        "decision": decision,
+        "by": user.user_id,
+        "session_id": session_id,
+        "ts": now.isoformat(),
+        "note": body.note,
+    }
+    try:
+        redis_client = redis_asyncio.from_url(settings.redis_url, decode_responses=True)
+        await redis_client.publish(f"hitl:{body.approval_id}", json.dumps(payload))
+        await redis_client.aclose()
+    except Exception as exc:
+        logger.error("hitl_publish_failed", approval_id=body.approval_id, error=str(exc))
+        raise HTTPException(status_code=503, detail="gateway temporarily unavailable")
+
+    await audit_emit(
+        f"HITL_{decision}",
+        correlation_id=structlog.contextvars.get_contextvars().get("correlation_id", ""),
+        user_id=user.user_id,
+        role=str(user.role),
+        resource_type="session",
+        resource_id=session_id,
+        intent="PRIVILEGED",
+        decision=json.dumps(
+            {"approval_id": body.approval_id, "decision": decision, "by": user.user_id},
+            sort_keys=True,
+        ),
+        severity="info" if decision == "APPROVED" else "warning",
+    )
 
     logger.info(
         "approval_decision",
         session_id=session_id,
         approval_id=body.approval_id,
-        decision=body.decision,
+        decision=decision,
         user_id=user.user_id,
     )
-    return {"status": "accepted"}
+    return {"status": "accepted", "decision": decision, "published": True}
 
 
 @router.post("/sessions/{session_id}/stop", status_code=204)

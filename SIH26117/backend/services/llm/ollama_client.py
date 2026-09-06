@@ -104,18 +104,57 @@ class OllamaClient:
         raw = await self.chat(
             messages, model=model, temperature=temperature, max_tokens=2048
         )
+        parsed = self._parse_jsonish(raw)
+        if parsed is not None:
+            return schema.model_validate(parsed)
+
+        # Retry with an explicit "raw JSON only" prompt — many local models need it.
+        retry_messages = list(messages) + [
+            {
+                "role": "user",
+                "content": (
+                    "Respond with ONLY a single raw JSON object. No prose, no "
+                    "markdown fences, no commentary. The entire response must be "
+                    "valid JSON matching the requested schema."
+                ),
+            }
+        ]
+        raw2 = await self.chat(
+            retry_messages, model=model, temperature=0.0, max_tokens=2048
+        )
+        parsed2 = self._parse_jsonish(raw2)
+        if parsed2 is not None:
+            return schema.model_validate(parsed2)
+        raise ModelUnavailable(
+            f"Failed to parse structured output after retry: {raw[:200]}"
+        )
+
+    def _parse_jsonish(self, raw: str):
+        """Best-effort JSON extraction: raw object, then first balanced {...} block."""
+        if not raw:
+            return None
+        cleaned = raw.strip()
+        if cleaned.startswith("```"):
+            cleaned = "\n".join(cleaned.split("\n")[1:-1]).strip()
         try:
-            return schema.model_validate_json(raw)
+            return json.loads(cleaned)
         except Exception:
-            try:
-                cleaned = raw.strip()
-                if cleaned.startswith("```"):
-                    cleaned = "\n".join(cleaned.split("\n")[1:-1])
-                return schema.model_validate(json.loads(cleaned))
-            except Exception as exc:
-                raise ModelUnavailable(
-                    f"Failed to parse structured output: {exc}"
-                ) from exc
+            pass
+        start = cleaned.find("{")
+        if start == -1:
+            return None
+        depth = 0
+        for i in range(start, len(cleaned)):
+            if cleaned[i] == "{":
+                depth += 1
+            elif cleaned[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    try:
+                        return json.loads(cleaned[start : i + 1])
+                    except Exception:
+                        return None
+        return None
 
     async def embed(
         self,
