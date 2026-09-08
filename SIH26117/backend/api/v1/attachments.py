@@ -1,11 +1,12 @@
 """Image attachment routes — store for the chat vision (multimodal P3) gate."""
 from __future__ import annotations
 
+import asyncio
+import io
 import uuid
 from typing import Annotated
 
 import aiofiles
-import aiofiles.os
 import structlog
 from fastapi import APIRouter, Depends, File, UploadFile
 
@@ -51,20 +52,33 @@ async def upload_attachment(
     attachment_id = uuid.uuid4()
     dest = owner_dir / f"{attachment_id}.{ext}"
 
-    async with aiofiles.open(dest, "wb") as out:
-        while True:
-            chunk = await file.read(256 * 1024)
-            if not chunk:
-                break
-            size += len(chunk)
-            if size > max_bytes:
-                await aiofiles.os.remove(str(dest))
-                raise BadRequest(f"Attachment exceeds {settings.max_upload_mb} MB limit")
-            await out.write(chunk)
+    buffer = io.BytesIO()
+    while True:
+        chunk = await file.read(256 * 1024)
+        if not chunk:
+            break
+        size += len(chunk)
+        if size > max_bytes:
+            raise BadRequest(f"Attachment exceeds {settings.max_upload_mb} MB limit")
+        buffer.write(chunk)
 
     if size == 0:
-        await aiofiles.os.remove(str(dest))
         raise BadRequest("Empty attachment")
+
+    payload = buffer.getvalue()
+    del buffer
+
+    from backend.services.crypto.vault_crypto import (
+        generate_dek,
+        vault_encryption_enabled,
+        write_attachment_bytes,
+    )
+
+    if vault_encryption_enabled():
+        dek, _ = generate_dek()
+        await asyncio.to_thread(write_attachment_bytes, dest, payload, dek)
+    else:
+        await asyncio.to_thread(dest.write_bytes, payload)
 
     await audit_emit(
         "ATTACHMENT_UPLOADED",

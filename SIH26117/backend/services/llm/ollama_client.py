@@ -35,14 +35,18 @@ class OllamaClient:
         temperature: float = 0.2,
         max_tokens: int = 1024,
         timeout_s: float | None = None,
+        json_format: bool = False,
     ) -> str:
         model = model or self._settings.llm_model
         payload = {
             "model": model,
             "messages": messages,
             "stream": False,
+            "keep_alive": self._settings.ollama_keep_alive,
             "options": {"temperature": temperature, "num_predict": max_tokens},
         }
+        if json_format:
+            payload["format"] = "json"
         for attempt in range(3):
             try:
                 resp = await asyncio.wait_for(
@@ -73,6 +77,7 @@ class OllamaClient:
             "model": model,
             "messages": messages,
             "stream": True,
+            "keep_alive": self._settings.ollama_keep_alive,
             "options": {"temperature": temperature, "num_predict": max_tokens},
         }
         try:
@@ -102,7 +107,7 @@ class OllamaClient:
         temperature: float = 0.1,
     ) -> BaseModel:
         raw = await self.chat(
-            messages, model=model, temperature=temperature, max_tokens=2048
+            messages, model=model, temperature=temperature, max_tokens=2048,
         )
         parsed = self._parse_jsonish(raw)
         if parsed is not None:
@@ -120,7 +125,7 @@ class OllamaClient:
             }
         ]
         raw2 = await self.chat(
-            retry_messages, model=model, temperature=0.0, max_tokens=2048
+            retry_messages, model=model, temperature=0.0, max_tokens=2048,
         )
         parsed2 = self._parse_jsonish(raw2)
         if parsed2 is not None:
@@ -207,6 +212,7 @@ class OllamaClient:
             "prompt": prompt,
             "images": images_b64,
             "stream": False,
+            "keep_alive": self._settings.ollama_keep_alive,
             "options": options,
         }
         for attempt in range(max_attempts):

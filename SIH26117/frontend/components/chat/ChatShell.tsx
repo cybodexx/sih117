@@ -24,8 +24,10 @@ export function ChatShell({ children }: ChatShellProps) {
 
   const fetchSessions = useCallback(async () => {
     try {
-      const data = await apiGet<ChatSession[]>("/api/v1/chat/sessions");
-      setSessions(data);
+      const data = await apiGet<{ items: ChatSession[] }>(
+        "/api/v1/chat/sessions?size=100"
+      );
+      setSessions(data.items ?? []);
     } catch {
       /* silent */
     }
@@ -33,6 +35,15 @@ export function ChatShell({ children }: ChatShellProps) {
 
   useEffect(() => {
     fetchSessions();
+  }, [fetchSessions, pathname]);
+
+  useEffect(() => {
+    function onSessionsChanged() {
+      fetchSessions();
+    }
+    window.addEventListener("aegis:sessions-changed", onSessionsChanged);
+    return () =>
+      window.removeEventListener("aegis:sessions-changed", onSessionsChanged);
   }, [fetchSessions]);
 
   useEffect(() => {

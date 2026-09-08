@@ -29,6 +29,20 @@ export interface ChatMessage {
     label?: string;
     elapsed_ms?: number;
   }>;
+  files: Array<{
+    deliverable_id: string;
+    filename: string;
+    kind: string;
+    mime: string;
+    size_bytes: number;
+  }>;
+  route?: {
+    intent: string;
+    confidence: number;
+    rationale: string;
+    tier?: string;
+    llm_used?: boolean;
+  };
 }
 
 export interface ApprovalRequest {
@@ -51,6 +65,7 @@ interface ChatState {
   setStreaming: (v: boolean) => void;
   setSessionId: (id: string) => void;
   setPendingApproval: (v: ApprovalRequest | null) => void;
+  setMessages: (msgs: ChatMessage[]) => void;
   clear: () => void;
 }
 
@@ -70,5 +85,6 @@ export const useChatStore = create<ChatState>((set) => ({
   setStreaming: (v) => set({ isStreaming: v }),
   setSessionId: (id) => set({ sessionId: id }),
   setPendingApproval: (v) => set({ pendingApproval: v }),
+  setMessages: (msgs) => set({ messages: msgs }),
   clear: () => set({ messages: [], sessionId: null }),
 }));

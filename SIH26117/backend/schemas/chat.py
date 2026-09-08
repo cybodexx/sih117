@@ -5,11 +5,20 @@ from pydantic import BaseModel
 
 class ChatSessionCreate(BaseModel):
     title: str | None = None
+    document_id: str | None = None
+    document_ids: list[str] | None = None
+
+
+class ChatSessionUpdate(BaseModel):
+    title: str | None = None
+    document_ids: list[str] | None = None
 
 
 class ChatSessionRead(BaseModel):
     id: str
     title: str
+    document_id: str | None = None
+    document_ids: list[str] = []
     created_at: str
     updated_at: str
 
@@ -51,6 +60,22 @@ class SourceRef(BaseModel):
     snippet: str = ""
 
 
+class MessageFile(BaseModel):
+    deliverable_id: str
+    filename: str
+    kind: str
+    mime: str
+    size_bytes: int
+
+
+class RouteInfo(BaseModel):
+    intent: str
+    confidence: float
+    rationale: str
+    tier: str = "deterministic"
+    llm_used: bool = False
+
+
 class MessageRead(BaseModel):
     id: str
     turn_id: str
@@ -63,6 +88,7 @@ class MessageRead(BaseModel):
     citations: list[Citation] = []
     reasoning: list[ReasoningStep] = []
     sources: list[SourceRef] = []
+    files: list[MessageFile] = []
     tokens_in: int | None = None
     tokens_out: int | None = None
     latency_ms: int | None = None

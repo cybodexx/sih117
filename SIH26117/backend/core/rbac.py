@@ -76,3 +76,27 @@ def can_read(user: ServerUserContext, doc: DocumentLabels) -> Decision:
     if doc.legal_hold and user.role is not Role.AUDITOR:
         return Decision.deny("legal_hold")
     return Decision.allow()
+
+
+def can_manage(user: ServerUserContext, doc: DocumentLabels, owner_id: str | None = None) -> Decision:
+    """Mutation policy (write/delete/analyze). AUDITOR is intentionally excluded:
+    auditors get read visibility only and must never mutate or escalate a resource.
+
+    Allowed when:
+      - the actor can read the document (can_read gate), AND
+      - the actor is ADMIN (cross-department write), OR
+      - the actor is the owner, OR
+      - the actor is an ENGINEER/ANALYST in the document's department.
+    Severity/clearance re-labelling is a separate, stricter gate (ADMIN only)."""
+    read = can_read(user, doc)
+    if not read.allowed:
+        return read
+    if user.role is Role.ADMIN:
+        # Admin may manage any departmental resource (read path already checked
+        # legal-hold/clearance). Ownership not required.
+        return Decision.allow()
+    if owner_id is not None and owner_id == user.user_id:
+        return Decision.allow()
+    if user.role in (Role.ENGINEER, Role.ANALYST) and doc.department in user.departments:
+        return Decision.allow()
+    return Decision.deny("not_owner")

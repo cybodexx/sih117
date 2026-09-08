@@ -60,3 +60,10 @@ data_pipeline/seed/**/*.xlsx
 !data_pipeline/seed/**/*.yaml
 !data_pipeline/seed/**/*.md
 !data_pipeline/seed/**/*.jsonl
+
+# Model weights (download via models/README.md)
+models/*.pt
+
+# Frontend build artifacts
+frontend/tsconfig.tsbuildinfo
+

@@ -11,7 +11,7 @@ interface DropzoneProps {
 
 export function Dropzone({
   onFiles,
-  accept = ".pdf,.png,.jpg,.jpeg,.tiff,.txt,.csv,.json",
+  accept = ".pdf,.png,.jpg,.jpeg,.tiff,.bmp,.txt,.md,.log,.csv,.json,.docx,.pptx,.xlsx,.xls",
   multiple = true,
 }: DropzoneProps) {
   const [dragging, setDragging] = useState(false);
@@ -53,30 +53,32 @@ export function Dropzone({
       onDrop={handleDrop}
       onClick={() => inputRef.current?.click()}
       className={cn(
-        "flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-8 transition-colors",
+        "flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 transition-colors",
         dragging
-          ? "border-primary bg-primary/5"
-          : "border-border hover:border-primary/50 hover:bg-muted/50"
+          ? "border-white/60 bg-white/5"
+          : "border-white/15 hover:border-white/40 hover:bg-white/[0.04]"
       )}
     >
-      <svg
-        className="mb-3 h-8 w-8 text-muted-foreground"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M12 16V4m0 0L8 8m4-4l4 4M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"
-        />
-      </svg>
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-black shadow-[0_0_24px_rgba(255,255,255,0.25),inset_0_1px_0_rgba(255,255,255,0.9)]">
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M12 16V4m0 0L8 8m4-4l4 4M4 14v4a2 2 0 002 2h12a2 2 0 002-2v-4"
+          />
+        </svg>
+      </div>
       <p className="text-sm font-medium">
         {dragging ? "Drop files here" : "Click or drag files to upload"}
       </p>
       <p className="mt-1 text-xs text-muted-foreground">
-        PDF, images, text, CSV, JSON — air-gapped
+        PDF, images, text, CSV, Excel, Word, PPT — air-gapped
       </p>
       <input
         ref={inputRef}

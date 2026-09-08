@@ -4,8 +4,10 @@ M4 owns this file. Called from the ARQ worker only.
 """
 from __future__ import annotations
 
+import asyncio
 import hashlib
 import json
+import re
 import uuid
 from datetime import datetime, timezone
 
@@ -20,14 +22,31 @@ from backend.services.ingest.chunker import split
 from backend.services.ingest.csv_sql import materialize_csv
 from backend.services.ingest.embedder import embed_batched
 from backend.services.ingest.indexer import upsert
+from backend.services.ingest.office_parser import parse_docx, parse_pptx, parse_xlsx
 from backend.services.ingest.pdf_parser import Element, parse as parse_pdf
 from backend.services.ingest.structurer import build as build_tree
 
 logger = structlog.get_logger()
 settings = get_settings()
 
-_CSV_MIME = {"text/csv", "application/csv", "text/plain"}
+_CSV_MIME = {"text/csv", "application/csv"}
+_TEXT_MIME = {"text/plain", "text/markdown"}
 _IMAGE_MIME = {"image/png", "image/jpeg", "image/jpg", "image/tiff", "image/bmp"}
+
+_CSV_EXT = (".csv",)
+_TEXT_EXT = (".txt", ".text", ".md", ".markdown", ".log")
+_JSON_EXT = (".json",)
+_IMAGE_EXT = (".png", ".jpg", ".jpeg", ".tiff", ".bmp")
+_DOCX_EXT = (".docx",)
+_PPTX_EXT = (".pptx",)
+_XLSX_EXT = (".xlsx", ".xls")
+_LEGACY_ERROR = {
+    ".doc": "Legacy .doc is not supported — save it as .docx and upload again.",
+    ".ppt": "Legacy .ppt is not supported — save it as .pptx and upload again.",
+    ".odt": "OpenDocument .odt is not supported — export to .docx and upload again.",
+    ".ods": "OpenDocument .ods is not supported — export to .xlsx and upload again.",
+    ".rtf": "RTF is not supported — save it as .docx or .txt and upload again.",
+}
 
 
 def _csv_elements(raw: str) -> list[Element]:
@@ -42,31 +61,72 @@ def _csv_elements(raw: str) -> list[Element]:
     return cards
 
 
+def _text_elements(text: str) -> list[Element]:
+    blocks = [ln for ln in text.splitlines() if ln.strip()]
+    if not blocks:
+        return []
+    cards: list[Element] = []
+    for i in range(0, len(blocks), 200):
+        cards.append(Element(kind="TEXT", page=1, text="\n".join(blocks[i : i + 200])))
+    return cards
+
+
 def _image_elements() -> list[Element]:
     return [Element(kind="FIGURE", page=1, text="[figure: uploaded image]")]
 
 
-async def _load_bytes(storage_key: str) -> bytes:
+async def _load_bytes(storage_key: str, wrapped_dek: str | None = None) -> bytes:
     import aiofiles
 
-    async with aiofiles.open(storage_key, "rb") as f:
-        return await f.read()
+    from backend.services.crypto.vault_crypto import read_plaintext_file
+
+    path = __import__("pathlib").Path(storage_key)
+    async with aiofiles.open(path, "rb") as f:
+        blob = await f.read()
+    if not wrapped_dek:
+        return blob
+    return await asyncio.to_thread(read_plaintext_file, path, wrapped_dek)
 
 
-async def _parse_by_mime(raw: bytes, mime: str, filename: str) -> tuple[list[Element], int]:
+async def _parse_by_mime(
+    raw: bytes, mime: str, filename: str
+) -> tuple[list[Element], int, str | None]:
+    """Return (elements, page_hint, tabular_csv_or_None) for the given file."""
     mime_key = (mime or "").lower()
-    if filename.lower().endswith(".pdf") or "pdf" in mime_key:
+    lower = filename.lower()
+    if lower.endswith((".pdf",)) or "pdf" in mime_key:
         import fitz
 
         elements = await parse_pdf(raw)
         with fitz.open(stream=raw, filetype="pdf") as doc:
-            return elements, len(doc)
-    if mime_key in _CSV_MIME or filename.lower().endswith((".csv", ".txt", ".log", ".json")):
-        text = raw.decode("utf-8", errors="replace")
-        return _csv_elements(text), 1
-    if mime_key in _IMAGE_MIME or filename.lower().endswith((".png", ".jpg", ".jpeg", ".tiff", ".bmp")):
-        return _image_elements(), 1
-    raise ValueError(f"Unsupported MIME for ingestion: {mime}")
+            return elements, len(doc), None
+    if mime_key in _IMAGE_MIME or lower.endswith(_IMAGE_EXT):
+        return _image_elements(), 1, None
+    if mime_key in _CSV_MIME or lower.endswith(_CSV_EXT):
+        text = raw.decode("utf-8-sig", errors="replace")
+        return _csv_elements(text), 1, text
+    if lower.endswith(_XLSX_EXT):
+        elements, csv_text = parse_xlsx(raw)
+        return elements, 1, csv_text
+    if lower.endswith(_DOCX_EXT):
+        return parse_docx(raw), 1, None
+    if lower.endswith(_PPTX_EXT):
+        return parse_pptx(raw), 1, None
+    if lower.endswith(_JSON_EXT):
+        try:
+            data = json.loads(raw.decode("utf-8-sig", errors="replace"))
+            text = json.dumps(data, indent=2)
+        except Exception:
+            text = raw.decode("utf-8-sig", errors="replace")
+        return _text_elements(text), 1, None
+    if mime_key in _TEXT_MIME or lower.endswith(_TEXT_EXT):
+        return _text_elements(raw.decode("utf-8", errors="replace")), 1, None
+    if lower.endswith(tuple(_LEGACY_ERROR)):
+        raise ValueError(_LEGACY_ERROR[lower])
+    raise ValueError(
+        f"Unsupported file type: {filename!r} ({mime or 'unknown mime'} — "
+        f"supported formats: PDF, CSV, XLSX, DOCX, PPTX, TXT/MD/LOG, JSON, PNG/JPG/TIFF)"
+    )
 
 
 async def ingest_document(document_id: str, correlation_id: str = "") -> dict[str, object]:
@@ -88,8 +148,8 @@ async def ingest_document(document_id: str, correlation_id: str = "") -> dict[st
     await _set_status(document_id, "PROCESSING", None)
 
     try:
-        raw = await _load_bytes(storage_key)
-        elements, page_hint = await _parse_by_mime(raw, mime, filename)
+        raw = await _load_bytes(storage_key, doc.wrapped_dek)
+        elements, page_hint, tabular_csv = await _parse_by_mime(raw, mime, filename)
         if not elements:
             raise ValueError("No extractable elements found in file")
 
@@ -112,26 +172,41 @@ async def ingest_document(document_id: str, correlation_id: str = "") -> dict[st
         elapsed_s = round(__import__("time").monotonic() - start, 1)
 
         data_table: str | None = None
-        if doc.mime in _CSV_MIME or filename.lower().endswith((".csv", ".log", ".json")):
-            table_info = await materialize_csv(filename, raw, document_id)
-            data_table = str(table_info["table"])
-            await audit_emit(
-                "CSV_TABLE_LOADED",
-                correlation_id=correlation_id,
-                resource_type="document",
-                resource_id=document_id,
-                document_ids=[document_id],
-                decision=json.dumps(
-                    {
-                        "table": table_info["table"],
-                        "rows": table_info["rows"],
-                        "columns": table_info["columns"],
-                    }
-                ),
-                severity="info",
-            )
+        if tabular_csv:
+            table_stem = re.sub(r"\.[^.]+$", "", filename.lower())
+            try:
+                table_info = await materialize_csv(
+                    f"{table_stem}.csv",
+                    tabular_csv.encode("utf-8"),
+                    document_id,
+                )
+                data_table = str(table_info["table"])
+                await audit_emit(
+                    "CSV_TABLE_LOADED",
+                    correlation_id=correlation_id,
+                    resource_type="document",
+                    resource_id=document_id,
+                    document_ids=[document_id],
+                    decision=json.dumps(
+                        {
+                            "table": table_info["table"],
+                            "rows": table_info["rows"],
+                            "columns": table_info["columns"],
+                        }
+                    ),
+                    severity="info",
+                )
+            except Exception as exc:
+                # The table is an analytics add-on; a failed or empty sheet must
+                # not take down an otherwise validly indexed document.
+                logger.warning(
+                    "data_table_skipped",
+                    document_id=document_id,
+                    error=str(exc),
+                )
 
         await _finalize(document_id, page_hint, indexed, elapsed_s)
+        await _layout_analysis(raw, mime, filename, document_id)
         await audit_emit(
             "DOCUMENT_INGESTED",
             correlation_id=correlation_id,
@@ -161,6 +236,31 @@ async def ingest_document(document_id: str, correlation_id: str = "") -> dict[st
             severity="error",
         )
         raise
+
+
+async def _layout_analysis(
+    raw: bytes, mime: str, filename: str, document_id: str
+) -> None:
+    """Best-effort DocLayout-YOLO pass over PDFs and images (additive, never fatal)."""
+    lower = filename.lower()
+    is_pdf = lower.endswith(".pdf") or "pdf" in (mime or "").lower()
+    is_image = (mime or "").lower() in _IMAGE_MIME or lower.endswith(_IMAGE_EXT)
+    if not (is_pdf or is_image):
+        return
+    try:
+        from backend.services.ingest import doclayout
+        from backend.services.ingest.layout_store import save_layout
+
+        if doclayout.layout_available():
+            per_page = await doclayout.analyze_bytes(raw, mime, filename)
+            if per_page:
+                await save_layout(uuid.UUID(document_id), per_page)
+    except Exception as exc:
+        logger.warning(
+            "layout_skipped",
+            document_id=document_id,
+            error=str(exc)[:300],
+        )
 
 
 async def _load_document(document_id: str) -> DocumentModel | None:

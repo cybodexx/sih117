@@ -2,12 +2,14 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { BrandEmblem } from "@/components/BrandEmblem";
+import { getStoredToken } from "@/lib/api-client";
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = sessionStorage.getItem("access_token");
+    const token = getStoredToken();
     if (token) {
       router.replace("/chat/new");
     } else {
@@ -17,11 +19,14 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center space-y-2">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground text-lg font-bold">
-          AE
+      <div className="text-center space-y-3">
+        <div className="mx-auto flex w-fit justify-center">
+          <BrandEmblem size="lg" />
         </div>
-        <p className="text-sm text-muted-foreground">Loading...</p>
+        <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <span className="h-3 w-3 animate-spin rounded-full border-2 border-muted-foreground/30 border-t-muted-foreground" />
+          Loading AEGIS-WB…
+        </p>
       </div>
     </main>
   );

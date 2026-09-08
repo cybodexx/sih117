@@ -1,6 +1,7 @@
 """Audit and sovereignty routes."""
 from __future__ import annotations
 
+import json
 import time
 from typing import Annotated
 
@@ -140,3 +141,31 @@ async def sovereignty_status():
         models=data.get("models") or [],
         breach=data.get("breach") or sovereignty_status_cache["breach"],  # type: ignore[arg-type]
     )
+
+
+@router.get("/teereport")
+async def tee_report(
+    user: Annotated[
+        ServerUserContext, Depends(require_role(Role.ENGINEER, Role.ANALYST, Role.ADMIN, Role.AUDITOR))
+    ],
+    db: Annotated[AsyncSession, Depends(get_db)],
+):
+    """Return a software TEE-hardening attestation report (vault encryption + keywrap)."""
+    from backend.services.audit.writer import emit as audit_emit
+    from backend.services.crypto import vault_crypto
+
+    report = vault_crypto.attestation_fingerprint()
+
+    await audit_emit(
+        "TEE_REPORT_ISSUED",
+        correlation_id=structlog.contextvars.get_contextvars().get(
+            "correlation_id", ""
+        ),
+        user_id=user.user_id,
+        role=str(user.role),
+        resource_type="system",
+        resource_id="tee",
+        decision=json.dumps(report, sort_keys=True),
+        severity="info",
+    )
+    return report

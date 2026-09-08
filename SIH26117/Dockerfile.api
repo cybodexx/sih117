@@ -1,10 +1,12 @@
 FROM python:3.11-slim AS base
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libmagic1 && \
+    apt-get install -y --no-install-recommends libmagic1 libgl1 libglib2.0-0 libxcb1 libx11-6 libxext6 libsm6 libxrender1 libfontconfig1 && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+RUN pip install --no-cache-dir torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cpu
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -15,6 +17,8 @@ RUN pip install --no-cache-dir -r requirements-dev.txt
 FROM base AS runtime
 
 COPY backend/ backend/
+COPY data_pipeline/eval/router_cases.jsonl data_pipeline/eval/router_cases.jsonl
+COPY models/ models/
 COPY pyproject.toml .
 COPY alembic.ini .
 

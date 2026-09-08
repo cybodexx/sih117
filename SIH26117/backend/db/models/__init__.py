@@ -5,6 +5,7 @@ from backend.db.models.chat import ChatSessionModel
 from backend.db.models.message import ChatMessageModel
 from backend.db.models.audit import AuditLogModel, AuditChainHead
 from backend.db.models.approval import ApprovalModel
+from backend.db.models.deliverable import DeliverableModel
 
 __all__ = [
     "UserModel",
@@ -15,4 +16,5 @@ __all__ = [
     "AuditLogModel",
     "AuditChainHead",
     "ApprovalModel",
+    "DeliverableModel",
 ]

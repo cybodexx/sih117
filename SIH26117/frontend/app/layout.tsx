@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AEGIS-WB",
+  title: "AEGIS-WB — Operational AI Infrastructure",
   description:
     "Air-gapped Enterprise Grounded Inference System — Industrial AI Workbench",
+  themeColor: "#000000",
 };
-
-const themeInit = `try{var m=localStorage.getItem('aegis-theme');var d=m?m==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}`;
 
 export default function RootLayout({
   children,
@@ -15,10 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body className="font-sans antialiased">
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-        {children}
+        <div
+          aria-hidden
+          className="grain pointer-events-none fixed inset-0 z-[100] opacity-[0.035]"
+        />
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
       </body>
     </html>
   );

@@ -1,30 +1,43 @@
 "use client";
 
 import { create } from "zustand";
+import {
+  TOKEN_KEY,
+  USER_KEY,
+  getStoredUser,
+  getStoredToken,
+  clearStoredAuth,
+  storeStoredAuth,
+} from "@/lib/api-client";
+
+interface SessionUser {
+  id: string;
+  username: string;
+  role: string;
+  clearance_level: number;
+  departments: string[];
+}
 
 interface SessionState {
   token: string | null;
-  user: {
-    id: string;
-    username: string;
-    role: string;
-    clearance_level: number;
-    departments: string[];
-  } | null;
-  setAuth: (token: string, user: SessionState["user"]) => void;
+  user: SessionUser | null;
+  setAuth: (token: string, user: SessionUser) => void;
   logout: () => void;
   getToken: () => string | null;
 }
 
 export const useSessionStore = create<SessionState>((set, get) => ({
-  token: typeof window !== "undefined" ? sessionStorage.getItem("access_token") : null,
-  user: null,
+  token:
+    typeof window !== "undefined"
+      ? getStoredToken()
+      : null,
+  user: typeof window !== "undefined" ? getStoredUser<SessionUser>() : null,
   setAuth: (token, user) => {
-    sessionStorage.setItem("access_token", token);
+    storeStoredAuth(token, user);
     set({ token, user });
   },
   logout: () => {
-    sessionStorage.removeItem("access_token");
+    clearStoredAuth();
     set({ token: null, user: null });
   },
   getToken: () => get().token,

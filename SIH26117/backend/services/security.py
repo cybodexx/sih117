@@ -135,3 +135,44 @@ def create_refresh_token() -> str:
 
 def hash_token(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
+
+
+# --- Refresh-token store (Redis). A refresh token is cryptographically bound
+# to a specific user via a hashed lookup key; unknown/invalidated tokens are
+# rejected so one user can never impersonate another.
+
+_refresh_key = "aegis:refresh:{sha}"  # value = user_id
+
+
+async def store_refresh_token(token: str, user_id: str, ttl_seconds: int) -> None:
+    from redis import asyncio as redis_asyncio
+
+    client = redis_asyncio.from_url(get_settings().redis_url, decode_responses=True)
+    try:
+        await client.set(
+            _refresh_key.format(sha=hash_token(token)), user_id, ex=ttl_seconds
+        )
+    finally:
+        await client.aclose()
+
+
+async def resolve_refresh_token(token: str) -> str | None:
+    """Return the bound user_id for a valid, unexpired refresh token."""
+    from redis import asyncio as redis_asyncio
+
+    client = redis_asyncio.from_url(get_settings().redis_url, decode_responses=True)
+    try:
+        return await client.get(_refresh_key.format(sha=hash_token(token)))
+    finally:
+        await client.aclose()
+
+
+async def rotate_refresh_token(token: str, ttl_seconds: int) -> None:
+    """Invalidate a used refresh token (prevent replay)."""
+    from redis import asyncio as redis_asyncio
+
+    client = redis_asyncio.from_url(get_settings().redis_url, decode_responses=True)
+    try:
+        await client.delete(_refresh_key.format(sha=hash_token(token)))
+    finally:
+        await client.aclose()

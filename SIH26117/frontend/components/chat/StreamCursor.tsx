@@ -2,6 +2,6 @@
 
 export function StreamCursor() {
   return (
-    <span className="inline-block h-4 w-0.5 animate-pulse bg-foreground align-middle ml-0.5" />
+    <span className="ml-0.5 inline-block h-4 w-0.5 animate-pulse rounded-full bg-white align-middle" />
   );
 }

@@ -8,6 +8,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
+          "Inter",
           "ui-sans-serif",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -16,6 +17,13 @@ const config: Config = {
           "Helvetica Neue",
           "Arial",
           "sans-serif",
+        ],
+        serif: [
+          "Instrument Serif",
+          "Georgia",
+          '"Times New Roman"',
+          "Times",
+          "serif",
         ],
       },
       colors: {
@@ -49,6 +57,10 @@ const config: Config = {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        cta: {
+          DEFAULT: "hsl(var(--cta))",
+          foreground: "hsl(var(--cta-foreground))",
         },
       },
       keyframes: {

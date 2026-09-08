@@ -5,6 +5,9 @@ from backend.api.v1.chat import router as chat_router
 from backend.api.v1.chat_stream import router as chat_stream_router
 from backend.api.v1.audit_sovereignty import router as audit_router
 from backend.api.v1.health import router as health_router
+from backend.api.v1.deliverables import router as deliverables_router
+from backend.api.v1.layouts import router as layouts_router
+from backend.api.v1.insights import router as insights_router
 
 __all__ = [
     "attachments_router",
@@ -14,4 +17,7 @@ __all__ = [
     "chat_stream_router",
     "audit_router",
     "health_router",
+    "deliverables_router",
+    "layouts_router",
+    "insights_router",
 ]

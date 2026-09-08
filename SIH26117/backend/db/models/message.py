@@ -24,6 +24,7 @@ class ChatMessageModel(Base):
     citations = Column(JSON, nullable=True)
     reasoning = Column(JSON, nullable=True)
     sources = Column(JSON, nullable=True)
+    files = Column(JSON, nullable=True)
     tokens_in = Column(Integer, nullable=True)
     tokens_out = Column(Integer, nullable=True)
     latency_ms = Column(Integer, nullable=True)

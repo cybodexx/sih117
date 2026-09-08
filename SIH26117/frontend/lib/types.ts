@@ -5,6 +5,7 @@ export type SSEFrame =
   | { event: "token"; data: TokenFrame }
   | { event: "approval_required"; data: ApprovalFrame }
   | { event: "citations"; data: CitationsFrame }
+  | { event: "file"; data: FileFrame }
   | { event: "done"; data: DoneFrame }
   | { event: "error"; data: ErrorFrame };
 
@@ -13,6 +14,8 @@ export interface RouteFrame {
   confidence: number;
   rationale: string;
   sub_queries?: string[];
+  tier?: string;
+  llm_used?: boolean;
 }
 
 export interface StepFrame {
@@ -62,6 +65,16 @@ export interface CitationsFrame {
     bbox?: number[];
     snippet: string;
   }>;
+}
+
+export interface FileFrame {
+  deliverable_id: string;
+  filename: string;
+  kind: string;
+  mime: string;
+  size_bytes: number;
+  url: string;
+  sha256?: string;
 }
 
 export interface DoneFrame {

@@ -9,8 +9,15 @@ interface UploadState {
   error: string | null;
 }
 
+interface UploadResult {
+  document_id: string;
+  deduplicated: boolean;
+  status: string;
+  duplicate_of?: string | null;
+}
+
 interface UseUploadReturn extends UploadState {
-  upload: (file: File) => Promise<string | null>;
+  upload: (file: File) => Promise<UploadResult | null>;
   reset: () => void;
 }
 
@@ -22,7 +29,7 @@ export function useUpload(): UseUploadReturn {
   });
   const abortRef = useRef<AbortController | null>(null);
 
-  const upload = useCallback(async (file: File): Promise<string | null> => {
+  const upload = useCallback(async (file: File): Promise<UploadResult | null> => {
     abortRef.current?.abort();
     abortRef.current = new AbortController();
     setState({ progress: 0, uploading: true, error: null });
@@ -45,7 +52,12 @@ export function useUpload(): UseUploadReturn {
 
       const data = await res.json();
       setState({ progress: 100, uploading: false, error: null });
-      return data.document_id as string;
+      return {
+        document_id: data.document_id as string,
+        deduplicated: Boolean(data.deduplicated),
+        status: data.status as string,
+        duplicate_of: data.duplicate_of,
+      };
     } catch (err) {
       if ((err as Error).name === "AbortError") return null;
       setState({ progress: 0, uploading: false, error: "Upload failed" });

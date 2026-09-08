@@ -32,7 +32,16 @@ class Settings(BaseSettings):
     embed_dim: int = 1024
     ollama_timeout_s: float = 60.0
     vision_timeout_s: float = 300.0
-    ollama_keep_alive: str = "-1"
+    ollama_keep_alive: str = "30m"
+
+    from pydantic import field_validator
+
+    @field_validator("ollama_keep_alive")
+    @classmethod
+    def _sanitize_keep_alive(cls, v: str) -> str:
+        if v in {"-1", "", "0"}:
+            return "30m"
+        return v
 
     # JWT
     jwt_private_key_path: Path = Path("/data/keys/jwt_private.pem")
@@ -43,6 +52,10 @@ class Settings(BaseSettings):
     # Upload
     max_upload_mb: int = 200
     vault_path: Path = Path("/data/vault")
+    tee_vault_encryption: bool = True
+
+    # Layout (DocLayout-YOLO, baked at /app/models/)
+    doclayout_model_path: Path = Path("/app/models/doclayout_yolo_docstructbench_imgsz1024.pt")
 
     # RAG
     chunk_target_tokens: int = 512

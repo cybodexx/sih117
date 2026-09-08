@@ -107,3 +107,58 @@ def test_materialize_csv_creates_queryable_table() -> None:
         await engine.dispose()
 
     asyncio.run(_drop())
+
+
+def test_materialize_csv_types_sanitised_headers() -> None:
+    """Column types must be inferred from values even when headers need sanitising.
+
+    Regression test: the materializer used to read cells back by the *original*
+    header after rows were keyed by the sanitised name, so every column fell back
+    to TEXT for any header containing spaces/brackets (e.g. "Air temperature [K]").
+    """
+    import csv
+    import io
+
+    payload = (
+        b"Product ID,Air temperature [K],Failure flag\n"
+        b"M14860,298.1,0\n"
+        b"L47181,308.6,1\n"
+    )
+    info = asyncio.run(materialize_csv("typed_probe.csv", payload))
+    table = info["table"]
+    assert info["columns"] == ["product_id", "air_temperature_k", "failure_flag"]
+
+    async def _assert():
+        from sqlalchemy import text
+        from sqlalchemy.ext.asyncio import create_async_engine
+        from backend.core.config import get_settings
+
+        engine = create_async_engine(get_settings().database_url)
+        try:
+            async with engine.connect() as conn:
+                types = (await conn.execute(text(
+                    "SELECT column_name, data_type FROM information_schema.columns "
+                    "WHERE table_name = :t ORDER BY ordinal_position"
+                ), {"t": table})).fetchall()
+                assert {n: t for n, t in types}["air_temperature_k"], "double precision"
+                assert {n: t for n, t in types}["failure_flag"] == "bigint"
+                avg = (await conn.execute(text(
+                    f"SELECT AVG(air_temperature_k) FROM {table}"
+                ))).scalar()
+                assert avg is not None and abs(float(avg) - 303.35) < 1e-9, avg
+        finally:
+            await engine.dispose()
+
+    asyncio.run(_assert())
+
+    async def _drop():
+        from sqlalchemy import text
+        from sqlalchemy.ext.asyncio import create_async_engine
+        from backend.core.config import get_settings
+
+        engine = create_async_engine(get_settings().database_url)
+        async with engine.begin() as conn:
+            await conn.execute(text(f"DROP TABLE IF EXISTS {table}"))
+        await engine.dispose()
+
+    asyncio.run(_drop())

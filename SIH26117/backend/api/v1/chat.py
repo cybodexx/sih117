@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import uuid
 from datetime import datetime, timezone
 from typing import Annotated
@@ -14,15 +15,17 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.config import get_settings
 from backend.core.deps import get_current_user
-from backend.core.exceptions import NotFound
-from backend.core.rbac import ServerUserContext
+from backend.core.exceptions import BadRequest, Forbidden, NotFound
+from backend.core.rbac import DocumentLabels, ServerUserContext, can_read
 from backend.db.models.chat import ChatSessionModel
+from backend.db.models.document import DocumentModel
 from backend.db.models.message import ChatMessageModel
 from backend.db.session import get_db
 from backend.schemas.chat import (
     ApprovalDecision,
     ChatSessionCreate,
     ChatSessionRead,
+    ChatSessionUpdate,
     MessageAccepted,
     MessageCreate,
     MessageRead,
@@ -39,9 +42,36 @@ def _session_to_read(s: ChatSessionModel) -> ChatSessionRead:
     return ChatSessionRead(
         id=str(s.id),
         title=s.title or "New Chat",
+        document_id=str(s.document_id) if s.document_id else None,
+        document_ids=s.document_ids or [],
         created_at=s.created_at.isoformat() if s.created_at else "",
         updated_at=s.updated_at.isoformat() if s.updated_at else "",
     )
+
+
+async def _validate_documents(
+    db: AsyncSession, user: ServerUserContext, ids: list[str]
+) -> list[DocumentModel]:
+    """Resolve and ACL-check a list of scoped document ids for the chat."""
+    if not ids:
+        return []
+    unique = list(dict.fromkeys(ids))
+    result = await db.execute(
+        select(DocumentModel).where(DocumentModel.id.in_([uuid.UUID(d) for d in unique]))
+    )
+    found = result.scalars().all()
+    if len(found) != len(unique):
+        raise NotFound("One or more documents were not found")
+    for doc in found:
+        labels = DocumentLabels(
+            status=doc.status, clearance_level=doc.clearance_level,
+            department=doc.department, legal_hold=doc.legal_hold,
+        )
+        if not can_read(user, labels).allowed:
+            raise Forbidden(f"You cannot access document {doc.id}")
+        if doc.status != "READY":
+            raise BadRequest(f"Document {doc.filename} is not ready for analysis yet")
+    return sorted(found, key=lambda d: unique.index(str(d.id)))
 
 
 def _message_to_read(m: ChatMessageModel) -> MessageRead:
@@ -57,6 +87,7 @@ def _message_to_read(m: ChatMessageModel) -> MessageRead:
         citations=m.citations or [],
         reasoning=m.reasoning or [],
         sources=m.sources or [],
+        files=m.files or [],
         tokens_in=m.tokens_in,
         tokens_out=m.tokens_out,
         latency_ms=m.latency_ms,
@@ -70,11 +101,19 @@ async def create_session(
     user: Annotated[ServerUserContext, Depends(get_current_user)],
     db: Annotated[AsyncSession, Depends(get_db)],
 ):
+    scope_ids = list(
+        dict.fromkeys((body.document_ids or []) + ([body.document_id] if body.document_id else []))
+    )
+    docs = await _validate_documents(db, user, scope_ids)
+    scope_doc_ids = [str(d.id) for d in docs]
+
     now = datetime.now(timezone.utc)
     session = ChatSessionModel(
         id=uuid.uuid4(),
         user_id=uuid.UUID(user.user_id),
-        title=body.title or "New Chat",
+        document_id=uuid.UUID(scope_doc_ids[0]) if len(scope_doc_ids) == 1 else None,
+        document_ids=scope_doc_ids if scope_doc_ids else None,
+        title=body.title or ("、".join(d.filename for d in docs[:3]) if docs else "") or "New Chat",
         created_at=now,
         updated_at=now,
     )
@@ -82,7 +121,34 @@ async def create_session(
     await db.flush()
     await db.refresh(session)
 
-    logger.info("session_created", session_id=str(session.id), user_id=user.user_id)
+    logger.info(
+        "session_created",
+        session_id=str(session.id),
+        user_id=user.user_id,
+        document_ids=session.document_ids or [],
+    )
+    return _session_to_read(session)
+
+
+@router.patch("/sessions/{session_id}", response_model=ChatSessionRead)
+async def update_session(
+    session_id: str,
+    body: ChatSessionUpdate,
+    user: Annotated[ServerUserContext, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
+):
+    session = await _get_owned_session(db, session_id, user)
+    if body.document_ids is not None:
+        docs = await _validate_documents(db, user, body.document_ids)
+        session.document_ids = [str(d.id) for d in docs] if docs else []
+        session.document_id = docs[0].id if len(docs) == 1 else None
+        if not session.title or session.title == "New Chat":
+            session.title = "、".join(d.filename for d in docs[:3]) or "New Chat"
+    if body.title is not None:
+        session.title = body.title or "New Chat"
+    session.updated_at = datetime.now(timezone.utc)
+    await db.flush()
+    await db.refresh(session)
     return _session_to_read(session)
 
 
@@ -115,6 +181,16 @@ async def list_sessions(
         page=page,
         size=size,
     )
+
+
+@router.get("/sessions/{session_id}", response_model=ChatSessionRead)
+async def get_session(
+    session_id: str,
+    user: Annotated[ServerUserContext, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
+):
+    session = await _get_owned_session(db, session_id, user)
+    return _session_to_read(session)
 
 
 @router.get("/sessions/{session_id}/messages", response_model=list[MessageRead])
@@ -177,6 +253,10 @@ async def post_message(
     # Update session timestamp
     session = await _get_owned_session(db, session_id, user)
     session.updated_at = now
+
+    # Auto-title the session from the first real message (offline, no LLM round-trip).
+    if session.title in (None, "", "New Chat") and body.content.strip():
+        session.title = re.sub(r"\s+", " ", body.content.strip())[:48] or "New Chat"
 
     await db.flush()
 

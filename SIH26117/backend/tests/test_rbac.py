@@ -16,6 +16,7 @@ from backend.core.rbac import (
     DocumentLabels,
     Role,
     ServerUserContext,
+    can_manage,
     can_read,
 )
 
@@ -121,3 +122,49 @@ def test_decisions_are_stable_and_explainable() -> None:
     assert isinstance(denied, Decision)
     assert denied.allowed is False
     assert denied.reason
+
+
+def test_manage_auditor_is_read_only() -> None:
+    """AUDITOR may read but never mutate/delete (no manage rights)."""
+    auditor = _user(Role.AUDITOR, departments=["HR"])
+    doc = _doc(clearance=Clearance.RESTRICTED, department="HR", legal_hold=True)
+    assert can_read(auditor, doc).allowed  # visibility preserved
+    assert not can_manage(auditor, doc, owner_id="someone-else").allowed
+
+
+def test_manage_admin_crosses_departments() -> None:
+    admin = _user(Role.ADMIN, departments=["HR"])
+    doc = _doc(clearance=Clearance.RESTRICTED, department="MECH")
+    assert can_manage(admin, doc, owner_id="someone-else").allowed
+
+
+def test_manage_owner_allowed_roles() -> None:
+    for role in (Role.ENGINEER, Role.ANALYST):
+        owner = _user(role)
+        doc = _doc()
+        assert can_manage(owner, doc, owner_id="u-test").allowed
+
+
+def test_manage_department_peer_engineer_allowed() -> None:
+    peer = _user(Role.ENGINEER, departments=["MECH"])
+    doc = _doc(department="MECH")
+    assert can_manage(peer, doc, owner_id="someone-else").allowed
+
+
+def test_manage_foreign_department_denied() -> None:
+    foreign = _user(Role.ENGINEER, departments=["HR"])
+    doc = _doc(department="MECH")
+    assert not can_manage(foreign, doc, owner_id="someone-else").allowed
+
+
+def test_manage_viewer_never_allowed() -> None:
+    viewer = _user(Role.VIEWER)
+    doc = _doc()
+    assert not can_manage(viewer, doc, owner_id="someone-else").allowed
+
+
+def test_manage_unreadable_document_denied() -> None:
+    """Manage never bypasses the read gate (Bell–LaPadula no-read-up)."""
+    engineer = _user(Role.ENGINEER)  # CONFIDENTIAL
+    doc = _doc(clearance=Clearance.RESTRICTED, department="MECH")
+    assert not can_manage(engineer, doc, owner_id="u-test").allowed

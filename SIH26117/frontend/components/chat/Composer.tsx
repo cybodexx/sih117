@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback, type DragEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { API_BASE } from "@/lib/api-base";
+import { getStoredToken } from "@/lib/api-client";
 
 interface ComposerProps {
   onSend: (content: string, attachmentIds?: string[]) => void;
@@ -18,7 +19,7 @@ interface AttachmentChip {
 }
 
 async function uploadFile(file: File): Promise<{ attachment_id: string }> {
-  const token = sessionStorage.getItem("access_token");
+  const token = getStoredToken();
   const form = new FormData();
   form.append("file", file);
   const res = await fetch(`${API_BASE}/api/v1/attachments`, {
@@ -134,8 +135,8 @@ export function Composer({ onSend, onStop, isStreaming }: ComposerProps) {
 
   return (
     <div
-      className={`flex-shrink-0 border-t border-border bg-background px-4 pb-3 pt-3 transition-colors ${
-        dragging ? "bg-primary/5" : ""
+      className={`flex-shrink-0 border-t border-white/10 bg-black px-4 pb-3 pt-3 transition-colors ${
+        dragging ? "bg-white/5" : ""
       }`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
@@ -191,7 +192,7 @@ export function Composer({ onSend, onStop, isStreaming }: ComposerProps) {
           </div>
         )}
 
-        <div className="chat-input-shadow flex items-end gap-1 rounded-[28px] border border-border bg-background p-2 pl-4 transition-colors focus-within:border-foreground/20">
+        <div className="chat-input-shadow flex items-end gap-1 rounded-[28px] border border-white/15 bg-white/[0.05] p-2 pl-4 backdrop-blur-md transition-colors focus-within:border-white/35">
           <button
             onClick={() => fileInputRef.current?.click()}
             className="mb-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
@@ -224,7 +225,7 @@ export function Composer({ onSend, onStop, isStreaming }: ComposerProps) {
                 whileTap={{ scale: 0.88 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={onStop}
-                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:opacity-90"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-red-400/40 hover:bg-red-500/15 hover:text-red-200"
                 aria-label="Stop generating"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -241,7 +242,7 @@ export function Composer({ onSend, onStop, isStreaming }: ComposerProps) {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 onClick={handleSubmit}
                 disabled={!canSend}
-                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:opacity-90 disabled:opacity-25"
+                className="liquid-btn-solid flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full disabled:opacity-25"
                 aria-label="Send message"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,7 +253,10 @@ export function Composer({ onSend, onStop, isStreaming }: ComposerProps) {
           </AnimatePresence>
         </div>
 
-        <p className="mt-2.5 text-center text-[11px] leading-relaxed text-muted-foreground">
+        <p className="mt-2.5 flex items-center justify-center gap-1.5 text-center text-[11px] leading-relaxed text-muted-foreground">
+          <svg className="h-3.5 w-3.5 text-emerald-500/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
           AEGIS-WB can make mistakes. Check important information. Air-gapped —
           documents and queries never leave this machine.
         </p>

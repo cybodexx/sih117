@@ -1,4 +1,4 @@
-import { SSEFrame, RouteFrame, StepFrame, SourcesFrame, TokenFrame, ApprovalFrame, CitationsFrame, DoneFrame, ErrorFrame } from "./types";
+import { SSEFrame, RouteFrame, StepFrame, SourcesFrame, TokenFrame, ApprovalFrame, CitationsFrame, FileFrame, DoneFrame, ErrorFrame } from "./types";
 
 interface ParseResult {
   frames: SSEFrame[];
@@ -54,6 +54,8 @@ function buildFrame(event: string, data: unknown): SSEFrame | null {
       return { event: "approval_required", data: data as ApprovalFrame };
     case "citations":
       return { event: "citations", data: data as CitationsFrame };
+    case "file":
+      return { event: "file", data: data as FileFrame };
     case "done":
       return { event: "done", data: data as DoneFrame };
     case "error":

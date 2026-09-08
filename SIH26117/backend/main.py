@@ -2,6 +2,7 @@
 M3 owns this file. It must be < 60 lines: mount routers only, no logic."""
 from __future__ import annotations
 
+import asyncio
 import time
 import uuid
 from contextlib import asynccontextmanager
@@ -21,12 +22,37 @@ from backend.api.v1 import (
     chat_router,
     chat_stream_router,
     audit_router,
+    layouts_router,
     health_router,
+    deliverables_router,
+    insights_router,
 )
 
 setup_logging()
 settings = get_settings()
 logger = structlog.get_logger()
+
+
+async def _warmup_models() -> None:
+    """Preload the text and vision models so the first chat/analyze call is fast."""
+    try:
+        from backend.services.llm.ollama_client import OllamaClient
+
+        client = OllamaClient(settings)
+        for model in (settings.llm_model, settings.vision_model):
+            try:
+                await client.chat(
+                    [{"role": "user", "content": "Reply with the single word: ready"}],
+                    model=model,
+                    max_tokens=8,
+                )
+                logger.info("model_warmed_up", model=model)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("model_warmup_failed", model=model, error=str(exc))
+                return
+        await client.close()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("warmup_step_failed", error=str(exc))
 
 
 @asynccontextmanager
@@ -37,7 +63,9 @@ async def lifespan(app: FastAPI):
         await run_migrations()
     except Exception as exc:
         logger.error("qdrant_migration_failed", error=str(exc))
+    task = asyncio.create_task(_warmup_models())
     yield
+    task.cancel()
     from backend.services.llm.ollama_client import close_singleton
 
     await close_singleton()
@@ -80,4 +108,7 @@ app.include_router(documents_router, prefix="/api/v1")
 app.include_router(chat_router, prefix="/api/v1")
 app.include_router(chat_stream_router, prefix="/api/v1")
 app.include_router(audit_router, prefix="/api/v1")
+app.include_router(deliverables_router, prefix="/api/v1")
+app.include_router(layouts_router, prefix="/api/v1")
+app.include_router(insights_router, prefix="/api/v1")
 app.include_router(health_router)

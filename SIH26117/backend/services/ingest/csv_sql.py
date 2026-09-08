@@ -104,7 +104,7 @@ async def materialize_csv(filename: str, raw: bytes, document_id: str | None = N
     types: list[str] = []
     converters: list[callable] = []
     for col, orig in zip(columns, reader.fieldnames):
-        cell = lambda rec, k=orig: (rec.get(k) or "").strip()
+        cell = lambda rec, k=col: (rec.get(k) or "").strip()
         ctype, conv = _type_for([cell(r) for r in rows])
         types.append(ctype)
         converters.append(conv)

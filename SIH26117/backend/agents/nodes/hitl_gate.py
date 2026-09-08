@@ -18,6 +18,7 @@ RISK: dict[str, str] = {
     "compute_downtime": "READ",
     "delete_document": "HIGH",
     "export_bundle": "HIGH",
+    "generate_deliverable": "HIGH",
     "bulk_relabel": "HIGH",
     "python_exec": "HIGH",
 }

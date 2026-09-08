@@ -8,6 +8,7 @@ class DocumentAccepted(BaseModel):
     status: str = "QUEUED"
     checksum: str
     deduplicated: bool = False
+    duplicate_of: str | None = None
 
 
 class DocumentRead(BaseModel):
@@ -37,3 +38,11 @@ class PageRead(BaseModel):
     total: int
     page: int
     size: int
+
+
+class DocumentAnalysis(BaseModel):
+    document_id: str
+    report: str
+    chunks_read: int
+    latency_ms: int
+    generated_at: str

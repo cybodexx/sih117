@@ -19,12 +19,12 @@ interface ReasoningTraceProps {
 }
 
 const PHASE_COLOR: Record<string, string> = {
-  plan: "bg-blue-500",
-  reason: "bg-purple-500",
+  plan: "bg-indigo-500",
+  reason: "bg-violet-500",
   act: "bg-orange-500",
   observe: "bg-cyan-500",
   reflect: "bg-yellow-500",
-  synthesize: "bg-green-500",
+  synthesize: "bg-emerald-500",
 };
 
 export function ReasoningTrace({ steps, isStreaming }: ReasoningTraceProps) {

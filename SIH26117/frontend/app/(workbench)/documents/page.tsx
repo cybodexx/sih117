@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Dropzone } from "@/components/docs/Dropzone";
 import { DocumentTable, type DocRow } from "@/components/docs/DocumentTable";
 import { useUpload } from "@/hooks/useUpload";
 import { apiGet, apiPost } from "@/lib/api-client";
+import type { AnalysisPanel } from "@/components/docs/DocumentTable";
 
 interface QueueItem {
   name: string;
@@ -13,10 +15,13 @@ interface QueueItem {
 }
 
 export default function DocumentsPage() {
+  const router = useRouter();
   const [docs, setDocs] = useState<DocRow[]>([]);
   const { upload } = useUpload();
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [refreshing, setRefreshing] = useState(true);
+  const [analyzingId, setAnalyzingId] = useState<string | null>(null);
+  const [analyses, setAnalyses] = useState<Record<string, AnalysisPanel>>({});
 
   const fetchAll = useCallback(async () => {
     try {
@@ -39,12 +44,20 @@ export default function DocumentsPage() {
   async function handleFiles(files: File[]) {
     for (const file of files) {
       setQueue((q) => [...q, { name: file.name, status: "uploading" }]);
-      const id = await upload(file);
+      const result = await upload(file);
       setQueue((q) =>
         q.map((item) =>
           item.name === file.name
-            ? id
-              ? { name: item.name, status: "done" }
+            ? result
+              ? result.deduplicated
+                ? {
+                    name: item.name,
+                    status: "done",
+                    detail: result.duplicate_of
+                      ? `Already in vault as "${result.duplicate_of}"`
+                      : "Already in vault (duplicate)",
+                  }
+                : { name: item.name, status: "done" }
               : { name: item.name, status: "error", detail: "Upload failed" }
             : item
         )
@@ -69,6 +82,43 @@ export default function DocumentsPage() {
     setQueue((q) => q.filter((item) => item.status !== "error"));
   }
 
+  async function handleAnalyze(documentId: string) {
+    setAnalyzingId(documentId);
+    try {
+      const result = await apiPost<{ document_id: string; report: string; chunks_read: number; latency_ms: number }>(
+        `/api/v1/documents/${documentId}/analyze`,
+        {}
+      );
+      setAnalyses((m) => ({
+        ...m,
+        [documentId]: {
+          report: result.report,
+          chunks_read: result.chunks_read,
+          latency_ms: result.latency_ms,
+        },
+      }));
+    } catch (err) {
+      setAnalyses((m) => ({
+        ...m,
+        [documentId]: { error: (err as Error).message },
+      }));
+    } finally {
+      setAnalyzingId(null);
+    }
+  }
+
+  async function handleChat(documentId: string, filename: string) {
+    try {
+      const session = await apiPost<{ id: string }>(
+        "/api/v1/chat/sessions",
+        { title: filename, document_id: documentId }
+      );
+      router.push(`/chat/${session.id}`);
+    } catch (err) {
+      console.error("start scoped chat failed", err);
+    }
+  }
+
   const activeJobs = docs.filter(
     (d) => d.status === "QUEUED" || d.status === "PROCESSING"
   );
@@ -76,12 +126,19 @@ export default function DocumentsPage() {
   return (
     <div className="h-full overflow-y-auto scrollbar-thin">
       <div className="mx-auto max-w-5xl space-y-6 p-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Documents</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Upload files to the sovereign vault. They are parsed, chunked, and
-            embedded locally — nothing leaves this machine.
-          </p>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">Documents</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Upload files to the sovereign vault. They are parsed, chunked, and
+              embedded locally — nothing leaves this machine.
+            </p>
+          </div>
+          {docs.length > 0 && (
+            <span className="chat-pill px-2.5 py-1 text-xs text-muted-foreground">
+              {docs.length} in vault · {docs.filter((d) => d.status === "READY").length} ready
+            </span>
+          )}
         </div>
 
         <Dropzone onFiles={handleFiles} />
@@ -100,10 +157,14 @@ export default function DocumentsPage() {
                   <span className="h-3 w-3 animate-spin rounded-full border-2 border-muted-foreground/30 border-t-muted-foreground" />
                 )}
                 {item.status === "done" && (
-                  <span className="text-emerald-500">✓</span>
+                  <svg className="h-3.5 w-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                 )}
                 {item.status === "error" && (
-                  <span className="text-destructive">✕</span>
+                  <svg className="h-3.5 w-3.5 text-destructive" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 )}
                 <span className="truncate">{item.name}</span>
                 <span className="ml-auto text-xs text-muted-foreground">
@@ -127,7 +188,14 @@ export default function DocumentsPage() {
           </div>
         )}
 
-        <DocumentTable documents={docs} onRetry={handleRetry} />
+        <DocumentTable
+          documents={docs}
+          onRetry={handleRetry}
+          analyzingId={analyzingId}
+          analyses={analyses}
+          onAnalyze={handleAnalyze}
+          onChat={handleChat}
+        />
 
         {queue.some((q) => q.status === "error") && (
           <button
